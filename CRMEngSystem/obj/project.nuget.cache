@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WgQwIXBwSq7gz0ed9mUEMIyvmRpkXjtv8DrmPWOowmlZn1j0I2yG6KpSpSMjImLdS9yMttqge1J9qy/wNsZnmA==",
+  "dgSpecHash": "LE2YB29Y31Q8uAL2Jn4THv/1dqf4e9mLa2eAX6GD5dE456fZsvYSAs0OyUIltBQ03h1PT+hxVhwnGtNpr6BK/w==",
   "success": true,
-  "projectFilePath": "D:\\На новый пк\\Проэкты\\Универ\\CRMEngSystem\\CRMEngSystem\\CRMEngSystem.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\CRMEngSystem\\CRMEngSystem\\CRMEngSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\chart.js\\3.7.1\\chart.js.3.7.1.nupkg.sha512",
@@ -40,7 +40,6 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",

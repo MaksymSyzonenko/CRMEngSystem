@@ -18,9 +18,9 @@ namespace CRMEngSystem.Controllers.Account
         [HttpGet]
         public IActionResult AccountLogin() 
         {
-            _context.Database.EnsureDeleted();
-            _context.Database.EnsureCreated();
-            _signInManager.SignOutAsync();
+            //_context.Database.EnsureDeleted();
+            //_context.Database.EnsureCreated();
+            //_signInManager.SignOutAsync();
 
 
             if (User.Identity!.IsAuthenticated)
