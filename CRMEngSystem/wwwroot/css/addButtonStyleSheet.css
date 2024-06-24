@@ -1,0 +1,39 @@
+﻿.add-btn-fullwidth {
+    background-color: #4962E9;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 25px 5px 25px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+}
+
+.add-btn-fullwidth:hover {
+    color: white;
+    background-color: #2C3FA6;
+}
+
+.add-btn {
+    background-color: #4962E9;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 25px 5px 25px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+}
+
+.add-btn:hover {
+    color: white;
+    background-color: #2C3FA6;
+}

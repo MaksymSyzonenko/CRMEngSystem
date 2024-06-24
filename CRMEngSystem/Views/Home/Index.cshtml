@@ -1,0 +1,9 @@
+﻿@using CRMEngSystem.Models.ViewModels.Notify
+
+@if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+{
+    @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, CloseActionName = "CloseModal", ControllerName = "Home", IsError = false })
+}
+
+
+

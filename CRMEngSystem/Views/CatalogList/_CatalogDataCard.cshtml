@@ -1,0 +1,100 @@
+﻿@using CRMEngSystem.Dto.Catalog
+@model CatalogListItemDto
+
+<head>
+    <style>
+        .card-data {
+            background-color: white;
+            border-radius: 5px;
+            grid-gap: 5px;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 10% 35% 10% 15% 15% calc(15% - 13px);
+            align-items: center;
+            height: 23px;
+            padding: 0 10px 0 10px;
+        }
+
+            .card-data span {
+                font-size: 12px;
+                color: #595586;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .card-data a:nth-child(2){
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin: 0 15px 0 15px;
+            }
+
+            .card-data a:hover span {
+                color: #4962E9;
+            }
+
+            .card-data a {
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        .scrollable {
+            height: 21px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+            .scrollable span {
+                display: inline-block;
+                white-space: nowrap;
+            }
+
+            .scrollable::-webkit-scrollbar {
+                height: 3px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb {
+                background-color: #E1E2F3;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-track {
+                background-color: transparent;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb:hover {
+                background-color: #59CDFF;
+            }
+    </style>
+</head>
+<body>
+    <div class="card-data">
+        <span>@Model.EquipmentCode</span>
+        <a class="scrollable" href="@Url.Action("CatalogDetails","CatalogDetails", new { EntityId = Model.EquipmentCatalogPositionId})"><span>@Model.NameEN</span></a>
+        <span>
+            @{
+                switch (Model.Type.ToString())
+                {
+                    case "Main":
+                        <span>Основне</span>
+                        break;
+                    case "Detail":
+                        <span>Деталь</span>
+                        break;
+                    case "MaintenanceKit":
+                        <span>Ремкоплект</span>
+                        break;
+                }
+            }
+        </span>
+        <span>@Model.BasePrice £</span>
+        <span>@Model.Weight кг</span>
+        <span>@Model.Volume м³</span>
+    </div>
+</body>

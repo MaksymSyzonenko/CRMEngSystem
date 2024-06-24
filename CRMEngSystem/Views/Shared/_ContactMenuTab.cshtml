@@ -1,0 +1,28 @@
+﻿@using CRMEngSystem.Models.ViewModels.Contact
+@using CRMEngSystem.Data.Entities.User
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<UserEntity> _userManager
+@model ContactMenuTabViewModel
+
+<body>
+    <div class="tabs-menu">
+        <div class='@(Model.ActiveTab == "Details" ? "tab-link-container-active" : "tab-link-container")'>
+            @Html.ActionLink("Інформація", "ContactDetails", "ContactDetails", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+        </div>
+        <div class='@(Model.ActiveTab == "Orders" ? "tab-link-container-active" : "tab-link-container")'>
+            @Html.ActionLink("Замовлення", "ContactOrders", "ContactOrders", new ContactOrdersViewModel { EntityId = Model.EntityId }, new { @class = "tab-link" })
+            <div class="number-container">@Model.NumberOrders</div>
+        </div>
+        <div class='@(Model.ActiveTab == "Comments" ? "tab-link-container-active" : "tab-link-container")'>
+            @Html.ActionLink("Коментарі", "ContactComments", "ContactComments", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+            <div class="number-container">@Model.NumberComments</div>
+        </div>
+        @if (_userManager.GetUserAsync(User).Result!.ContactId == Model.EntityId)
+        {
+            <div class='@(Model.ActiveTab == "Account" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Акаунт", "AccountDetails", "AccountDetails", null, new { @class = "tab-link" })
+            </div>
+        }
+    </div>
+</body>
+

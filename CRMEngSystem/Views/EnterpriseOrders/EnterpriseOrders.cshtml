@@ -1,0 +1,323 @@
+﻿@using CRMEngSystem.Models.ViewModels.Enterprise
+@model EnterpriseOrdersViewModel
+
+<head>
+    <style>
+
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 60vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+            .cards-container::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            .cards-container::-webkit-scrollbar-track {
+                background: #E1E2F3;
+                border-radius: 3px;
+            }
+
+            .cards-container::-webkit-scrollbar-thumb {
+                background: #4962E9;
+                border-radius: 3px;
+            }
+
+                .cards-container::-webkit-scrollbar-thumb:hover {
+                    background: #59CDFF;
+                }
+
+        .header-container {
+            background-color: #DDE9FF;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .header-part {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 10% 10% 20% 25% 20% calc(15% - 13px);
+            padding-right: 13px;
+        }
+
+        .header-part-column {
+            font-size: 12px;
+            color: #4962E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            .header-part-column:nth-child(4) {
+                justify-content: flex-start;
+                padding: 0 15px;
+            }
+
+        .card-data {
+            background-color: white;
+            border-radius: 5px;
+            grid-gap: 5px;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 10% 10% 20% 25% 20% calc(15% - 13px);
+            align-items: center;
+            height: 23px;
+            padding: 0 10px 0 10px;
+        }
+
+            .card-data span {
+                font-size: 12px;
+                color: #595586;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        .scrollable {
+            height: 21px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+            .scrollable span {
+                display: inline-block;
+                white-space: nowrap;
+            }
+
+            .scrollable::-webkit-scrollbar {
+                height: 3px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb {
+                background-color: #E1E2F3;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-track {
+                background-color: transparent;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb:hover {
+                background-color: #59CDFF;
+            }
+
+        .card-data a:nth-child(4) {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 15px 0 15px;
+        }
+
+        .card-data a:hover span {
+            color: #4962E9;
+        }
+
+        .card-data a {
+            text-decoration: none;
+        }
+
+        .card-data .status {
+            height: 15px;
+        }
+
+        .filter select {
+            width: 100%;
+            border-radius: 5px;
+            color: #E1E2F3;
+            font-size: 12px;
+            padding: 6px 0 6px 0;
+            background-color: white;
+            outline: none;
+            border: none;
+        }
+
+            .filter select option {
+                color: #595586;
+            }
+
+            .filter select:focus {
+                outline: none;
+            }
+
+        .range-container {
+            font-size: 12px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 5px;
+        }
+
+            .range-container input {
+                width: 50%;
+                color: #E1E2F3;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                width: 100%;
+                padding: 4px 0 4px 0;
+                text-align: center;
+                -moz-appearance: textfield;
+            }
+
+                .range-container input::placeholder {
+                    color: #E1E2F3;
+                }
+
+                .range-container input::-webkit-inner-spin-button,
+                .range-container input::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+        .date-pickers-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .date-picker-part {
+            width: 50%;
+        }
+
+        .date-picker {
+            font-size: 12px;
+            color: #E1E2F3;
+            border: none;
+            border-radius: 5px;
+            padding: 4px 0 4px 2px;
+            outline: none;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        @await Html.PartialAsync("_EnterpriseMenuTab", Model)
+        <div class="tab-container">
+            <div class="header-container">
+                <div class="header-part" style="margin-top: 5px;">
+                    <div class="header-part-column"><span>Код</span></div>
+                    <div class="header-part-column"><span>Пріорітет</span></div>
+                    <div class="header-part-column"><span>Загальний чек</span></div>
+                    <div class="header-part-column"><span>Ініціатор</span></div>
+                    <div class="header-part-column"><span>Дата створення</span></div>
+                    <div class="header-part-column"><span>Статус</span></div>
+                </div>
+                <div class="header-part" style="margin: 5px 0;">
+                    @{
+                        void JoinSearches(string currentQuery)
+                        {
+                            if (!string.IsNullOrEmpty(Model.SearchOrderId) && currentQuery != "SearchOrderId")
+                                @Html.HiddenFor(m => m.SearchOrderId)
+
+                            if (!string.IsNullOrEmpty(Model.FilterPriority) && currentQuery != "FilterPriority")
+                                @Html.HiddenFor(m => m.FilterPriority)
+
+                            if (currentQuery != "FilterSellPrice")
+                            {
+                                if (Model.FilterMinSellPrice != null)
+                                    @Html.HiddenFor(m => m.FilterMinSellPrice)
+
+                                if (Model.FilterMaxSellPrice != null)
+                                    @Html.HiddenFor(m => m.FilterMaxSellPrice)
+                            }
+
+                            if (!string.IsNullOrEmpty(Model.SearchInitiatorInitials) && currentQuery != "SearchInitiatorInitials")
+                                @Html.HiddenFor(m => m.SearchInitiatorInitials)
+
+                            if (Model.FilterDateStart != null && currentQuery != "FilterDateStart")
+                                @Html.HiddenFor(m => m.FilterDateStart)
+
+                            if (Model.FilterDateEnd != null && currentQuery != "FilterDateEnd")
+                                @Html.HiddenFor(m => m.FilterDateEnd)
+
+                            if (!string.IsNullOrEmpty(Model.FilterStatus) && currentQuery != "FilterStatus")
+                                @Html.HiddenFor(m => m.FilterStatus)
+
+                            @Html.HiddenFor(m => m.EntityId)
+                        }
+                    }
+                    @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "search" }))
+                    {
+                        <img src="~/icons/Search.svg" />
+                        @Html.TextBoxFor(m => m.SearchOrderId, new { placeholder = "Пошук", @Value = Model.SearchOrderId })
+                        JoinSearches("SearchOrderId");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "filter" }))
+                    {
+                        @Html.DropDownList("FilterPriority", new SelectList(new[] { "Низький", "Середній", "Високий" }), "Всі", new { onchange = "this.form.submit();" })
+                        JoinSearches("FilterPriority");
+                    }
+                    @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "range-container" }))
+                    {
+                        @Html.TextBoxFor(m => m.FilterMinSellPrice, new { placeholder = "Мін.", type = "number"})
+                        @Html.TextBoxFor(m => m.FilterMaxSellPrice, new { placeholder = "Макс.", type = "number"})
+                        JoinSearches("FilterSellPrice");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "search" }))
+                    {
+                        <img src="~/icons/Search.svg" />
+                        @Html.TextBoxFor(m => m.SearchInitiatorInitials, new { placeholder = "Пошук", @Value = Model.SearchInitiatorInitials })
+                        JoinSearches("SearchInitiatorInitials");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    <div class="date-pickers-container">
+                        @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "date-picker-part" }))
+                        {
+                            @Html.TextBoxFor(m => m.FilterDateStart, "{0:yyyy-MM-dd}", new { type = "date", @class = "date-picker", onchange = "this.form.submit();" })
+                            JoinSearches("FilterDateStart");
+                        }
+                        @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "date-picker-part" }))
+                        {
+                            @Html.TextBoxFor(m => m.FilterDateEnd, "{0:yyyy-MM-dd}", new { type = "date", @class = "date-picker", onchange = "this.form.submit();" })
+                            JoinSearches("FilterDateEnd");
+                        }
+                    </div>
+                    @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "filter" }))
+                    {
+                        @Html.DropDownList("FilterStatus", new SelectList(new[] { "Обробка", "Пропозиція", "Виконання", "Завершене" }), "Всі", new { onchange = "this.form.submit();", style="margin-left: 5px;" })
+                        JoinSearches("FilterStatus");
+                    }
+                </div>
+            </div>
+            <div class="cards-container">
+                @foreach (var entity in Model.Orders)
+                {
+                    <div class="card-data">
+                        <a href="@Url.Action("OrderDetails","OrderDetails", new { EntityId = entity.OrderId})"><span>@entity.OrderId</span></a>
+                        <span><img src="@Url.Content($"~/icons/Priority_{entity.Priority}.svg")" /></span>
+                        <span>@entity.TotalSellPrices €</span>
+                        <a class="scrollable" href="@Url.Action("ContactDetails","ContactDetails", new { EntityId = entity.InitiatorId})"><span>@entity.InitiatorInitials</span></a>
+                        <span>@entity.DateTimeCreate</span>
+                        <span><img class="status" src="@Url.Content($"~/icons/Status_{entity.Status}.svg")" /></span>
+                    </div>
+                }
+            </div>
+            @await Html.PartialAsync("_Pagination", Model)
+        </div>
+    </div>
+</body>

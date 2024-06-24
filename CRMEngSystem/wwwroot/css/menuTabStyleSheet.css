@@ -1,0 +1,65 @@
+﻿.tabs-menu {
+    height: 30px;
+    display: flex;
+    text-align: center;
+    gap: 15px;
+}
+
+.tab-link-container {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-link-container:hover .tab-link {
+    color: #4962E9;
+}
+
+.tab-link-container:hover .number-container {
+    color: #4962E9;
+    background-color: #DDE9FF;
+}
+
+.tab-link {
+    text-decoration: none;
+    color: #595586;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.tab-link-container-active {
+    display: flex;
+    align-items: center;
+    color: #4962E9;
+    pointer-events: none;
+    padding: 5px;
+    border-bottom: 3px solid #4962E9;
+}
+
+.tab-link-container-active .tab-link {
+    color: #4962E9;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.number-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #595586;
+    background-color: #E1E2F3;
+    border-radius: 5px;
+    padding: 1px 5px;
+    margin-bottom: 3px;
+}
+
+.tab-link-container-active .number-container {
+    color: #4962E9;
+    background-color: #DDE9FF;
+}

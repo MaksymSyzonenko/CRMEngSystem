@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMEngSystem", "CRMEngSystem\CRMEngSystem.csproj", "{8F7828D4-3676-4DE1-ADE7-84C66584567C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F7828D4-3676-4DE1-ADE7-84C66584567C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7828D4-3676-4DE1-ADE7-84C66584567C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7828D4-3676-4DE1-ADE7-84C66584567C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7828D4-3676-4DE1-ADE7-84C66584567C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2555DD2-482E-4DCE-95B9-34EC9F463D57}
+	EndGlobalSection
+EndGlobal

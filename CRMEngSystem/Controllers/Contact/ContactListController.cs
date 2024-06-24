@@ -1,0 +1,48 @@
+﻿using AutoMapper;
+using CRMEngSystem.Data.Entities.Contact;
+using CRMEngSystem.Data.Loaders.Contact;
+using CRMEngSystem.Data.Repositories.Factory;
+using CRMEngSystem.Dto.Contact;
+using CRMEngSystem.Services.Search.Contact;
+using CRMEngSystem.Models.ViewModels.Contact;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace CRMEngSystem.Controllers.Contact
+{
+    [Authorize]
+    public class ContactListController : Controller
+    {
+        private readonly IMapper _mapper;
+        private readonly IRepositoryFactory _repositoryFactory;
+        public ContactListController(IMapper mapper, IRepositoryFactory repositoryFactory)
+        {
+            _mapper = mapper;
+            _repositoryFactory = repositoryFactory;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ContactList(ContactListViewModel model)
+        {
+            var entities = _repositoryFactory.Instantiate<ContactEntity>().GetAllEntitiesAsQueryable(new ContactDataLoader(true, true, true, false, false));
+
+            entities = entities.OrderByDescending(entity => entity.DateTimeCreate);
+
+            var searchService = new ContactSearchService(model.SearchGeneral);
+            entities = searchService.Search(entities);
+
+            model.TotalPageCount = (int)Math.Ceiling((decimal)entities.Count() / model.NumberItemsPerPage);
+            entities = entities.Skip((model.CurrentPage - 1) * model.NumberItemsPerPage).Take(model.NumberItemsPerPage);
+            model.Entities = _mapper.Map<IEnumerable<ContactListItemDto>>(await entities.ToListAsync());
+
+            return View(model);
+        }
+        public IActionResult CloseModal()
+        {
+            TempData["NotifyModal"] = false;
+            TempData["ErorrNotifyModal"] = false;
+            return RedirectToAction("ContactList", "ContactList");
+        }
+    }
+}
