@@ -16,6 +16,7 @@ using CRMEngSystem.Attributes.Cache;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using CRMEngSystem.Services.Settings;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace CRMEngSystem
 {
@@ -115,6 +116,11 @@ namespace CRMEngSystem
             });
 
             var app = builder.Build();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             using (var scope = app.Services.CreateScope())
             {

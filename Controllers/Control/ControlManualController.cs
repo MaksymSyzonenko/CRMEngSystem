@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CRMEngSystem.Controllers.Control
 {
-    [RequireHttps]
     public class ControlManualController : Controller
     {
         [HttpGet]
