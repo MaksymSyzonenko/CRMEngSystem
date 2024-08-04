@@ -117,11 +117,6 @@ namespace CRMEngSystem
 
             var app = builder.Build();
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
-
             using (var scope = app.Services.CreateScope())
             {
                 var settingsService = scope.ServiceProvider.GetRequiredService<ISettingsService>();

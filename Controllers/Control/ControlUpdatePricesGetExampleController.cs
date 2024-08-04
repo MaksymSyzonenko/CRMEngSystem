@@ -1,8 +1,10 @@
 ﻿using CRMEngSystem.Configuration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRMEngSystem.Controllers.Control
 {
+    [Authorize]
     public class ControlUpdatePricesGetExampleController : Controller
     {
         [HttpGet]
