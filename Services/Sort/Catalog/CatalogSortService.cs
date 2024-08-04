@@ -25,7 +25,7 @@ namespace CRMEngSystem.Services.Sort.Catalog
                 entities = entities.OrderBy(entity => entity.EquipmentCode);
 
             if (_sortCode.HasValue)
-                entities = _sortCode.Value ? entities.OrderByDescending(entity => entity.EquipmentCode) : entities;
+                entities = _sortCode.Value ? entities.OrderBy(entity => entity.EquipmentCode) : entities;
 
             if (_sortAlphabetNameEN.HasValue)
                 entities = _sortAlphabetNameEN.Value ? entities.OrderBy(entity => entity.NameEN) : entities;
