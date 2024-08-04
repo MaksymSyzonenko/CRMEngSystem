@@ -1,0 +1,130 @@
+﻿@using CRMEngSystem.Models.ViewModels.Confirm
+@model OrderChooseCurrencyConfirmModalViewModel
+
+<head>
+    <style>
+        .modal-background {
+            background-color: rgba(0, 0, 0, 0.3);
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .modal-window {
+            background: white;
+            border-radius: 10px;
+            min-height: 150px;
+            min-width: 450px;
+            max-height: 150px;
+            height: 20%;
+            width: 35%;
+            padding: 7px 14px;
+            margin-bottom: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .notify-text {
+            height: calc(100% - 25px);
+            width: 100%;
+            text-align: center;
+            color: #595586;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-link a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 25px;
+            color: #595586;
+            cursor: pointer;
+        }
+
+        .close-link {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 25px;
+        }
+
+        .modal-window-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            padding: 0 10px 40px 10px;
+            gap: 15px;
+        }
+
+        .btns-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+
+        .cancel-btn {
+            font-size: 14px;
+            color: white;
+            background-color: #4962E9;
+            border-radius: 3px;
+            text-decoration: none;
+            padding: 5px 15px;
+            width: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+            .cancel-btn:hover {
+                background-color: #2C3FA6;
+                color: white;
+            }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var modalBackground = document.querySelector('.modal-background');
+            var closeLink = document.querySelector('.close-link a');
+
+            function closeModal() {
+                modalBackground.style.display = 'none';
+            }
+
+            closeLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                closeModal();
+            });
+
+            modalBackground.addEventListener('click', function (event) {
+                if (event.target === modalBackground) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="modal-background">
+        <div class="modal-window">
+            <div class="close-link"><a href="#">×</a></div>
+            <div class="modal-window-content">
+                <div class="notify-text">
+                    <span>В якій валюті створити Комерційну Пропозицію?</span>
+                </div>
+                <div class="btns-container">
+                    @Html.ActionLink("EUR", "OrderCreateOffer", "OrderCreateOffer", new { OrderId = Model.OrderId, Currency = "EUR" }, new { @class = "cancel-btn" })
+                    @Html.ActionLink("UAH", "OrderCreateOffer", "OrderCreateOffer", new { OrderId = Model.OrderId, Currency = "UAH" }, new { @class = "cancel-btn" })
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

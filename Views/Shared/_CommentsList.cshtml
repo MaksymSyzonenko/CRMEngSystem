@@ -1,0 +1,77 @@
+﻿@using CRMEngSystem.Models.ViewModels.Comment
+@model CommentListViewModel
+
+<head>
+    <style>
+        .send-comment-container{
+            background-color: white;
+            border-radius: 5px;
+            margin: 10px 0 10px 0;
+            padding: 15px;
+        }
+
+        .comment-input{
+            border: 1px solid #E1E2F3;
+            width: 100%;
+            border-radius: 3px;
+            padding: 5px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        .comment-input::placeholder{
+            color: #E1E2F3;
+        }
+
+        .comments-container{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 60vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+            .comments-container::-webkit-scrollbar {
+            width: 5px;
+        }
+
+            .comments-container::-webkit-scrollbar-track {
+            background: #E1E2F3;
+            border-radius: 3px;
+        }
+
+            .comments-container::-webkit-scrollbar-thumb {
+            background: #4962E9;
+            border-radius: 3px;
+        }
+
+                .comments-container::-webkit-scrollbar-thumb:hover {
+                background: #59CDFF;
+            }
+
+        .btn-container{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm(Model.ActionName, Model.ControllerName, FormMethod.Post, new { @class = "send-comment-container" }))
+    {
+        @Html.TextBoxFor(m => m.Text, new { @class = "comment-input", placeholder = "Напишіть ваш коментар тут..."})
+        @Html.HiddenFor(m => m.EntityId)
+        <div class="btn-container">
+            <input style="font-size: 12px;" class="add-btn" type="submit" value="Надіслати" />
+        </div>
+    }
+    <div class="comments-container">
+        @foreach(var entity in Model.Comments)
+        {
+            @await Html.PartialAsync("_CommentDataCard", entity)
+        }
+    </div>
+</body>

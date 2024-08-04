@@ -1,0 +1,64 @@
+﻿@using CRMEngSystem.Models.ViewModels.Contact
+@using CRMEngSystem.Models.ViewModels.Notify
+@model ContactListViewModel
+<head>
+    <style>
+        .cards-container {
+            gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(calc(25% - 8px), 1fr));
+            max-height: 60vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        @@media (min-width: 1400px) {
+            .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(calc(16% - 8px), 1fr));
+            }
+        }
+
+        .cards-container::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .cards-container::-webkit-scrollbar-track {
+            background: #E1E2F3;
+            border-radius: 3px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb {
+            background: #4962E9;
+            border-radius: 3px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb:hover {
+            background: #59CDFF;
+        }
+    </style>
+</head>
+<body>
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    <div class="page-container">
+        @using (Html.BeginForm("ContactList", "ContactList", FormMethod.Get, new { @class = "search", style = "height: 30px;" }))
+        {
+            <img src="~/icons/Search.svg" />
+            @Html.TextBoxFor(m => m.SearchGeneral, new { placeholder = "Загальний пошук", @Value = Model.SearchGeneral })
+            @Html.HiddenFor(m => m.NumberItemsPerPage)
+            <input type="submit" style="visibility: hidden;" />
+        }
+        <div class="cards-container">
+            @foreach (var entity in Model.Entities)
+            {
+                @await Html.PartialAsync("_ContactDataCard", entity)
+            }
+        </div>
+        @await Html.PartialAsync("_Pagination", Model)
+    </div>
+</body>

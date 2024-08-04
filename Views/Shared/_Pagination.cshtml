@@ -1,0 +1,306 @@
+﻿@using CRMEngSystem.Models.ViewModels.Pagination
+@using CRMEngSystem.Models.ViewModels.Order
+@using CRMEngSystem.Models.ViewModels.Enterprise
+@using CRMEngSystem.Models.ViewModels.Contact
+@using CRMEngSystem.Models.ViewModels.Catalog
+@using CRMEngSystem.Models.ViewModels.WareHouse
+@model PaginationViewModel
+
+<head>
+    <style>
+        .pagination-container {
+            width: 100%;
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 15% 70% 15%;
+            align-items: center;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+        }
+
+            .pagination .active {
+                background-color: #DDE9FF;
+                color: #4962E9;
+                font-weight: bold;
+            }
+
+            .pagination a {
+                margin-left: 5px;
+                margin-right: 5px;
+                display: flex;
+                padding: 5px 10px 5px 10px;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                color: #595586;
+                border-radius: 5px;
+                font-size: 12px;
+            }
+
+                .pagination a:hover {
+                    background-color: #DDE9FF;
+                    color: #4962E9;
+                }
+
+                    .pagination a:hover path {
+                        fill: #4962E9;
+                    }
+
+            .pagination svg {
+                width: 15px;
+                height: 15px;
+            }
+
+            .pagination span {
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                margin: 0 5px 0;
+                width: 25px;
+                height: 25px;
+            }
+
+        .points {
+            margin-top: auto;
+        }
+
+            .points svg {
+                height: 2px;
+                width: 7px;
+            }
+    </style>
+</head>
+<body>
+    <div class="pagination-container">
+        <div></div>
+        <div class="pagination">
+            @{
+                PaginationViewModel CreateViewModel(int page)
+                {
+                    switch (Model)
+                    {
+                        case OrderListViewModel model:
+                            Model.ActionName = "OrderList";
+                            Model.ControllerName = "OrderList";
+                            return new OrderListViewModel
+                            {
+                                SearchOrderId = model.SearchOrderId,
+                                SearchCustomerName = model.SearchCustomerName,
+                                FilterPriority = model.FilterPriority,
+                                SearchInitiatorInitials = model.SearchInitiatorInitials,
+                                FilterDateStart = model.FilterDateStart,
+                                FilterDateEnd = model.FilterDateEnd,
+                                FilterStatus = model.FilterStatus,
+                                SortOrderId = model.SortOrderId,
+                                SortAlphabetCustomerName = model.SortAlphabetCustomerName,
+                                SortPriority = model.SortPriority,
+                                SortDateTimeCreate = model.SortDateTimeCreate,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case EnterpriseListViewModel model:
+                            Model.ActionName = "EnterpriseList";
+                            Model.ControllerName = "EnterpriseList";
+                            return new EnterpriseListViewModel
+                            {
+                                SearchGeneral = model.SearchGeneral,
+                                SearchName = model.SearchName,
+                                SearchCountry = model.SearchCountry,
+                                SearchRegion = model.SearchRegion,
+                                SearchCity = model.SearchCity,
+                                SortAlphabetCity = model.SortAlphabetCity,
+                                SortAlphabetCountry = model.SortAlphabetCountry,
+                                SortEnterpriseId = model.SortEnterpriseId,
+                                SortAlphabetRegion = model.SortAlphabetRegion,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case ContactListViewModel model:
+                            Model.ActionName = "ContactList";
+                            Model.ControllerName = "ContactList";
+                            return new ContactListViewModel
+                            {
+                                SearchGeneral = model.SearchGeneral,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case CatalogListViewModel model:
+                            Model.ActionName = "CatalogList";
+                            Model.ControllerName = "CatalogList";
+                            return new CatalogListViewModel
+                            {
+                                OrderId = model.OrderId,
+                                WareHouseId = model.WareHouseId,
+                                SearchGeneral = model.SearchGeneral,
+                                FilterType = model.FilterType,
+                                FilterMinBasePrice = model.FilterMinBasePrice,
+                                FilterMaxBasePrice = model.FilterMaxBasePrice,
+                                FilterMinWeight = model.FilterMinWeight,
+                                FilterMaxWeight = model.FilterMaxWeight,
+                                FilterMinVolume = model.FilterMinVolume,
+                                FilterMaxVolume = model.FilterMaxVolume,
+                                SearchEquipmentCode = model.SearchEquipmentCode,
+                                SearchNameEN = model.SearchNameEN,
+                                SortCode = model.SortCode,
+                                SortAlphabetNameEN = model.SortAlphabetNameEN,
+                                SortPrice = model.SortPrice,
+                                SortWeight = model.SortWeight,
+                                SortVolume = model.SortVolume,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case EnterpriseOrdersViewModel model:
+                            Model.ActionName = "EnterpriseOrders";
+                            Model.ControllerName = "EnterpriseOrders";
+                            return new EnterpriseOrdersViewModel
+                            {
+                                SearchOrderId = model.SearchOrderId,
+                                SearchInitiatorInitials = model.SearchInitiatorInitials,
+                                FilterPriority = model.FilterPriority,
+                                FilterStatus = model.FilterStatus,
+                                FilterMinSellPrice = model.FilterMinSellPrice,
+                                FilterMaxSellPrice = model.FilterMaxSellPrice,
+                                FilterDateStart = model.FilterDateStart,
+                                FilterDateEnd = model.FilterDateEnd,
+                                EntityId = model.EntityId,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case EnterpriseChangeViewModel model:
+                            Model.ActionName = "EnterpriseChange";
+                            Model.ControllerName = "EnterpriseChange";
+                            return new EnterpriseChangeViewModel
+                            {
+                                SearchGeneral = model.SearchGeneral,
+                                ContactId = model.ContactId,
+                                ContactInitials = model.ContactInitials,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case ContactOrdersViewModel model:
+                            Model.ActionName = "ContactOrders";
+                            Model.ControllerName = "ContactOrders";
+                            return new ContactOrdersViewModel
+                            {
+                                OrdersSearchGeneral = model.OrdersSearchGeneral,
+                                EntityId = model.EntityId,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case WareHouseListViewModel model:
+                            Model.ActionName = "WareHouseList";
+                            Model.ControllerName = "WareHouseList";
+                            return new WareHouseListViewModel
+                            {
+                                SearchGeneral = model.SearchGeneral,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        case WareHouseDetailsViewModel model:
+                            Model.ActionName = "WareHouseDetails";
+                            Model.ControllerName = "WareHouseDetails";
+                            return new WareHouseDetailsViewModel
+                            {
+                                SearchGeneral = model.SearchGeneral,
+                                WareHouseId = model.WareHouseId,
+                                CurrentPage = page,
+                                NumberItemsPerPage = Model.NumberItemsPerPage,
+                                TotalPageCount = Model.TotalPageCount
+                            };
+
+                        default:
+                            return null!;
+                    }
+                }
+            }
+            @if (Model.CurrentPage > 1)
+            {
+                <a href="@Url.Action(Model.ActionName, Model.ControllerName, CreateViewModel(Model.CurrentPage - 1))">
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M13.7645 4.07279C13.8397 3.99323 13.8984 3.89964 13.9375 3.79737C13.9765 3.69509 13.995 3.58614 13.9919 3.47672C13.9888 3.3673 13.9641 3.25956 13.9194 3.15966C13.8747 3.05975 13.8107 2.96964 13.7312 2.89446C13.6516 2.81927 13.558 2.7605 13.4557 2.72149C13.3535 2.68247 13.2445 2.66399 13.1351 2.66708C13.0257 2.67018 12.9179 2.69479 12.818 2.73953C12.7181 2.78426 12.628 2.84823 12.5528 2.92779L5.46948 9.09445C5.3232 9.24918 5.2417 9.45403 5.2417 9.66695C5.2417 9.87988 5.3232 10.0847 5.46948 10.2395L12.5528 16.407C12.6275 16.4883 12.7176 16.5539 12.8179 16.6001C12.9181 16.6463 13.0266 16.6721 13.1369 16.676C13.2473 16.6799 13.3573 16.6619 13.4606 16.6229C13.5639 16.584 13.6584 16.5249 13.7387 16.4491C13.8189 16.3733 13.8833 16.2823 13.9281 16.1814C13.9729 16.0805 13.9972 15.9717 13.9996 15.8613C14.0021 15.751 13.9825 15.6412 13.9421 15.5385C13.9018 15.4357 13.8414 15.342 13.7645 15.2628L8.49984 9.66675L13.7645 4.07279Z" fill="#595586" />
+                    </svg>
+                </a>
+            }
+            else
+            {
+                <span>
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M13.7645 4.07279C13.8397 3.99323 13.8984 3.89964 13.9375 3.79737C13.9765 3.69509 13.995 3.58614 13.9919 3.47672C13.9888 3.3673 13.9641 3.25956 13.9194 3.15966C13.8747 3.05975 13.8107 2.96964 13.7312 2.89446C13.6516 2.81927 13.558 2.7605 13.4557 2.72149C13.3535 2.68247 13.2445 2.66399 13.1351 2.66708C13.0257 2.67018 12.9179 2.69479 12.818 2.73953C12.7181 2.78426 12.628 2.84823 12.5528 2.92779L5.46948 9.09445C5.3232 9.24918 5.2417 9.45403 5.2417 9.66695C5.2417 9.87988 5.3232 10.0847 5.46948 10.2395L12.5528 16.407C12.6275 16.4883 12.7176 16.5539 12.8179 16.6001C12.9181 16.6463 13.0266 16.6721 13.1369 16.676C13.2473 16.6799 13.3573 16.6619 13.4606 16.6229C13.5639 16.584 13.6584 16.5249 13.7387 16.4491C13.8189 16.3733 13.8833 16.2823 13.9281 16.1814C13.9729 16.0805 13.9972 15.9717 13.9996 15.8613C14.0021 15.751 13.9825 15.6412 13.9421 15.5385C13.9018 15.4357 13.8414 15.342 13.7645 15.2628L8.49984 9.66675L13.7645 4.07279Z" fill="#E1E2F3" />
+                    </svg>
+                </span>
+            }
+
+            @if (Model.CurrentPage > 2)
+            {
+                <a href="@Url.Action(Model.ActionName, Model.ControllerName, CreateViewModel(1))">1</a>
+                <div class="points">
+                    <svg viewBox="0 0 7 2" fill="none">
+                        <circle cx="1" cy="1" r="1" fill="#595586" />
+                        <circle cx="6" cy="1" r="1" fill="#595586" />
+                    </svg>
+                </div>
+            }
+
+            @for (int i = Math.Max(1, Model.CurrentPage - 1); i <= Math.Min(Model.TotalPageCount, Model.CurrentPage + 1); i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <a href="@Url.Action(Model.ActionName, Model.ControllerName, CreateViewModel(i))" class="active">@i</a>
+                }
+                else
+                {
+                    <a href="@Url.Action(Model.ActionName, Model.ControllerName, CreateViewModel(i))">@i</a>
+                }
+            }
+
+            @if (Model.CurrentPage < Model.TotalPageCount - 1)
+            {
+                <div class="points">
+                    <svg viewBox="0 0 7 2" fill="none">
+                        <circle cx="1" cy="1" r="1" fill="#595586" />
+                        <circle cx="6" cy="1" r="1" fill="#595586" />
+                    </svg>
+                </div>
+                <a href="@Url.Action(Model.ActionName, Model.ControllerName, CreateViewModel(Model.TotalPageCount))">@Model.TotalPageCount</a>
+            }
+
+            @if (Model.CurrentPage < Model.TotalPageCount)
+            {
+                <a href="@Url.Action(Model.ActionName, Model.ControllerName, CreateViewModel(Model.CurrentPage + 1))">
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M6.23551 15.9272C6.16033 16.0068 6.10156 16.1004 6.06254 16.2026C6.02353 16.3049 6.00504 16.4139 6.00814 16.5233C6.01124 16.6327 6.03585 16.7404 6.08058 16.8403C6.12532 16.9402 6.18929 17.0304 6.26885 17.1055C6.34841 17.1807 6.442 17.2395 6.54427 17.2785C6.64654 17.3175 6.7555 17.336 6.86492 17.3329C6.97434 17.3298 7.08207 17.3052 7.18198 17.2605C7.28188 17.2157 7.372 17.1518 7.44718 17.0722L14.5305 10.9055C14.6768 10.7508 14.7583 10.546 14.7583 10.333C14.7583 10.1201 14.6768 9.91527 14.5305 9.76054L7.44718 3.59305C7.3725 3.51174 7.2824 3.44609 7.18213 3.3999C7.08186 3.35372 6.97341 3.32792 6.86308 3.324C6.75275 3.32008 6.64274 3.33812 6.53944 3.37707C6.43614 3.41603 6.34162 3.47512 6.26135 3.55091C6.18108 3.62671 6.11668 3.7177 6.07187 3.8186C6.02707 3.91949 6.00276 4.02829 6.00035 4.13866C5.99795 4.24903 6.0175 4.35878 6.05787 4.46153C6.09824 4.56429 6.15862 4.65799 6.23551 4.73721L11.5002 10.3333L6.23551 15.9272Z" fill="#595586" />
+                    </svg>
+                </a>
+            }
+            else
+            {
+                <span>
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M6.23551 15.9272C6.16033 16.0068 6.10156 16.1004 6.06254 16.2026C6.02353 16.3049 6.00504 16.4139 6.00814 16.5233C6.01124 16.6327 6.03585 16.7404 6.08058 16.8403C6.12532 16.9402 6.18929 17.0304 6.26885 17.1055C6.34841 17.1807 6.442 17.2395 6.54427 17.2785C6.64654 17.3175 6.7555 17.336 6.86492 17.3329C6.97434 17.3298 7.08207 17.3052 7.18198 17.2605C7.28188 17.2157 7.372 17.1518 7.44718 17.0722L14.5305 10.9055C14.6768 10.7508 14.7583 10.546 14.7583 10.333C14.7583 10.1201 14.6768 9.91527 14.5305 9.76054L7.44718 3.59305C7.3725 3.51174 7.2824 3.44609 7.18213 3.3999C7.08186 3.35372 6.97341 3.32792 6.86308 3.324C6.75275 3.32008 6.64274 3.33812 6.53944 3.37707C6.43614 3.41603 6.34162 3.47512 6.26135 3.55091C6.18108 3.62671 6.11668 3.7177 6.07187 3.8186C6.02707 3.91949 6.00276 4.02829 6.00035 4.13866C5.99795 4.24903 6.0175 4.35878 6.05787 4.46153C6.09824 4.56429 6.15862 4.65799 6.23551 4.73721L11.5002 10.3333L6.23551 15.9272Z" fill="#E1E2F3" />
+                    </svg>
+                </span>
+            }
+        </div>
+    </div>
+</body>

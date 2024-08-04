@@ -1,0 +1,310 @@
+﻿@using CRMEngSystem.Models.ViewModels.Order
+@using CRMEngSystem.Data.Enums
+@using CRMEngSystem.Models.ViewModels.Confirm
+@using CRMEngSystem.Models.ViewModels.Notify
+@model OrderDetailsViewModel
+
+<head>
+    <style>
+        .tab-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .details-container {
+            width: 100%;
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            color: #595586;
+        }
+
+        .details-container-data {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .details-container-data-row {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .details-container-data-row-filled {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #E1E2F3;
+        }
+
+        .details-container-data span:last-child {
+            text-align: right;
+        }
+
+        .details-container-data span:first-child {
+            font-weight: bold;
+            width: 280px;
+        }
+
+
+        .right-details-container {
+            width: 360px;
+            background-color: white;
+            border-radius: 5px;
+            padding: 30px;
+            color: #595586;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .priority-container{
+            width: 300px;
+        }
+
+        .func-btns{
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            align-items: flex-end;
+        }
+
+        .content{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+        }
+
+        .right{
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            border-radius: 5px;
+            bottom: calc(100% + 15px);
+        }
+
+        .dropdown::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 15px;
+        }
+
+        .dropdown-content a {
+            color: #595586;
+            padding: 10px 10px;
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+                    background-color: #DDE9FF;
+                    color: #4962E9;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown svg {
+            cursor: pointer;
+        }
+
+        .trash-bucket:hover path {
+            fill: #FF705C;
+        }
+
+        .btn-default:hover path {
+            fill: #4962E9;
+        }
+
+        .card-data-link:hover span {
+            color: #4962E9;
+        }
+
+        .card-data-link {
+            text-decoration: none;
+            font-size: 12px;
+            color: #595586;
+        }
+
+    </style>
+</head>
+<body>
+    @if (TempData["OrderChooseCurrencyConfirmModal"] != null && (bool)TempData["OrderChooseCurrencyConfirmModal"]!)
+    {
+        @await Html.PartialAsync("_OrderChooseCurrencyConfirmModal", new OrderChooseCurrencyConfirmModalViewModel { OrderId = Model.EntityId })
+    }
+    @if (TempData["OrderWareHouseConfirmModal"] != null && (bool)TempData["OrderWareHouseConfirmModal"]!)
+    {
+        @await Html.PartialAsync("_OrderWareHouseConfirm", new OrderWareHouseConfirmModalViewModel { OrderId = Model.EntityId })
+    }
+    @if (TempData["ConfirmModal"] != null && (bool)TempData["ConfirmModal"]!)
+    {
+        @await Html.PartialAsync("_ConfirmModal", new ConfirmModalViewModel { NotifyText = (string)TempData["NotifyText"]!, ConfirmActionName = "ConfirmModal", ControllerName = "OrderRemove", RouteValues = new { EntityId = Model.EntityId} })
+    }
+    @if (TempData["ConfirmModalUpdate"] != null && (bool)TempData["ConfirmModalUpdate"]!)
+    {
+        @await Html.PartialAsync("_ConfirmModal", new ConfirmModalViewModel { NotifyText = (string)TempData["NotifyText"]!, ConfirmActionName = "ConfirmModal", ControllerName = "OrderUpdatePrices", RouteValues = new { EntityId = Model.EntityId} })
+    }
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    else if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    <div class="page-container">
+        @await Html.PartialAsync("_OrderMenuTab", Model)
+        <div class="tab-container">
+            <div class="details-container">
+                <div class="details-container-data">
+                    <div class="details-container-data-row">
+                        <span>Код замовлення:</span>
+                        <span>@Model.Order.OrderId</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Підприємство:</span>
+                        <a class="card-data-link" href="@Url.Action("EnterpriseDetails", "EnterpriseDetails", new { EntityId = Model.Order.CustomerId})"><span style="font-weight: normal;">@Model.Order.CustomerNameUA</span></a>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Ініціатор:</span>
+                        <a class="card-data-link" href="@Url.Action("ContactDetails", "ContactDetails", new { EntityId = Model.Order.InitiatorId})"><span style="font-weight: normal;">@Model.Order.InitiatorInitials</span></a>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Дата створення:</span>
+                        <span>@Model.Order.DateTimeCreate</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Дата оновлення:</span>
+                        <span>@Model.Order.DateTimeUpdate</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Адреса під-ства:</span>
+                        <span>@Model.Order.CustomerAddress</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Кількість обладнання:</span>
+                        <span>@Model.Order.NumberEquipmentPositions шт</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Загальна вага / Загальний об'єм:</span>
+                        <span>@Model.Order.TotalWeight кг / @Model.Order.TotalVolume м³</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Загальна сума прайсів:</span>
+                        <span>@Model.Order.TotalBasePrices £</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Загальна вартість для закупівлі:</span>
+                        <span>@Model.Order.TotalPurchasePrices €</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Загальний чек для клієнта:</span>
+                        <span>@Model.Order.TotalSellPrices €</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Вартість доставки:</span>
+                        <span>@Model.Order.TotalShippingCosts €</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Загалом:</span>
+                        <span>@(Model.Order.TotalSellPrices + Model.Order.TotalShippingCosts) €</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-details-container">
+                <img class="priority-container" src="@Url.Content($"~/icons/Priority_{Model.Order.Priority}_Big.svg")" />
+                @await Html.PartialAsync("_OrderStatus", new OrderStatusViewModel { Status = Model.Order.Status, DateTimeProcessingStatusStart = Model.Order.DateTimeProcessingStatusStart, DateTimeOfferStatusStart = Model.Order.DateTimeOfferStatusStart, DateTimeExecutionStatusStart = Model.Order.DateTimeExecutionStatusStart, DateTimeCompletedStatusStart = Model.Order.DateTimeCompletedStatusStart})
+                <div class="func-btns">
+                    <div class="content">
+                        <div class="left">
+                            @switch (Model.Order.Status)
+                            {
+                                case OrderStatusValue.Offer:
+                                    @Html.ActionLink("Створити КП", "OpenModal", "OrderCreateOffer", new { OrderId = Model.EntityId }, new { style = "width: 150px; height: 30px; font-size: 12px;", @class="add-btn", type="submit" })
+                                    break;
+                                case OrderStatusValue.Execution:
+                                    @Html.ActionLink("Створити КЗ", "OpenModal", "OrderCreateOrder", new { OrderId = Model.EntityId }, new { style = "width: 150px; height: 30px; font-size: 12px;", @class="add-btn", type="submit" })
+                                    break;
+                            }
+                        </div>
+                        <div class="right">
+                            <div class="dropdown">
+                                <svg width="30" height="30" viewBox="0 0 50 50" fill="none">
+                                    <path d="M30.998 10.5874H33.8569C34.957 10.5874 35.8571 11.4875 35.8571 12.5877C35.8571 13.6878 35.243 14.588 34.1429 14.588H30.998C29.8978 14.588 28.9977 13.6878 28.9977 12.5877C28.9977 11.4875 29.8978 10.5874 30.998 10.5874ZM30.998 21.589H38.4283C39.5284 21.589 40.4286 22.4891 40.4286 23.5893C40.4286 24.6894 39.5284 25.5896 38.4283 25.5896H30.998C29.8978 25.5896 28.9977 24.6894 28.9977 23.5893C28.9977 22.4891 29.8978 21.589 30.998 21.589ZM30.998 32.5906H42.9997C44.0999 32.5906 45 33.4907 45 34.5908C45 35.691 44.0999 36.5911 42.9997 36.5911H30.998C29.8978 36.5911 28.9977 35.691 28.9977 34.5908C28.9977 33.4907 29.8978 32.5906 30.998 32.5906ZM21 32.9999C16.2993 32.9999 9.4949 29.1701 9.03484 24.4894C8.91184 23.2379 9.05193 21.9744 9.44611 20.7802C9.84029 19.586 10.4798 18.4874 11.3237 17.555C12.1676 16.6226 13.1971 15.877 14.3462 15.366C15.4953 14.8551 16.7386 14.59 17.9961 14.588H22.9968C24.097 14.588 24.9971 13.6878 24.9971 12.5877C24.9971 11.4875 24.097 10.5874 22.9968 10.5874H17.9961C10.275 10.5874 4.07413 17.3884 5.11428 25.3095C5.9544 31.8705 14.3991 36.4999 21 36.4999" fill="#595586" />
+                                    <path d="M18 39.4124L23 34.4124L18 29.4124" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="dropdown-content">
+                                    <a href="@Url.ActionLink("OrderChangePriority", "OrderChangePriority", new { EntityId = Model.EntityId, Priority = PriorityValue.High })">Високий пріорітет</a>
+                                    <a href="@Url.ActionLink("OrderChangePriority", "OrderChangePriority", new { EntityId = Model.EntityId, Priority = PriorityValue.Medium })">Середній пріорітет</a>
+                                    <a href="@Url.ActionLink("OrderChangePriority", "OrderChangePriority", new { EntityId = Model.EntityId, Priority = PriorityValue.Low })">Низький пріорітет</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <svg width="30" height="30" viewBox="0 0 50 50" fill="none">
+                                    <path d="M35.0672 36.6553L37.8953 33.8253C37.9882 33.7324 38.0986 33.6588 38.22 33.6086C38.3414 33.5584 38.4716 33.5326 38.603 33.5327C38.7344 33.5328 38.8644 33.5588 38.9858 33.6092C39.1072 33.6595 39.2174 33.7333 39.3103 33.8263C39.4031 33.9193 39.4767 34.0296 39.5269 34.151C39.5771 34.2725 39.6029 34.4026 39.6028 34.534C39.6027 34.6654 39.5767 34.7955 39.5264 34.9168C39.476 35.0382 39.4022 35.1484 39.3092 35.2413L35.7743 38.7763C35.6814 38.8693 35.5712 38.9432 35.4498 38.9936C35.3285 39.044 35.1984 39.07 35.067 39.0701C34.9355 39.0702 34.8054 39.0444 34.684 38.9941C34.5625 38.9439 34.4522 38.8702 34.3593 38.7773L32.2393 36.6573C32.1437 36.5651 32.0674 36.4548 32.0149 36.3329C31.9624 36.2109 31.9348 36.0797 31.9335 35.9469C31.9323 35.8141 31.9575 35.6824 32.0077 35.5595C32.0579 35.4366 32.132 35.3249 32.2259 35.2309C32.3197 35.137 32.4313 35.0626 32.5541 35.0123C32.677 34.9619 32.8087 34.9365 32.9414 34.9376C33.0742 34.9386 33.2055 34.9661 33.3275 35.0184C33.4495 35.0707 33.5599 35.1468 33.6522 35.2423L35.0672 36.6553ZM35.5312 43.9983C33.4095 43.9983 31.3747 43.1554 29.8744 41.6551C28.3741 40.1549 27.5312 38.12 27.5312 35.9983C27.5312 33.8766 28.3741 31.8417 29.8744 30.3414C31.3747 28.8411 33.4095 27.9983 35.5312 27.9983C37.653 27.9983 39.6878 28.8411 41.1881 30.3414C42.6884 31.8417 43.5312 33.8766 43.5312 35.9983C43.5312 38.12 42.6884 40.1549 41.1881 41.6551C39.6878 43.1554 37.653 43.9983 35.5312 43.9983ZM35.5312 41.9983C36.3192 41.9983 37.0994 41.8431 37.8274 41.5416C38.5553 41.24 39.2167 40.7981 39.7739 40.2409C40.331 39.6838 40.773 39.0223 41.0745 38.2944C41.3761 37.5664 41.5312 36.7862 41.5312 35.9983C41.5312 35.2104 41.3761 34.4301 41.0745 33.7022C40.773 32.9742 40.331 32.3128 39.7739 31.7557C39.2167 31.1985 38.5553 30.7565 37.8274 30.455C37.0994 30.1535 36.3192 29.9983 35.5312 29.9983C33.94 29.9983 32.4138 30.6304 31.2886 31.7557C30.1634 32.8809 29.5312 34.407 29.5312 35.9983C29.5312 37.5896 30.1634 39.1157 31.2886 40.2409C32.4138 41.3661 33.94 41.9983 35.5312 41.9983Z" fill="#595586" />
+                                    <path d="M6.46875 33.1176C6.46875 34.2097 6.90257 35.2571 7.67478 36.0293C8.44699 36.8015 9.49433 37.2353 10.5864 37.2353C11.6785 37.2353 12.7258 36.8015 13.498 36.0293C14.2702 35.2571 14.704 34.2097 14.704 33.1176C14.704 32.0256 14.2702 30.9782 13.498 30.206C12.7258 29.4338 11.6785 29 10.5864 29C9.49433 29 8.44699 29.4338 7.67478 30.206C6.90257 30.9782 6.46875 32.0256 6.46875 33.1176Z" stroke="#595586" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.5244 22.4725V18.3549C10.5244 15.0787 11.8259 11.9367 14.1425 9.62005C16.4591 7.30342 19.6012 6.00195 22.8774 6.00195C26.1536 6.00195 29.2956 7.30342 31.6122 9.62005C33.9288 11.9367 35.2303 15.0787 35.2303 18.3549V22.4725" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M29.0537 16.2961L35.2302 22.4726L41.4067 16.2961" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="dropdown-content">
+                                    <a href="@Url.ActionLink("OrderChangeStatus", "OrderChangeStatus", new { EntityId = Model.EntityId, Status = OrderStatusValue.Processing })">Обробка</a>
+                                    <a href="@Url.ActionLink("OrderChangeStatus", "OrderChangeStatus", new { EntityId = Model.EntityId, Status = OrderStatusValue.Offer })">Пропозиція</a>
+                                    <a href="@Url.ActionLink("OrderChangeStatus", "OrderChangeStatus", new { EntityId = Model.EntityId, Status = OrderStatusValue.Execution })">Виконання</a>
+                                    <a href="@Url.ActionLink("OrderChangeStatus", "OrderChangeStatus", new { EntityId = Model.EntityId, Status = OrderStatusValue.Completed })">Завершене</a>
+                                </div>
+                            </div>
+                            <a title="Оновити прайси для замовлення" href="@Url.ActionLink("OpenModal", "OrderUpdatePrices", new { EntityId = Model.EntityId })">
+                                <svg class="btn-default" width="30" height="30" viewBox="0 0 50 50" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2646 24.4626C10.2646 32.5387 16.12 38.0413 22.6971 39.1795C22.876 39.2105 23.0471 39.2765 23.2005 39.3736C23.3539 39.4707 23.4867 39.5971 23.5913 39.7455C23.6959 39.8939 23.7702 40.0615 23.81 40.2387C23.8498 40.4158 23.8543 40.5991 23.8233 40.778C23.7923 40.9569 23.7264 41.128 23.6293 41.2814C23.5322 41.4348 23.4058 41.5676 23.2573 41.6722C23.1089 41.7768 22.9413 41.8511 22.7642 41.8909C22.587 41.9307 22.4037 41.9353 22.2248 41.9043C14.5016 40.5671 7.5 34.0563 7.5 24.4626C7.5 20.3848 9.35453 17.1798 11.5195 14.7442C13.0716 12.9985 14.8465 11.5791 16.2739 10.4939H11.9334C11.5815 10.4939 11.2441 10.3542 10.9953 10.1054C10.7466 9.85662 10.6068 9.51921 10.6068 9.16738C10.6068 8.81556 10.7466 8.47814 10.9953 8.22936C11.2441 7.98058 11.5815 7.84082 11.9334 7.84082H19.8927C20.2446 7.84082 20.582 7.98058 20.8308 8.22936C21.0795 8.47814 21.2193 8.81556 21.2193 9.16738V17.1268C21.2193 17.4786 21.0795 17.816 20.8308 18.0648C20.582 18.3135 20.2446 18.4533 19.8927 18.4533C19.5409 18.4533 19.2035 18.3135 18.9547 18.0648C18.7059 17.816 18.5662 17.4786 18.5662 17.1268V12.2291L18.5635 12.2344C17.0459 13.3752 15.1941 14.7734 13.5889 16.5802C11.6919 18.7133 10.2646 21.2948 10.2646 24.4626ZM39.7354 25.5371C39.7354 17.5459 34.0047 12.0779 27.5125 10.8574C27.3316 10.8267 27.1585 10.7603 27.0035 10.662C26.8485 10.5637 26.7147 10.4356 26.6097 10.285C26.5048 10.1344 26.4309 9.96446 26.3923 9.78503C26.3538 9.60559 26.3513 9.42027 26.3851 9.23988C26.419 9.05949 26.4884 8.88765 26.5893 8.73437C26.6903 8.58109 26.8207 8.44944 26.9731 8.34712C27.1254 8.24479 27.2966 8.17383 27.4767 8.13838C27.6568 8.10293 27.8421 8.10369 28.0219 8.14062C35.647 9.57331 42.5 16.0469 42.5 25.5371C42.5 29.615 40.6455 32.8173 38.4805 35.2555C36.9284 37.0013 35.1535 38.4207 33.7261 39.5058H38.0666C38.4185 39.5058 38.7559 39.6456 39.0047 39.8944C39.2534 40.1432 39.3932 40.4806 39.3932 40.8324C39.3932 41.1842 39.2534 41.5216 39.0047 41.7704C38.7559 42.0192 38.4185 42.159 38.0666 42.159H30.1073C29.7554 42.159 29.418 42.0192 29.1692 41.7704C28.9205 41.5216 28.7807 41.1842 28.7807 40.8324V32.873C28.7807 32.5212 28.9205 32.1838 29.1692 31.935C29.418 31.6862 29.7554 31.5465 30.1073 31.5465C30.4591 31.5465 30.7965 31.6862 31.0453 31.935C31.2941 32.1838 31.4338 32.5212 31.4338 32.873V37.768H31.4391C32.9541 36.6219 34.8086 35.2264 36.4111 33.4169C38.3081 31.2865 39.7354 28.7076 39.7354 25.5371Z" fill="#595586" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.3217 19.1184L18.6044 24.8345C18.3855 25.0534 18.262 25.35 18.2607 25.6596C18.2594 25.9691 18.3804 26.2667 18.5974 26.4875L23.7277 31.7117C23.946 31.9337 24.2435 32.0599 24.5548 32.0625C24.8661 32.0652 25.1657 31.9441 25.3877 31.7258L31.2107 26.0109C31.3778 25.8471 31.5106 25.6516 31.6013 25.4359C31.692 25.2203 31.7388 24.9887 31.739 24.7547V19.7758C31.739 19.4644 31.6153 19.1658 31.3952 18.9457C31.175 18.7255 30.8764 18.6018 30.565 18.6018H25.5674C25.336 18.6019 25.1069 18.6475 24.8931 18.7361C24.6794 18.8248 24.4853 18.9547 24.3217 19.1184ZM32.4458 27.2682C32.7797 26.9403 33.0449 26.5491 33.2259 26.1176C33.4069 25.686 33.5001 25.2227 33.5 24.7547V19.7758C33.5 18.9974 33.1908 18.2509 32.6404 17.7005C32.09 17.15 31.3434 16.8408 30.565 16.8408H25.5674C25.1047 16.8408 24.6465 16.9319 24.2191 17.1089C23.7916 17.286 23.4033 17.5455 23.0761 17.8728L17.3588 23.5901C16.812 24.1374 16.5033 24.8784 16.5 25.6521C16.4967 26.4258 16.799 27.1694 17.3412 27.7214L22.4715 32.9456C23.0169 33.5008 23.7605 33.8167 24.5388 33.8238C25.317 33.8308 26.0662 33.5284 26.6216 32.9832L32.4458 27.2682ZM28.0785 21.0179C27.7087 20.7781 27.2892 20.6256 26.8517 20.5718C26.5054 20.5315 26.1545 20.5708 25.8257 20.6868C25.4969 20.8028 25.1989 20.9923 24.9545 21.2409C24.3206 21.8749 24.2971 22.6849 24.4415 23.3154C24.5812 23.9329 24.904 24.5234 25.1893 24.9707C25.4875 25.4403 25.7294 25.8301 25.8338 26.1834C25.9195 26.4758 25.8761 26.5967 25.7493 26.7235C25.6648 26.808 25.5357 26.869 25.2598 26.8009C24.9627 26.7258 24.5918 26.511 24.256 26.1752C23.9776 25.8909 23.7865 25.5328 23.7054 25.1433C23.6244 24.757 23.6784 24.4741 23.7453 24.345C23.8014 24.2422 23.8365 24.1293 23.8484 24.0128C23.8604 23.8964 23.849 23.7787 23.8149 23.6667C23.7808 23.5547 23.7248 23.4506 23.65 23.3606C23.5752 23.2705 23.4832 23.1962 23.3794 23.1421C23.2756 23.088 23.162 23.0552 23.0453 23.0455C22.9287 23.0358 22.8112 23.0495 22.6999 23.0858C22.5886 23.122 22.4856 23.1801 22.397 23.2566C22.3084 23.3331 22.236 23.4265 22.1839 23.5314C21.8752 24.1254 21.8446 24.8521 21.982 25.506C22.0642 25.8958 22.2121 26.2926 22.4305 26.6659L22.1334 26.9618C21.973 27.1278 21.8841 27.3501 21.886 27.581C21.8879 27.8119 21.9804 28.0328 22.1436 28.1961C22.3067 28.3594 22.5275 28.4521 22.7584 28.4542C22.9893 28.4563 23.2117 28.3677 23.3779 28.2074L23.6385 27.9479C23.9996 28.2058 24.4045 28.396 24.8336 28.5091C25.538 28.6852 26.361 28.6018 26.9937 27.9691C27.7122 27.2506 27.7287 26.3889 27.5232 25.688C27.3436 25.0752 26.9691 24.4882 26.7085 24.0796L26.6744 24.0256C26.4244 23.6335 26.2307 23.2461 26.1579 22.9256C26.0874 22.6192 26.1555 22.53 26.2001 22.4865C26.258 22.4242 26.33 22.3767 26.4101 22.3481C26.4902 22.3195 26.5761 22.3106 26.6603 22.3222C26.8623 22.3457 27.1828 22.4701 27.5725 22.8587C27.9599 23.2461 28.0973 23.5631 28.1384 23.7861C28.1768 23.9902 28.1493 24.2011 28.0597 24.3884C28.0075 24.4939 27.9769 24.6088 27.9698 24.7263C27.9628 24.8439 27.9793 24.9616 28.0186 25.0726C28.0578 25.1836 28.1189 25.2857 28.1982 25.3726C28.2776 25.4596 28.3736 25.5298 28.4805 25.579C28.5875 25.6283 28.7032 25.6556 28.8209 25.6593C28.9386 25.663 29.0558 25.6431 29.1657 25.6007C29.2755 25.5583 29.3757 25.4943 29.4604 25.4126C29.5451 25.3308 29.6125 25.2328 29.6587 25.1245C29.87 24.6643 29.9886 24.0926 29.8688 23.4574C29.7815 23.0198 29.6031 22.6054 29.3453 22.2412L29.6047 21.9817C29.6912 21.9011 29.7606 21.8039 29.8087 21.6959C29.8568 21.5879 29.8827 21.4713 29.8848 21.3531C29.8869 21.2349 29.8651 21.1174 29.8209 21.0078C29.7766 20.8981 29.7107 20.7986 29.6271 20.7149C29.5434 20.6313 29.4438 20.5654 29.3342 20.5211C29.2246 20.4768 29.1071 20.4551 28.9889 20.4572C28.8707 20.4593 28.7541 20.4852 28.6461 20.5333C28.5381 20.5814 28.4409 20.6508 28.3603 20.7373L28.0785 21.0179Z" fill="#595586" />
+                                </svg>
+                            </a>
+                            <a href="@Url.Action("OpenModal", "OrderRemove", new { EntityId = Model.EntityId })">
+                                <svg class="trash-bucket" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21.5 13.1875H28.5C28.5 12.2592 28.1313 11.369 27.4749 10.7126C26.8185 10.0562 25.9283 9.6875 25 9.6875C24.0717 9.6875 23.1815 10.0562 22.5251 10.7126C21.8687 11.369 21.5 12.2592 21.5 13.1875ZM18.875 13.1875C18.875 12.3832 19.0334 11.5867 19.3412 10.8436C19.649 10.1004 20.1002 9.42523 20.669 8.85647C21.2377 8.28771 21.9129 7.83655 22.6561 7.52874C23.3992 7.22093 24.1957 7.0625 25 7.0625C25.8043 7.0625 26.6008 7.22093 27.3439 7.52874C28.0871 7.83655 28.7623 8.28771 29.331 8.85647C29.8998 9.42523 30.351 10.1004 30.6588 10.8436C30.9666 11.5867 31.125 12.3832 31.125 13.1875H41.1875C41.5356 13.1875 41.8694 13.3258 42.1156 13.5719C42.3617 13.8181 42.5 14.1519 42.5 14.5C42.5 14.8481 42.3617 15.1819 42.1156 15.4281C41.8694 15.6742 41.5356 15.8125 41.1875 15.8125H38.8775L36.83 37.0068C36.6729 38.6307 35.9166 40.1379 34.7084 41.2344C33.5003 42.331 31.927 42.9381 30.2955 42.9375H19.7045C18.0733 42.9377 16.5004 42.3303 15.2927 41.2339C14.0849 40.1374 13.3288 38.6304 13.1718 37.0068L11.1225 15.8125H8.8125C8.4644 15.8125 8.13056 15.6742 7.88442 15.4281C7.63828 15.1819 7.5 14.8481 7.5 14.5C7.5 14.1519 7.63828 13.8181 7.88442 13.5719C8.13056 13.3258 8.4644 13.1875 8.8125 13.1875H18.875ZM22.375 21.5C22.375 21.1519 22.2367 20.8181 21.9906 20.5719C21.7444 20.3258 21.4106 20.1875 21.0625 20.1875C20.7144 20.1875 20.3806 20.3258 20.1344 20.5719C19.8883 20.8181 19.75 21.1519 19.75 21.5V34.625C19.75 34.9731 19.8883 35.3069 20.1344 35.5531C20.3806 35.7992 20.7144 35.9375 21.0625 35.9375C21.4106 35.9375 21.7444 35.7992 21.9906 35.5531C22.2367 35.3069 22.375 34.9731 22.375 34.625V21.5ZM28.9375 20.1875C29.2856 20.1875 29.6194 20.3258 29.8656 20.5719C30.1117 20.8181 30.25 21.1519 30.25 21.5V34.625C30.25 34.9731 30.1117 35.3069 29.8656 35.5531C29.6194 35.7992 29.2856 35.9375 28.9375 35.9375C28.5894 35.9375 28.2556 35.7992 28.0094 35.5531C27.7633 35.3069 27.625 34.9731 27.625 34.625V21.5C27.625 21.1519 27.7633 20.8181 28.0094 20.5719C28.2556 20.3258 28.5894 20.1875 28.9375 20.1875ZM15.7845 36.7547C15.8789 37.7289 16.3327 38.6329 17.0574 39.2907C17.7821 39.9484 18.7258 40.3127 19.7045 40.3125H30.2955C31.2742 40.3127 32.2179 39.9484 32.9426 39.2907C33.6673 38.6329 34.1211 37.7289 34.2155 36.7547L36.242 15.8125H13.758L15.7845 36.7547Z" fill="#595586" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,24 @@
+﻿@using CRMEngSystem.Models.ViewModels.Contact
+@using CRMEngSystem.Models.ViewModels.Comment
+@using CRMEngSystem.Models.ViewModels.Notify
+@using CRMEngSystem.Models.ViewModels.Confirm
+@model ContactCommentsViewModel
+
+<body>
+    @if (TempData["ConfirmModal"] != null && (bool)TempData["ConfirmModal"]!)
+    {
+        @await Html.PartialAsync("_ConfirmModal", new ConfirmModalViewModel { NotifyText = $"Ви впевнені що хочете видалити цей коментар?", ConfirmActionName = "ConfirmModal", ControllerName = "CommentRemove", RouteValues = new { ActionName = "ContactComments", ControllerName = "ContactComments", EntityId = Model.EntityId, CommentId = (int)TempData["CommentId"]!} })
+    }
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    else if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    <div class="page-container">
+        @await Html.PartialAsync("_ContactMenuTab", Model)
+        @await Html.PartialAsync("_CommentsList", new CommentListViewModel { Comments = Model.Comments, EntityId = Model.EntityId, ActionName = "ContactComments", ControllerName = "ContactComments"})
+    </div>
+</body>

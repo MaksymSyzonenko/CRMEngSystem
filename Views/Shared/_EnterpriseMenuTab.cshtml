@@ -1,0 +1,25 @@
+﻿@using CRMEngSystem.Models.ViewModels.Enterprise
+@model EnterpriseMenuTabViewModel
+
+<body>
+    <div class="tabs-menu">
+        <div class='@(Model.ActiveTab == "Details" ? "tab-link-container-active" : "tab-link-container")'>
+            @Html.ActionLink("Інформація", "EnterpriseDetails", "EnterpriseDetails", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+        </div>
+        @if (Model.EntityId != 1)
+        {
+            <div class='@(Model.ActiveTab == "Orders" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Замовлення", "EnterpriseOrders", "EnterpriseOrders", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberOrders</div>
+            </div>
+        }
+        <div class='@(Model.ActiveTab == "Contacts" ? "tab-link-container-active" : "tab-link-container")'>
+            @Html.ActionLink("Контакти", "EnterpriseContacts", "EnterpriseContacts", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+            <div class="number-container">@Model.NumberContacts</div>
+        </div>
+        <div class='@(Model.ActiveTab == "Comments" ? "tab-link-container-active" : "tab-link-container")'>
+            @Html.ActionLink("Коментарі", "EnterpriseComments", "EnterpriseComments", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+            <div class="number-container">@Model.NumberComments</div>
+        </div>
+    </div>
+</body>

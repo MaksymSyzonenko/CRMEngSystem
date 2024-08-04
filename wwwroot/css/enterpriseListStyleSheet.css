@@ -1,0 +1,65 @@
+﻿.header-container {
+    background-color: #DDE9FF;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.header-part {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 40% 15% 20% 15% calc(10% - 13px);
+    padding-right: 13px;
+}
+
+.header-part-column {
+    font-size: 12px;
+    color: #4962E9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px 5px 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: flex-start;
+}
+
+.header-part-column a {
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.header-part-column:last-child {
+    justify-content: center;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 8px;
+}
+
+.cards-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.cards-container::-webkit-scrollbar-track {
+    background: #E1E2F3;
+    border-radius: 3px;
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+    background: #4962E9;
+    border-radius: 3px;
+}
+
+.cards-container::-webkit-scrollbar-thumb:hover {
+    background: #59CDFF;
+}

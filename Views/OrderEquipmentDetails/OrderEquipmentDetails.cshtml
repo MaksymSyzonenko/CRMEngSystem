@@ -1,0 +1,402 @@
+﻿@using CRMEngSystem.Models.ViewModels.Order
+@using CRMEngSystem.Models.ViewModels.Notify
+@model OrderEquipmentDetailsViewModel
+
+<head>
+    <style>
+        .tab-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .details-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            color: #595586;
+            width: 700px;
+        }
+
+        .right-details-container {
+            width: 100%;
+            color: #595586;
+            display: flex;
+            background-color: white;
+            border-radius: 5px;
+            gap: 15px;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .details-container-data {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 12px;
+        }
+
+        .details-container-data-row {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .details-container-data-row-filled {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #E1E2F3;
+        }
+
+        .details-container-data span:last-child {
+            text-align: right;
+        }
+
+        .details-container-data span:first-child {
+            font-weight: bold;
+            width: 350px;
+        }
+
+        .details-container img {
+            border-radius: 50%;
+            height: 85px;
+            width: 85px;
+        }
+
+        .details-container-header {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            align-items: center;
+            width: 100%;
+        }
+
+        .details-container-data-row-underlined{
+            display: flex;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #E1E2F3;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .details-container-data-underlined span:last-child {
+            text-align: right;
+        }
+
+        .details-container-data-underlined span:first-child {
+            font-weight: bold;
+            width: 150px;
+        }
+
+        .action-link-symbol {
+            font-weight: bold;
+            color: #595586;
+            text-decoration: none;
+        }
+
+        .action-link-symbol:hover {
+            color: #4962E9;
+        }
+
+        .percent-input{
+            background-color: white;
+            width: 30px;
+            height: 25px;
+            border: 2px solid #E1E2F3;
+            border-radius: 3px;
+            color: #595586;
+            outline: none;
+            box-sizing: border-box;
+            text-align: center;
+            -moz-appearance: textfield;
+        }
+
+        .percent-input::-webkit-inner-spin-button,
+        .percent-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .percent-container{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .warehouse-container{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .warehouse-container-row{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+            border-bottom: 2px solid #E1E2F3;
+            padding: 5px 10px;
+            font-size: 12px;
+            width: 100%;
+        }
+
+        .warehouse-container-row span:first-child{
+            font-weight: bold;
+            width: 150px;
+        }
+
+        .warehouse-container-row span:last-child{
+            text-align: right;
+        }
+
+        .scroller-container {
+            display: flex;
+            flex-direction: column;
+            max-height: 100px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+            margin-top: 5px;
+        }
+
+        .scroller-container::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .scroller-container::-webkit-scrollbar-track {
+            background: #E1E2F3;
+            border-radius: 3px;
+        }
+
+        .scroller-container::-webkit-scrollbar-thumb {
+            background: #4962E9;
+            border-radius: 3px;
+        }
+
+        .scroller-container::-webkit-scrollbar-thumb:hover {
+            background: #59CDFF;
+        }
+
+        .card-data-link:hover span {
+            color: #4962E9;
+        }
+
+        .card-data-link {
+            text-decoration: none;
+            font-size: 12px;
+            color: #595586;
+        }
+    </style>
+</head>
+<body>
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    else if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    <div class="page-container">
+        <div class="tabs-menu">
+            <div class="tab-link-container-active">
+                <div class="tab-link">Інформація</div>
+            </div>
+        </div>
+        @Html.ActionLink("Повернутися до замовлення", "OrderEquipment", "OrderEquipment", new { EntityId = Model.OrderPosition.OrderId }, new { @class = "add-btn-fullwidth-empty" })
+        <div class="tab-container">
+            <div class="details-container">
+                <div class="details-container-header">
+                    @if (Model.OrderPosition.Image!.Length == 0)
+                    {
+                        <img src="~/images/equipment/Equipment_Empty_Image.jpg">
+                    }
+                    else
+                    {
+                        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.OrderPosition.Image!))">
+                    }
+                    <span>@Model.OrderPosition.NameUA</span>
+                </div>
+                <div class="details-container-data">
+                    @using (Html.BeginForm("OrderEquipmentUpdate", "OrderEquipmentUpdate", FormMethod.Post, new{ @class="percent-container"}))
+                    {
+                        <div class="details-container-data-row-underlined">
+                            <span>Знижка:</span>
+                            <span>
+                                @Html.TextBox("Discount", Model.OrderPosition.Discount, new{ @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                                %
+                            </span>
+                        </div>
+                        <div class="details-container-data-row-underlined">
+                            <span>Націнка:</span>
+                            <span>
+                                @Html.TextBox("MarkUp", Model.OrderPosition.MarkUp, new{ @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                                %
+                            </span>
+                        </div>
+                        @Html.Hidden("EquipmentOrderPositionId", Model.OrderPosition.EquipmentOrderPositionId)
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    <div class="details-container-data-row-underlined">
+                        <span>Кількість:</span>
+                        <span style="display: flex; gap: 5px; justify-content: center;">
+                            @Html.ActionLink("—", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = Model.OrderPosition.OrderId, EquipmentOrderPositionId = Model.OrderPosition.EquipmentOrderPositionId, ActionName = "OrderEquipmentDetails", ControllerName = "OrderEquipmentDetails"}, new { @class="action-link-symbol" })
+                            @Model.OrderPosition.Quantity шт
+                            @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = Model.OrderPosition.OrderId, EquipmentOrderPositionId = Model.OrderPosition.EquipmentOrderPositionId, ActionName = "OrderEquipmentDetails", ControllerName = "OrderEquipmentDetails"}, new { @class = "action-link-symbol" })
+                            (Взято з складів @Model.QuantityWareHouse шт)
+                        </span>
+                    </div>
+                </div>
+                @{
+                    bool InStock = false;
+                }
+                <div class="scroller-container">
+                    @foreach (var entity in Model.EquipmentWareHouseOrderList)
+                    {
+                        if (entity.QuantityInStock > 0)
+                        {
+                            InStock = true;
+                            int maxQuantityToTake = Math.Min(entity.QuantityInStock, Model.OrderPosition.Quantity - Model.EquipmentWareHouseOrderList.Sum(equip => equip.Quantity));
+
+                            @using (Html.BeginForm("WareHouseTakeEquipment", "WareHouseTakeEquipment", FormMethod.Post, new { style = "margin-top: 5px;" }))
+                            {
+                                <div class="details-container-data-row-underlined">
+                                    <a class="card-data-link" href="@Url.Action("WareHouseDetails", "WareHouseDetails", new { WareHouseId = entity.WareHouseId })"><span style="font-weight: bold;">@entity.WareHouseName</span></a>
+                                    @Html.Hidden("WareHouseId", entity.WareHouseId)
+                                    @Html.Hidden("EquipmentOrderPositionId", entity.EquipmentOrderPositionId)
+                                    @Html.Hidden("EquipmentCatalogPositionId", entity.EquipmentCatalogPositionId)
+                                    <span style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+                                        <span>Взято</span>
+                                        @Html.TextBox("Quantity", entity.Quantity, new
+                                        {
+                                            @class = "percent-input",
+                                            type = "number",
+                                            min = "0",
+                                            max = maxQuantityToTake,
+                                            step = "1",
+                                            pattern = "[0-9]*"
+                                        })
+                                        <span style="width: 40px;">з @entity.QuantityInStock шт</span>
+                                        <span style="width: 85px;">(Наявно @(entity.QuantityInStock - entity.Quantity) шт)</span>
+                                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                                    </span>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+                @if (InStock)
+                {
+                    @Html.ActionLink("Повернути позиції на склади", "WareHouseReturnEquipment", "WareHouseReturnEquipment", new { EquipmentOrderPositionId = Model.OrderPosition.EquipmentOrderPositionId, EquipmentCatalogPositionId = Model.OrderPosition.EquipmentCatalogPositionId }, new{ @class = "add-btn-fullwidth-empty", style="margin-top: 15px;"})
+                }
+                else
+                {
+                    <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; margin-top: 60px; width: 100%; display: flex; justify-content: center; align-items: center;">На складі пусто</span>
+                }
+            </div>
+            <div class="right-details-container">
+                <div class="details-container-data">
+                    <div class="details-container-data-row">
+                        <span>Код замовлення:</span>
+                        <span>@Model.OrderPosition.OrderId</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Код обладнання:</span>
+                        <span>@Model.OrderPosition.EquipmentCode</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Тип обладнання:</span>
+                        @{
+                            string type = string.Empty;
+                            switch (Model.OrderPosition.Type)
+                            {
+                                case "Main":
+                                    type = "Основне";
+                                    break;
+                                case "Detail":
+                                    type = "Деталь";
+                                    break;
+                                case "MaintenanceKit":
+                                    type = "Ремкомплект";
+                                    break;
+                            }
+                        }
+                        <span>@type</span>
+                    </div>
+                    @if (Model.OrderPosition.Quantity != 1)
+                    {
+                        <div class="details-container-data-row-filled">
+                            <span>Прайс / Загальний прайс (£):</span>
+                            <span>@Model.OrderPosition.BasePrice £ / @(Model.OrderPosition.BasePrice * Model.OrderPosition.Quantity) £</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Вага / Загальна вага (кг):</span>
+                            <span>@Model.OrderPosition.Weight кг / @(Model.OrderPosition.Weight * Model.OrderPosition.Quantity) кг</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Об'єм / Зальний об'єм (м³):</span>
+                            <span>@Model.OrderPosition.Volume м³ / @(Model.OrderPosition.Volume * Model.OrderPosition.Quantity) м³</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Вартість закупівлі / Загальна вартість (€):</span>
+                            <span>@Model.OrderPosition.PurchasePrice € / @(Model.OrderPosition.PurchasePrice * Model.OrderPosition.Quantity) €</span>
+                        </div>
+                        <div class="details-container-data-row-filled">
+                            <span>Ціна клієнта / Загальна ціна (€):</span>
+                            <span>@Model.OrderPosition.SellPrice € / @(Model.OrderPosition.SellPrice * Model.OrderPosition.Quantity) €</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Вартість доставки / Загальна вартість (€):</span>
+                            <span>@Model.OrderPosition.ShippingCost € / @(Model.OrderPosition.ShippingCost * Model.OrderPosition.Quantity) €</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="details-container-data-row-filled">
+                            <span>Прайс (£):</span>
+                            <span>@Model.OrderPosition.BasePrice £</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Вага (кг):</span>
+                            <span>@Model.OrderPosition.Weight кг</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Об'єм (м³):</span>
+                            <span>@Model.OrderPosition.Volume м³</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Вартість закупівлі (€):</span>
+                            <span>@Model.OrderPosition.PurchasePrice €</span>
+                        </div>
+                        <div class="details-container-data-row-filled">
+                            <span>Ціна клієнта (€):</span>
+                            <span>@Model.OrderPosition.SellPrice €</span>
+                        </div>
+                        <div class="details-container-data-row">
+                            <span>Вартість доставки (€):</span>
+                            <span>@Model.OrderPosition.ShippingCost €</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

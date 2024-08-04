@@ -1,0 +1,672 @@
+﻿@using CRMEngSystem.Models.ViewModels.Notify
+@using CRMEngSystem.Models.ViewModels.Home
+@using Newtonsoft.Json
+@model HomeViewModel
+
+<head>
+    <style>
+        .home-container{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        .left-container{
+            display: flex;
+            flex-direction: column;
+            width: calc(100% - 400px);
+        }
+
+        .right-container{
+            display: grid;
+            flex-direction: column;
+            width: 400px;
+            grid-template-rows: 35% 25% 40%;
+            padding-left: 15px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            max-height: 45vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+        .cards-container::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .cards-container::-webkit-scrollbar-track {
+            background: #E1E2F3;
+            border-radius: 3px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb {
+            background: #4962E9;
+            border-radius: 3px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb:hover {
+            background: #59CDFF;
+        }
+
+        .header-container {
+            background-color: #DDE9FF;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 7px;
+        }
+
+        .header-part {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 10% 50% 20% calc(20% - 13px);
+            padding-right: 13px;
+        }
+
+        .header-part-column {
+            font-size: 12px;
+            color: #4962E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            .header-part-column:nth-child(2) {
+                justify-content: flex-start;
+                padding: 0 15px;
+            }
+
+        .card-data {
+            background-color: white;
+            border-radius: 5px;
+            grid-gap: 5px;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 10% 50% 20% calc(20% - 13px);
+            align-items: center;
+            height: 29px;
+            padding: 3px 10px;
+        }
+
+        .card-data span {
+            font-size: 12px;
+            color: #595586;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scrollable {
+            height: 21px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .scrollable span {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .scrollable::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .scrollable::-webkit-scrollbar-thumb {
+            background-color: #E1E2F3;
+            border-radius: 2px;
+        }
+
+        .scrollable::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 2px;
+        }
+
+        .scrollable::-webkit-scrollbar-thumb:hover {
+            background-color: #59CDFF;
+        }
+
+        .card-data a:nth-child(2) {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 15px 0 15px;
+        }
+
+        .card-data a:hover span {
+            color: #4962E9;
+        }
+
+        .card-data a {
+            text-decoration: none;
+        }
+
+        .card-data .status {
+            height: 15px;
+        }
+
+        .contacts-container{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-y: hidden;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .contacts-container::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .contacts-container::-webkit-scrollbar-track {
+            background: #E1E2F3;
+            border-radius: 3px;
+        }
+
+        .contacts-container::-webkit-scrollbar-thumb {
+            background: #4962E9;
+            border-radius: 3px;
+        }
+
+        .contacts-container::-webkit-scrollbar-thumb:hover {
+            background: #59CDFF;
+        }
+
+        .card-data-contact {
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            min-width: 275px;
+            max-width: 275px;
+        }
+
+        .card-data-header {
+            display: flex;
+            flex-direction: row;
+        }
+
+            .card-data-header:hover span {
+                color: #4962E9;
+            }
+
+            .card-data-header:hover img {
+                outline: 2px solid #4962E9;
+                outline-offset: 1px;
+            }
+
+        .card-data-footer {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .card-data-footer img {
+                height: 15px;
+                width: 15px;
+            }
+
+        .card-data-header img {
+            height: 35px;
+            width: 35px;
+            transition: border-color 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .card-data-header span {
+            margin-left: 10px;
+            font-size: 13px;
+            color: #595586;
+        }
+
+        .card-data-footer span {
+            font-size: 12px;
+            color: #595586;
+            align-self: flex-start;
+        }
+
+        .card-data-footer img {
+            display: flex;
+            text-align: right;
+            margin-left: 10px;
+        }
+
+        .card-data-footer a {
+            border-bottom: 2px solid #E1E2F3;
+            margin-top: 10px;
+            padding: 0 5px;
+        }
+
+        .card-data-link:hover span {
+            color: #4962E9;
+        }
+
+        .card-data-contact a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .copy-container {
+            width: 100%;
+            height: 21px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #E1E2F3;
+            margin-top: 10px;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+
+        .copy-container span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .currency-calculator-container{
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px 10px 10px 25px;
+            color: #595586;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 70% 30%;
+            margin-bottom: 15px;
+        }
+
+        .currency-calculator-container-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .currency-calculator-container-right-input {
+            background-color: white;
+            width: 30px;
+            height: 25px;
+            padding: 0 5px;
+            border: 2px solid #E1E2F3;
+            border-radius: 3px;
+            color: #595586;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .currency-calculator-container-right-input::-webkit-inner-spin-button,
+        .currency-calculator-container-right-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .currency-calculator-container-right select {
+            font-size: 12px;
+            color: #595586;
+            padding: 5px;
+            border: 1px solid #595586;
+            background-color: transparent;
+            text-align: center;
+        }
+
+            .currency-calculator-container-right select:hover {
+                color: #4962E9;
+                border: 1px solid #4962E9;
+            }
+
+        .currency-calculator-container-right option {
+            color: #595586;
+        }
+
+        .currency-calculator-container-right select:focus {
+            outline: none;
+        }
+
+        .currency-calculator-container-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .currency-calculator-container-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            font-size: 12px;
+        }
+
+        .currency-calculator-container-row span:first-child {
+            width: 130px;
+        }
+
+        .currency-calculator-container-row span:last-child{
+            font-weight: bold;
+            width: 80px;
+        }
+
+        .currency-info-container{
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            color: #595586;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .currency-info-container-row{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            font-size: 12px;
+        }
+
+        .currency-info-container-row span:first-child{
+            width: 130px;
+        }
+
+        .currency-info-container-row span:nth-child(2), .currency-info-container-row span:nth-child(4) {
+            font-weight: bold;
+            width: 50px;
+        }
+
+        .percent-calculator-container{
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            gap: 10px;
+            color: #595586;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .percent-calculator-container-code-find{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+        
+        .percent-calculator-container-result{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 7px;
+            width: 100%;
+        }
+
+        .percent-calculator-container-result-row{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .percent-calculator-container-result-row span{
+            width: 70px;
+        }
+
+        .scrollablee {
+            width: 330px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .scrollablee span {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .scrollablee::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .scrollablee::-webkit-scrollbar-thumb {
+            background-color: #E1E2F3;
+            border-radius: 2px;
+        }
+
+        .scrollablee::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 2px;
+        }
+
+        .scrollablee::-webkit-scrollbar-thumb:hover {
+            background-color: #59CDFF;
+        }
+    </style>
+</head>
+<body>
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    <div class="page-container">
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <div style="height: 30px; margin-bottom: 10px; align-items: center; width: 100%;">
+                <span style="color: #595586; font-size: 18px; font-weight: bold;">Головна - Welcome to Stimex Engineering Group CRM</span>
+            </div>
+            <div style="height: 30px; margin-bottom: 10px; display: flex; justify-content: end; align-items: center; width: 150px;">
+                <span style="color: #595586; font-size: 14px; font-weight: bold;">Вітаємо, @Model.UserName!</span>
+            </div>
+        </div>
+        <div class="home-container">
+            <div class="left-container">
+                <div>
+                    <div class="header-container">
+                        <div class="header-part">
+                            <div class="header-part-column"><span>Код</span></div>
+                            <div class="header-part-column"><span>Підприємство</span></div>
+                            <div class="header-part-column"><span>Пріорітет</span></div>
+                            <div class="header-part-column"><span>Статус</span></div>
+                        </div>
+                    </div>
+                    <div class="cards-container">
+                        @foreach (var entity in Model.Orders)
+                        {
+                            <div class="card-data">
+                                <a href="@Url.Action("OrderDetails","OrderDetails", new { EntityId = entity.OrderId})"><span>@entity.OrderId</span></a>
+                                <a href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = entity.CustomerId})" class="scrollable"><span>@entity.CustomerNameUA</span></a>
+                                <span><img src="@Url.Content($"~/icons/Priority_{entity.Priority}.svg")" /></span>
+                                <span><img class="status" src="@Url.Content($"~/icons/Status_{entity.Status}.svg")" /></span>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="contacts-container">
+                    @foreach (var entity in Model.Contacts)
+                    {
+                        <div class="card-data-contact">
+                            <a href="@Url.Action("ContactDetails","ContactDetails", new { EntityId = entity.ContactId})" class="card-data-header">
+                                @if (entity.Image!.Length == 0)
+                                {
+                                    <img src="~/images/contact/Contact_Empty_Image.png">
+                                }
+                                else
+                                {
+                                    <img src="data:image/jpeg;base64,@(Convert.ToBase64String(entity.Image!))">
+                                }
+                                <span>@entity.Initials</span>
+                            </a>
+                            <div class="card-data-footer">
+                                <div class="copy-container" onclick="copyToClipboard('@entity.PhoneNumber')"><span>@entity.PhoneNumber</span><img src="~/icons/Copy.svg" /></div>
+                                <div class="copy-container" onclick="copyToClipboard('@entity.Email')"><span>@entity.Email</span><img src="~/icons/Copy.svg" /></div>
+                                <a href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = entity.EnterpriseId})" class="card-data-link"><div class="scrollable" style="margin-bottom: 2px;"><span>@entity.EnterpriseNameUA</span></div></a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="currency-calculator-container">
+                    <div class="currency-calculator-container-left">
+                        <div class="currency-calculator-container-row">
+                            <span>GBP / Фунт Стерлінгів</span>
+                            <span>@Math.Round(Model.GBP_Value, 2) £</span>
+                        </div>
+                        <div class="currency-calculator-container-row">
+                            <span>EUR / Євро</span>
+                            <span>@Math.Round(Model.EUR_Value, 2) €</span>
+                        </div>
+                        <div class="currency-calculator-container-row">
+                            <span>USD / Долар США</span>
+                            <span>@Math.Round(Model.USD_Value, 2) $</span>
+                        </div>
+                        <div class="currency-calculator-container-row">
+                            <span>UAH / Гривня</span>
+                            <span>@Math.Round(Model.UAH_Value, 2) ₴</span>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("CalculateCurrency", "Home", FormMethod.Post, new { @class = "currency-calculator-container-right" }))
+                    {
+                        @Html.HiddenFor(m => m.EquipmentCode)
+                        @Html.HiddenFor(m => m.EquipmentNameEN)
+                        @Html.HiddenFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.Value, new{ @class="currency-calculator-container-right-input", type="number", step="any", placeholder = "Значення", style="width: 80px;", required = "required"})
+                        @Html.DropDownList("Currency", new SelectList(new[] { "GBP", "EUR", "USD", "UAH" }), "Валюта", new { required = "required", style="width: 80px;" })
+                        <input type="submit" value="Результат" class="add-btn" style="width: 80px; padding: 5px 0px;" />
+                    }
+                </div>
+                <div class="currency-info-container">
+                    <div class="currency-info-container-row">
+                        <span>GBP / Фунт Стерлінгів</span>
+                        <span>@Math.Round(Model.UAH_GBP_Currency, 2) ₴</span>
+                        @if(Model.UAH_GBP_RateChanges > 0)
+                        {
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.4 8.275C27.2731 7.96956 27.0304 7.72684 26.725 7.6C26.5747 7.53595 26.4133 7.50197 26.25 7.5H20C19.6685 7.5 19.3505 7.6317 19.1161 7.86612C18.8817 8.10054 18.75 8.41848 18.75 8.75C18.75 9.08152 18.8817 9.39946 19.1161 9.63388C19.3505 9.8683 19.6685 10 20 10H23.2375L16.25 16.9875L12.1375 12.8625C12.0213 12.7453 11.883 12.6523 11.7307 12.5889C11.5784 12.5254 11.415 12.4928 11.25 12.4928C11.085 12.4928 10.9216 12.5254 10.7693 12.5889C10.6169 12.6523 10.4787 12.7453 10.3625 12.8625L2.86248 20.3625C2.74532 20.4787 2.65233 20.617 2.58887 20.7693C2.52541 20.9216 2.49274 21.085 2.49274 21.25C2.49274 21.415 2.52541 21.5784 2.58887 21.7307C2.65233 21.883 2.74532 22.0213 2.86248 22.1375C2.97869 22.2547 3.11694 22.3477 3.26926 22.4111C3.42159 22.4746 3.58497 22.5072 3.74998 22.5072C3.915 22.5072 4.07838 22.4746 4.23071 22.4111C4.38303 22.3477 4.52128 22.2547 4.63748 22.1375L11.25 15.5125L15.3625 19.6375C15.4787 19.7547 15.6169 19.8477 15.7693 19.9111C15.9216 19.9746 16.085 20.0072 16.25 20.0072C16.415 20.0072 16.5784 19.9746 16.7307 19.9111C16.883 19.8477 17.0213 19.7547 17.1375 19.6375L25 11.7625V15C25 15.3315 25.1317 15.6495 25.3661 15.8839C25.6005 16.1183 25.9185 16.25 26.25 16.25C26.5815 16.25 26.8994 16.1183 27.1339 15.8839C27.3683 15.6495 27.5 15.3315 27.5 15V8.75C27.498 8.58665 27.464 8.42528 27.4 8.275Z" fill="#19F28A" />
+                            </svg>
+                            <span style="color: #19F28A">+@Math.Round(Model.UAH_GBP_RateChanges, 2)%</span>
+                        }
+                        else
+                        {
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.4 21.725C27.2731 22.0304 27.0304 22.2732 26.725 22.4C26.5747 22.4641 26.4133 22.498 26.25 22.5H20C19.6685 22.5 19.3505 22.3683 19.1161 22.1339C18.8817 21.8995 18.75 21.5815 18.75 21.25C18.75 20.9185 18.8817 20.6005 19.1161 20.3661C19.3505 20.1317 19.6685 20 20 20H23.2375L16.25 13.0125L12.1375 17.1375C12.0213 17.2547 11.883 17.3477 11.7307 17.4111C11.5784 17.4746 11.415 17.5072 11.25 17.5072C11.085 17.5072 10.9216 17.4746 10.7693 17.4111C10.6169 17.3477 10.4787 17.2547 10.3625 17.1375L2.86248 9.6375C2.74532 9.5213 2.65233 9.38305 2.58887 9.23072C2.52541 9.0784 2.49274 8.91502 2.49274 8.75C2.49274 8.58498 2.52541 8.4216 2.58887 8.26928C2.65233 8.11695 2.74532 7.9787 2.86248 7.8625C2.97869 7.74534 3.11694 7.65235 3.26926 7.58888C3.42159 7.52542 3.58497 7.49275 3.74998 7.49275C3.915 7.49275 4.07838 7.52542 4.23071 7.58888C4.38303 7.65235 4.52128 7.74534 4.63748 7.8625L11.25 14.4875L15.3625 10.3625C15.4787 10.2453 15.6169 10.1523 15.7693 10.0889C15.9216 10.0254 16.085 9.99275 16.25 9.99275C16.415 9.99275 16.5784 10.0254 16.7307 10.0889C16.883 10.1523 17.0213 10.2453 17.1375 10.3625L25 18.2375V15C25 14.6685 25.1317 14.3505 25.3661 14.1161C25.6005 13.8817 25.9185 13.75 26.25 13.75C26.5815 13.75 26.8994 13.8817 27.1339 14.1161C27.3683 14.3505 27.5 14.6685 27.5 15V21.25C27.498 21.4133 27.464 21.5747 27.4 21.725Z" fill="#FF705C" />
+                            </svg>
+                            <span style="color: #FF705C">@Math.Round(Model.UAH_GBP_RateChanges, 2)%</span>
+                        }
+                    </div>
+                    <div class="currency-info-container-row">
+                        <span>EUR / Євро</span>
+                        <span>@Math.Round(Model.UAH_EUR_Currency, 2) ₴</span>
+                        @if (Model.UAH_EUR_RateChanges > 0)
+                        {
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.4 8.275C27.2731 7.96956 27.0304 7.72684 26.725 7.6C26.5747 7.53595 26.4133 7.50197 26.25 7.5H20C19.6685 7.5 19.3505 7.6317 19.1161 7.86612C18.8817 8.10054 18.75 8.41848 18.75 8.75C18.75 9.08152 18.8817 9.39946 19.1161 9.63388C19.3505 9.8683 19.6685 10 20 10H23.2375L16.25 16.9875L12.1375 12.8625C12.0213 12.7453 11.883 12.6523 11.7307 12.5889C11.5784 12.5254 11.415 12.4928 11.25 12.4928C11.085 12.4928 10.9216 12.5254 10.7693 12.5889C10.6169 12.6523 10.4787 12.7453 10.3625 12.8625L2.86248 20.3625C2.74532 20.4787 2.65233 20.617 2.58887 20.7693C2.52541 20.9216 2.49274 21.085 2.49274 21.25C2.49274 21.415 2.52541 21.5784 2.58887 21.7307C2.65233 21.883 2.74532 22.0213 2.86248 22.1375C2.97869 22.2547 3.11694 22.3477 3.26926 22.4111C3.42159 22.4746 3.58497 22.5072 3.74998 22.5072C3.915 22.5072 4.07838 22.4746 4.23071 22.4111C4.38303 22.3477 4.52128 22.2547 4.63748 22.1375L11.25 15.5125L15.3625 19.6375C15.4787 19.7547 15.6169 19.8477 15.7693 19.9111C15.9216 19.9746 16.085 20.0072 16.25 20.0072C16.415 20.0072 16.5784 19.9746 16.7307 19.9111C16.883 19.8477 17.0213 19.7547 17.1375 19.6375L25 11.7625V15C25 15.3315 25.1317 15.6495 25.3661 15.8839C25.6005 16.1183 25.9185 16.25 26.25 16.25C26.5815 16.25 26.8994 16.1183 27.1339 15.8839C27.3683 15.6495 27.5 15.3315 27.5 15V8.75C27.498 8.58665 27.464 8.42528 27.4 8.275Z" fill="#19F28A" />
+                            </svg>
+                            <span style="color: #19F28A">+@Math.Round(Model.UAH_EUR_RateChanges, 2)%</span>
+                        }
+                        else
+                        {
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.4 21.725C27.2731 22.0304 27.0304 22.2732 26.725 22.4C26.5747 22.4641 26.4133 22.498 26.25 22.5H20C19.6685 22.5 19.3505 22.3683 19.1161 22.1339C18.8817 21.8995 18.75 21.5815 18.75 21.25C18.75 20.9185 18.8817 20.6005 19.1161 20.3661C19.3505 20.1317 19.6685 20 20 20H23.2375L16.25 13.0125L12.1375 17.1375C12.0213 17.2547 11.883 17.3477 11.7307 17.4111C11.5784 17.4746 11.415 17.5072 11.25 17.5072C11.085 17.5072 10.9216 17.4746 10.7693 17.4111C10.6169 17.3477 10.4787 17.2547 10.3625 17.1375L2.86248 9.6375C2.74532 9.5213 2.65233 9.38305 2.58887 9.23072C2.52541 9.0784 2.49274 8.91502 2.49274 8.75C2.49274 8.58498 2.52541 8.4216 2.58887 8.26928C2.65233 8.11695 2.74532 7.9787 2.86248 7.8625C2.97869 7.74534 3.11694 7.65235 3.26926 7.58888C3.42159 7.52542 3.58497 7.49275 3.74998 7.49275C3.915 7.49275 4.07838 7.52542 4.23071 7.58888C4.38303 7.65235 4.52128 7.74534 4.63748 7.8625L11.25 14.4875L15.3625 10.3625C15.4787 10.2453 15.6169 10.1523 15.7693 10.0889C15.9216 10.0254 16.085 9.99275 16.25 9.99275C16.415 9.99275 16.5784 10.0254 16.7307 10.0889C16.883 10.1523 17.0213 10.2453 17.1375 10.3625L25 18.2375V15C25 14.6685 25.1317 14.3505 25.3661 14.1161C25.6005 13.8817 25.9185 13.75 26.25 13.75C26.5815 13.75 26.8994 13.8817 27.1339 14.1161C27.3683 14.3505 27.5 14.6685 27.5 15V21.25C27.498 21.4133 27.464 21.5747 27.4 21.725Z" fill="#FF705C" />
+                            </svg>
+                            <span style="color: #FF705C">@Math.Round(Model.UAH_EUR_RateChanges, 2)%</span>
+                        }
+                    </div>
+                    <div class="currency-info-container-row">
+                        <span>USD / Долар США</span>
+                        <span>@Math.Round(Model.UAH_USD_Currency, 2) ₴</span>
+                        @if (Model.UAH_USD_RateChanges > 0)
+                        {
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.4 8.275C27.2731 7.96956 27.0304 7.72684 26.725 7.6C26.5747 7.53595 26.4133 7.50197 26.25 7.5H20C19.6685 7.5 19.3505 7.6317 19.1161 7.86612C18.8817 8.10054 18.75 8.41848 18.75 8.75C18.75 9.08152 18.8817 9.39946 19.1161 9.63388C19.3505 9.8683 19.6685 10 20 10H23.2375L16.25 16.9875L12.1375 12.8625C12.0213 12.7453 11.883 12.6523 11.7307 12.5889C11.5784 12.5254 11.415 12.4928 11.25 12.4928C11.085 12.4928 10.9216 12.5254 10.7693 12.5889C10.6169 12.6523 10.4787 12.7453 10.3625 12.8625L2.86248 20.3625C2.74532 20.4787 2.65233 20.617 2.58887 20.7693C2.52541 20.9216 2.49274 21.085 2.49274 21.25C2.49274 21.415 2.52541 21.5784 2.58887 21.7307C2.65233 21.883 2.74532 22.0213 2.86248 22.1375C2.97869 22.2547 3.11694 22.3477 3.26926 22.4111C3.42159 22.4746 3.58497 22.5072 3.74998 22.5072C3.915 22.5072 4.07838 22.4746 4.23071 22.4111C4.38303 22.3477 4.52128 22.2547 4.63748 22.1375L11.25 15.5125L15.3625 19.6375C15.4787 19.7547 15.6169 19.8477 15.7693 19.9111C15.9216 19.9746 16.085 20.0072 16.25 20.0072C16.415 20.0072 16.5784 19.9746 16.7307 19.9111C16.883 19.8477 17.0213 19.7547 17.1375 19.6375L25 11.7625V15C25 15.3315 25.1317 15.6495 25.3661 15.8839C25.6005 16.1183 25.9185 16.25 26.25 16.25C26.5815 16.25 26.8994 16.1183 27.1339 15.8839C27.3683 15.6495 27.5 15.3315 27.5 15V8.75C27.498 8.58665 27.464 8.42528 27.4 8.275Z" fill="#19F28A" />
+                            </svg>
+                            <span style="color: #19F28A">+@Math.Round(Model.UAH_USD_RateChanges, 2)%</span>
+                        }
+                        else
+                        {
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27.4 21.725C27.2731 22.0304 27.0304 22.2732 26.725 22.4C26.5747 22.4641 26.4133 22.498 26.25 22.5H20C19.6685 22.5 19.3505 22.3683 19.1161 22.1339C18.8817 21.8995 18.75 21.5815 18.75 21.25C18.75 20.9185 18.8817 20.6005 19.1161 20.3661C19.3505 20.1317 19.6685 20 20 20H23.2375L16.25 13.0125L12.1375 17.1375C12.0213 17.2547 11.883 17.3477 11.7307 17.4111C11.5784 17.4746 11.415 17.5072 11.25 17.5072C11.085 17.5072 10.9216 17.4746 10.7693 17.4111C10.6169 17.3477 10.4787 17.2547 10.3625 17.1375L2.86248 9.6375C2.74532 9.5213 2.65233 9.38305 2.58887 9.23072C2.52541 9.0784 2.49274 8.91502 2.49274 8.75C2.49274 8.58498 2.52541 8.4216 2.58887 8.26928C2.65233 8.11695 2.74532 7.9787 2.86248 7.8625C2.97869 7.74534 3.11694 7.65235 3.26926 7.58888C3.42159 7.52542 3.58497 7.49275 3.74998 7.49275C3.915 7.49275 4.07838 7.52542 4.23071 7.58888C4.38303 7.65235 4.52128 7.74534 4.63748 7.8625L11.25 14.4875L15.3625 10.3625C15.4787 10.2453 15.6169 10.1523 15.7693 10.0889C15.9216 10.0254 16.085 9.99275 16.25 9.99275C16.415 9.99275 16.5784 10.0254 16.7307 10.0889C16.883 10.1523 17.0213 10.2453 17.1375 10.3625L25 18.2375V15C25 14.6685 25.1317 14.3505 25.3661 14.1161C25.6005 13.8817 25.9185 13.75 26.25 13.75C26.5815 13.75 26.8994 13.8817 27.1339 14.1161C27.3683 14.3505 27.5 14.6685 27.5 15V21.25C27.498 21.4133 27.464 21.5747 27.4 21.725Z" fill="#FF705C" />
+                            </svg>
+                            <span style="color: #FF705C">@Math.Round(Model.UAH_USD_RateChanges, 2)%</span>
+                        }
+                    </div>
+                </div>
+                <div class="percent-calculator-container">
+                    @if (!string.IsNullOrEmpty(Model.EquipmentNameEN))
+                    {
+                        <div class="scrollablee"><span>Найменування: <strong>@Model.EquipmentNameEN</strong></span></div>
+                    }
+                    <div style="display: flex; flex-direction: row; gap: 35px;">
+                        @using (Html.BeginForm("FindPriceEquipmentCode", "Home", FormMethod.Post, new { @class = "percent-calculator-container-code-find" }))
+                        {
+                            @Html.TextBoxFor(m => m.EquipmentCode, new { @class="currency-calculator-container-right-input", placeholder = "Код", style="width: 80px;", required = "required"})
+                            @Html.HiddenFor(m => m.Value)
+                            @Html.HiddenFor(m => m.UserName)
+                            <input type="submit" value="Знайти" class="add-btn" style="width: 80px; padding: 5px 0px;" />
+                        }
+                        @using (Html.BeginForm("CalculatePercentValues", "Home", FormMethod.Post, new { @class = "percent-calculator-container-result" }))
+                        {
+                            @Html.HiddenFor(m => m.EquipmentCode)
+                            @Html.HiddenFor(m => m.EquipmentNameEN)
+                            @Html.HiddenFor(m => m.Value)
+                            @Html.HiddenFor(m => m.UserName)
+                            <div class="percent-calculator-container-result-row">
+                                <span>Прайс:</span>
+                                @Html.TextBoxFor(m => m.BasePrice, new { @class="currency-calculator-container-right-input", type="number", step="any", placeholder = "Прайс", style="width: 80px;", required = "required"}) £
+                            </div>
+                            <div class="percent-calculator-container-result-row">
+                                <span>Знижка:</span>
+                                @Html.TextBoxFor(m => m.Discount, new { @class="currency-calculator-container-right-input", type="number", placeholder = "Знижка", style="width: 80px;", required = "required", min = "1", max = "100", step = "1", pattern = "[0-9]*"}) %
+                            </div>
+                            <div class="percent-calculator-container-result-row">
+                                <span>Націнка:</span>
+                                @Html.TextBoxFor(m => m.MarkUp, new { @class="currency-calculator-container-right-input", type="number", placeholder = "Націнка", style="width: 80px;", required = "required", min = "1", max = "100", step = "1", pattern = "[0-9]*"}) %
+                            </div>
+                            <div class="percent-calculator-container-result-row" style="margin-top: 5px;">
+                                <span>Результат:</span>
+                                <span style="width: 130px;">@Math.Round(Model.PurchasePrice, 2) € / @Math.Round(Model.SellPrice, 2) €</span>
+                            </div>
+                            <input type="submit" style="visibility: hidden; position: absolute;" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function copyToClipboard(text) {
+        var tempElement = document.createElement('textarea');
+        tempElement.value = text;
+        document.body.appendChild(tempElement);
+        tempElement.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempElement);
+        alert("Дані скопійовані: " + text);
+    }
+</script>
+
+

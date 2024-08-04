@@ -1,0 +1,195 @@
+﻿@using CRMEngSystem.Models.ViewModels.Order
+@using CRMEngSystem.Models.ViewModels.Catalog
+@using CRMEngSystem.Models.ViewModels.Notify
+@model OrderEquipmentViewModel
+
+<head>
+    <style>
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 60vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+            .cards-container::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            .cards-container::-webkit-scrollbar-track {
+                background: #E1E2F3;
+                border-radius: 3px;
+            }
+
+            .cards-container::-webkit-scrollbar-thumb {
+                background: #4962E9;
+                border-radius: 3px;
+            }
+
+                .cards-container::-webkit-scrollbar-thumb:hover {
+                    background: #59CDFF;
+                }
+
+        .header-container {
+            background-color: #DDE9FF;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .header-part {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 9% 33% 5% 10% 6% 6% 10% 6% calc(15% - 13px);
+            padding-right: 13px;
+        }
+
+        .header-part-column {
+            font-size: 12px;
+            color: #4962E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-part-column:nth-child(2) {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .result-container{
+            background-color: #E1E2F3;
+            color: #595586;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 42% 5% 10% 6% 6% 10% 6% calc(15% - 13px);
+            padding: 5px 13px 5px 5px;
+        }
+
+        .result-container-column{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .result-container-column:first-child{
+            justify-content: flex-end;
+            display: flex;
+            align-items: center;
+        }
+
+        .percent-input {
+            background-color: white;
+            width: 70px;
+            height: 25px;
+            border: 1px solid #595586;
+            border-radius: 3px;
+            color: #595586;
+            outline: none;
+            box-sizing: border-box;
+            text-align: center;
+            -moz-appearance: textfield;
+        }
+
+            .percent-input::-webkit-inner-spin-button,
+            .percent-input::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+    @if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    else if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    <div class="page-container">
+        @await Html.PartialAsync("_OrderMenuTab", Model)
+        @Html.ActionLink("Додати обладнання", "CatalogList", "CatalogList", new CatalogListViewModel{ OrderId = Model.EntityId }, new { @class = "add-btn-fullwidth" })
+        @if(Model.EquipmentPositions.Count() != 0)
+        {
+            <div class="tab-container">
+                <div class="header-container">
+                    <div class="header-part">
+                        <div class="header-part-column"><span>Код</span></div>
+                        <div class="header-part-column"><span>Найменування (Укр.)</span></div>
+                        <div class="header-part-column"><span>Склад</span></div>
+                        <div class="header-part-column"><span>Прайс (£)</span></div>
+                        <div class="header-part-column"><span>Знижка (%)</span></div>
+                        <div class="header-part-column"><span>Націнка (%)</span></div>
+                        <div class="header-part-column"><span>Ціна (€)</span></div>
+                        <div class="header-part-column"><span>Кількість</span></div>
+                        <div class="header-part-column"><span>Заг. ціна (€)</span></div>
+                    </div>
+                </div>
+            
+                <div class="cards-container">
+                    @foreach (var entity in Model.EquipmentPositions)
+                    {
+                        @await Html.PartialAsync("_OrderEquipmentDataCard", entity)
+                    }
+                </div>
+                <div class="result-container">
+                    <span class="result-container-column">
+                        Всього:
+                    </span>
+                    <span class="result-container-column">
+                        —
+                    </span>
+                    <span class="result-container-column">
+                        @Model.EquipmentPositions.Sum(equipment => equipment.BasePrice) £
+                    </span>
+                    <span class="result-container-column">
+                        @using (Html.BeginForm("OrderTotalDiscountUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
+                        {
+                            @Html.TextBox("Discount", null, new{ placeholder = "Заг. зниж.", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                            @Html.Hidden("OrderId", Model.EntityId)
+                        }
+                    </span>
+                    <span class="result-container-column">
+                        @using (Html.BeginForm("OrderTotalMarkUpUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
+                        {
+                            @Html.TextBox("MarkUp", null, new{ placeholder = "Заг. нац.", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                            @Html.Hidden("OrderId", Model.EntityId)
+                        }
+                    </span>
+                    <span class="result-container-column">
+                        @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice) €
+                    </span>
+                    <span class="result-container-column">
+                        @Model.EquipmentPositions.Sum(equipment => equipment.Quantity) шт
+                    </span>
+                    <span class="result-container-column">
+                        @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice * equipment.Quantity) €
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+

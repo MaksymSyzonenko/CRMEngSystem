@@ -1,0 +1,180 @@
+﻿@using CRMEngSystem.Models.ViewModels.Order
+@model OrdersCreateOrderViewModel
+
+<head>
+    <style>
+        .header-container {
+            background-color: #DDE9FF;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .header-part {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 5% 15% 15% 45% calc(20% - 13px);
+            padding-right: 13px;
+        }
+
+        .header-part-column {
+            font-size: 12px;
+            color: #4962E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-part-column:nth-child(4) {
+            justify-content: flex-start;
+            padding: 0 15px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 60vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+            .cards-container::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            .cards-container::-webkit-scrollbar-track {
+                background: #E1E2F3;
+                border-radius: 3px;
+            }
+
+            .cards-container::-webkit-scrollbar-thumb {
+                background: #4962E9;
+                border-radius: 3px;
+            }
+
+                .cards-container::-webkit-scrollbar-thumb:hover {
+                    background: #59CDFF;
+                }
+
+        .card-data {
+            background-color: white;
+            border-radius: 5px;
+            grid-gap: 5px;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 5% 15% 15% 45% calc(20% - 13px);
+            align-items: center;
+            height: 23px;
+            padding: 0 10px 0 10px;
+        }
+
+            .card-data span {
+                font-size: 12px;
+                color: #595586;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        .scrollable {
+            height: 21px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+            .scrollable span {
+                display: inline-block;
+                white-space: nowrap;
+            }
+
+            .scrollable::-webkit-scrollbar {
+                height: 3px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb {
+                background-color: #E1E2F3;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-track {
+                background-color: transparent;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb:hover {
+                background-color: #59CDFF;
+            }
+
+        .card-data a:nth-child(4){
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 15px 0 15px;
+        }
+
+        .card-data a:hover span {
+            color: #4962E9;
+        }
+
+        .card-data a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div style="height: 30px; margin-bottom: 10px; align-items: center;">
+            <span style="color: #595586; font-size: 18px; font-weight: bold;">Створення комерційного замовлення</span>
+        </div>
+        @using(Html.BeginForm("OrdersCreateOrder", "OrdersCreateOrder", FormMethod.Post))
+        {
+            <input class="add-btn-fullwidth" type="submit" value="Створити комерційне замовлення" />
+            <div class="header-container">
+                <div class="header-part">
+                    <div class="header-part-column">
+                        <span>Обрати</span>
+                    </div>
+                    <div class="header-part-column">
+                        <span>Враховувати склад</span>
+                    </div>
+                    <div class="header-part-column">
+                        <span>Код</span>
+                    </div>
+                    <div class="header-part-column">
+                        <span>Підприємство</span>
+                    </div>
+                    <div class="header-part-column">
+                        <span>Пріорітет</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cards-container">
+                @for (int i = 0; i < Model.Orders.Count; i++)
+                {
+                    var entity = Model.Orders[i];
+                    <div class="card-data">
+                        <span>
+                            @Html.CheckBoxFor(m => m.Orders[i].IsSelected)
+                            @Html.HiddenFor(m => m.Orders[i].OrderId)
+                        </span>
+                        <span>
+                            @Html.CheckBoxFor(m => m.Orders[i].IncludeWareHouse)
+                        </span>
+                        <a href="@Url.Action("OrderDetails","OrderDetails", new { EntityId = entity.OrderId})"><span>@entity.OrderId</span></a>
+                        <a href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = entity.CustomerId})" class="scrollable"><span>@entity.CustomerNameUA</span></a>
+                        <span><img src="@Url.Content($"~/icons/Priority_{entity.Priority}.svg")" /></span>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</body>

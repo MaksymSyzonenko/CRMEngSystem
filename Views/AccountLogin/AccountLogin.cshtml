@@ -1,0 +1,76 @@
+﻿@using CRMEngSystem.Models.ViewModels.Account
+@model AccountLoginViewModel
+
+<head>
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            flex-direction: column;
+            gap: 10px;
+            width: 500px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .data-input {
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            border: solid 1px #E1E2F3;
+            background-color: transparent;
+            color: #595586;
+            outline: none;
+            width: 100%;
+        }
+
+        .data-input::placeholder {
+            color: #E1E2F3;
+        }
+
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; height: calc(100vh - 150px);">
+        @using (Html.BeginForm("AccountLogin", "AccountLogin", FormMethod.Post, new { @class = "login-container" }))
+        {
+            <span style="color: #595586; font-size: 18px; font-weight: bold;">Вхід в систему</span>
+            <span style="color: #FF705C; font-size: 14px;">@TempData["ErrorMessage"]</span>
+            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Логін", @class = "data-input", @required = "required" })
+            <div class="password-container">
+                @Html.TextBoxFor(m => m.Password, new { placeholder = "Пароль", type = "password", @class = "data-input", @required = "required", id = "password-field" })
+                <span class="eye-icon" onclick="togglePasswordVisibility()">👁️</span>
+            </div>
+            <input class="add-btn" value="Увійти" type="submit" />
+        }
+    </div>
+</body>
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password-field");
+        var eyeIcon = document.querySelector(".eye-icon");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            eyeIcon.textContent = "🙈";
+        } else {
+            passwordField.type = "password";
+            eyeIcon.textContent = "👁️";
+        }
+    }
+</script>

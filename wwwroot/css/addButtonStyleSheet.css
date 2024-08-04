@@ -1,0 +1,96 @@
+﻿.add-btn-fullwidth {
+    background-color: #4962E9;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 25px 5px 25px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+}
+
+.add-btn-fullwidth:hover {
+    color: white;
+    background-color: #2C3FA6;
+}
+
+.add-btn {
+    background-color: #4962E9;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 25px 5px 25px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+}
+
+.add-btn:hover {
+    color: white;
+    background-color: #2C3FA6;
+}
+
+.add-btn-empty {
+    background-color: transparent;
+    border-radius: 5px;
+    color: #4962E9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 25px 5px 25px;
+    font-size: 12px;
+    border: 1px solid #4962E9;
+    outline: none;
+}
+
+.add-btn-empty:hover {
+    background-color: #DDE9FF;
+}
+
+.add-btn-empty-red {
+    background-color: transparent;
+    border-radius: 5px;
+    color: #FF705C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 25px 5px 25px;
+    font-size: 12px;
+    border: 1px solid #FF705C;
+    outline: none;
+}
+
+.add-btn-empty-red:hover {
+    background-color: #fce9e6;
+    color: #FF705C;
+}
+
+.add-btn-fullwidth-empty {
+    background-color: transparent;
+    border-radius: 5px;
+    color: #4962E9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 25px 5px 25px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #4962E9;
+    outline: none;
+}
+
+.add-btn-fullwidth-empty:hover {
+    background-color: #DDE9FF;
+}

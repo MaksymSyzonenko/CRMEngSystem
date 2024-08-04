@@ -1,0 +1,124 @@
+﻿@using CRMEngSystem.Models.ViewModels.Enterprise
+@using CRMEngSystem.Models.ViewModels.Notify
+@model EnterpriseListViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/enterpriseListStyleSheet.css" />
+    <script src="~/js/googleMapsScript.js" ></script>
+</head>
+<body>
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    else if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    <div class="page-container">
+        @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search", style = "height: 30px;" }))
+        {
+            <img src="~/icons/Search.svg" />
+            @Html.TextBoxFor(m => m.SearchGeneral, new { placeholder = "Загальний пошук", @Value = Model.SearchGeneral })
+            JoinSearches("SearchGeneral");
+        }
+        @Html.ActionLink("Додати підприємство", "EnterpriseCreate", "EnterpriseCreate", null, new { @class = "add-btn-fullwidth" })
+        <div class="header-container">
+            <div class="header-part">
+                @{
+                    EnterpriseListViewModel CreateViewModelWithSort(bool? sortEnterpriseId, bool? sortAlphabetCountry, bool? sortAlphabetRegion, bool? sortAlphabetCity)
+                    => new()
+                    {
+                        SearchGeneral = Model.SearchGeneral,
+                        SearchName = Model.SearchName,
+                        SearchCountry = Model.SearchCountry,
+                        SearchRegion = Model.SearchRegion,
+                        SearchCity = Model.SearchCity,
+                        SortEnterpriseId = sortEnterpriseId,
+                        SortAlphabetCountry = sortAlphabetCountry,
+                        SortAlphabetRegion = sortAlphabetRegion,
+                        SortAlphabetCity = sortAlphabetCity,
+                        NumberItemsPerPage = Model.NumberItemsPerPage,
+                        TotalPageCount = Model.TotalPageCount
+                    };
+                }
+                <div class="header-part-column">
+                    <span>Підприємство</span>
+                    @Html.ActionLink("↓", "EnterpriseList", "EnterpriseList", CreateViewModelWithSort(true, null, null, null))
+                </div>
+                <div class="header-part-column">
+                    <span>Країна</span>
+                    @Html.ActionLink("↓", "EnterpriseList", "EnterpriseList", CreateViewModelWithSort(null, true, null, null))
+                </div>
+                <div class="header-part-column">
+                    <span>Регіон / Область</span>
+                    @Html.ActionLink("↓", "EnterpriseList", "EnterpriseList", CreateViewModelWithSort(null, null, true, null))
+                </div>
+                <div class="header-part-column">
+                    <span>Населений пункт</span>
+                    @Html.ActionLink("↓", "EnterpriseList", "EnterpriseList", CreateViewModelWithSort(null, null, null, true))
+                </div>
+                <div class="header-part-column">На карті</div>
+            </div>
+            <div class="header-part">
+                @{
+                    void JoinSearches(string currentQuery)
+                    {
+                        if (!string.IsNullOrEmpty(Model.SearchGeneral) && currentQuery != "SearchGeneral")
+                            @Html.HiddenFor(m => m.SearchGeneral)
+
+                        if (!string.IsNullOrEmpty(Model.SearchName) && currentQuery != "SearchName")
+                            @Html.HiddenFor(m => m.SearchName)
+
+                        if (!string.IsNullOrEmpty(Model.SearchCountry) && currentQuery != "SearchCountry")
+                            @Html.HiddenFor(m => m.SearchCountry)
+
+                        if (!string.IsNullOrEmpty(Model.SearchRegion) && currentQuery != "SearchRegion")
+                            @Html.HiddenFor(m => m.SearchRegion)
+
+                        if (!string.IsNullOrEmpty(Model.SearchCity) && currentQuery != "SearchCity")
+                            @Html.HiddenFor(m => m.SearchCity)
+
+                        @Html.HiddenFor(m => m.NumberItemsPerPage)
+                    }
+                }
+                @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.SearchName, new { placeholder = "Пошук", @Value = Model.SearchName })
+                    JoinSearches("SearchName");
+                    <input type="submit" style="visibility: hidden;" />
+                }
+                @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.SearchCountry, new { placeholder = "Пошук", @Value = Model.SearchCountry })
+                    JoinSearches("SearchCountry");
+                    <input type="submit" style="visibility: hidden;" />
+                }
+                @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.SearchRegion, new { placeholder = "Пошук", @Value = Model.SearchRegion })
+                    JoinSearches("SearchRegion");
+                    <input type="submit" style="visibility: hidden;" />
+                }
+                @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.SearchCity, new { placeholder = "Пошук", @Value = Model.SearchCity })
+                    JoinSearches("SearchCity");
+                    <input type="submit" style="visibility: hidden;" />
+                }
+            </div>
+        </div>
+        <div class="cards-container">
+            @foreach (var entity in Model.Entities)
+            {
+                @await Html.PartialAsync("_EnterpriseDataCard", entity)
+            }
+        </div>
+        @await Html.PartialAsync("_Pagination", Model)
+    </div>
+</body>
+

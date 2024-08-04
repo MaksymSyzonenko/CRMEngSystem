@@ -1,0 +1,441 @@
+﻿@using CRMEngSystem.Models.ViewModels.Enterprise
+@using CRMEngSystem.Models.ViewModels.Confirm
+@using CRMEngSystem.Models.ViewModels.Notify
+@model EnterpriseDetailsViewModel
+
+<head>
+    <script src="~/js/googleMapsScript.js"></script>
+    <style>
+        .tab-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .details-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            color: #595586;
+            width: 100%;
+        }
+
+        .details-container-data {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .details-container-data-row {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .details-container-data-row-filled {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #E1E2F3;
+        }
+
+        .details-container-data span:last-child {
+            text-align: right;
+        }
+
+        .details-container-data span:first-child {
+            font-weight: bold;
+            width: 230px;
+        }
+
+        .right-details-container {
+            width: 600px;
+            color: #595586;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        .func-btns {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            align-items: flex-end;
+        }
+
+        .trash-bucket:hover path {
+            fill: #FF705C;
+        }
+
+        .edit-btn:hover path {
+            stroke: #4962E9;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+        }
+
+        .right-btns {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        .graph-container{
+            background-color: white;
+            border-radius: 5px;
+            width: 100%;
+            height: 55%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .graph{
+            width: 400px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagram-container{
+            background-color: white;
+            border-radius: 5px;
+            width: 100%;
+            height: 45%;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .diagram-container-col{
+            display: flex;
+            font-size: 14px;
+            color: #595586;
+            flex-direction: column;
+            gap: 35px;
+            align-items: center;
+            width: 100%;
+        }
+
+            .diagram-container-col span {
+                white-space: nowrap;
+                width: 100%;
+            }
+
+        .bg-bar{
+            width: 100%;
+            border: 3px solid #E1E2F3;
+            border-radius: 3px;
+        }
+
+        .labl{
+            display: flex;
+            width: 120px;
+        }
+
+        .percent-labl{
+            display: flex;
+        }
+
+        .percent-bar{
+            position: absolute;
+            z-index: 999;
+            border-radius: 3px;
+        }
+
+        .bar-container{
+            height: 21px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .coordinate-container{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .coordinate-container svg {
+            height: 18px;
+            width: 18px;
+        }
+
+            .coordinate-container:hover path {
+            stroke: #4962E9;
+        }
+
+        .coordinate-container:hover{
+            color: #4962E9;
+        }
+
+    </style>
+</head>
+<body>
+    @if (TempData["ConfirmModal"] != null && (bool)TempData["ConfirmModal"]!)
+    {
+        @await Html.PartialAsync("_ConfirmModal", new ConfirmModalViewModel { NotifyText = $"Ви впевнені що хочете видалити підприємство {Model.Enterprise.NameUA}?", ConfirmActionName = "ConfirmModal", ControllerName = "EnterpriseRemove", RouteValues = new { EntityId = Model.EntityId} })
+    }
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    else if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    <div class="page-container">
+        @await Html.PartialAsync("_EnterpriseMenuTab", Model)
+        <div class="tab-container">
+            <div class="details-container">
+                <div class="details-container-data">
+                    <div class="details-container-data-row-filled">
+                        <span>Назва під-ства (Укр.):</span>
+                        <span>@Model.Enterprise.NameUA</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Назва під-ства (Англ.):</span>
+                        <span>@Model.Enterprise.NameEN</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Форма власності (Укр.):</span>
+                        <span>@Model.Enterprise.OwnershipFormUA</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Форма власності (Англ.):</span>
+                        <span>@Model.Enterprise.OwnershipFormEN</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Адреса:</span>
+                        <span>@Model.Enterprise.Address</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Координати:</span>
+                        @if (@Model.Enterprise.Coordinate != null)
+                        {
+                            <span class="coordinate-container" onclick="openGoogleMaps('@Model.Enterprise.Coordinate')">
+                                @Model.Enterprise.Coordinate
+                                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.0002 17.5C10.0002 17.5 4.10742 12.8123 4.10742 8.39275C4.10742 4.70978 7.0538 2.5 10.0002 2.5C12.9465 2.5 15.8929 4.70978 15.8929 8.39275C15.8929 12.8123 10.0002 17.5 10.0002 17.5ZM11.5716 8.39275C11.5716 8.13228 11.4681 7.29319 11.2839 7.10901C11.0997 6.92482 10.2606 6.82135 10.0002 6.82135C9.7397 6.82135 8.90062 6.92482 8.71643 7.10901C8.53225 7.29319 8.42877 8.13228 8.42877 8.39275C8.42877 8.65323 8.53225 9.49231 8.71643 9.67649C8.90062 9.86068 9.7397 9.96415 10.0002 9.96415C10.2606 9.96415 11.0997 9.86068 11.2839 9.67649C11.4681 9.49231 11.5716 8.65323 11.5716 8.39275Z" stroke="#595586" stroke-width="2" />
+                                </svg>
+                            </span>
+                        }
+                        else
+                        {
+                            <span>Відсутні</span>
+                        }
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Галузь промисловості:</span>
+                        <span>@Model.Enterprise.IndustryBranch</span>
+                    </div>
+                    <div class="details-container-data-row-filled">
+                        <span>Торгівельна група:</span>
+                        <span>@Model.Enterprise.TradeGroup</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Франшиза:</span>
+                        <span>@{ string franchise = string.IsNullOrEmpty(Model.Enterprise.Franchise) ? "Відсутня" : Model.Enterprise.Franchise; }@franchise</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Дата створення:</span>
+                        <span>@Model.Enterprise.DateTimeCreate</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Дата оновлення:</span>
+                        <span>@Model.Enterprise.DateTimeUpdate</span>
+                    </div>
+                    @if(Model.EntityId != 1)
+                    {
+                        <div class="func-btns">
+                            <div class="left">
+                                @Html.ActionLink("Створити замовлення", "EnterpriseCreateOrder", "EnterpriseCreateOrder", new { EntityId = Model.EntityId }, new { @class = "add-btn", style="width: 190px; height: 30px; font-size: 12px;", type="submit"})
+                            </div>
+                            <div class="right-btns">
+                                <a href="@Url.ActionLink("EnterpriseEdit", "EnterpriseEdit", new { EnterpriseId = Model.EntityId })">
+                                    <svg class="edit-btn" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M32.0147 14.2493L35.7506 17.9852M34.4165 10.9582L24.3101 21.0646C23.7879 21.586 23.4317 22.2504 23.2865 22.974L22.353 27.6469L27.0259 26.7116C27.7495 26.5669 28.413 26.2122 28.9353 25.6898L39.0417 15.5834C39.3454 15.2797 39.5863 14.9192 39.7507 14.5224C39.915 14.1256 39.9996 13.7003 39.9996 13.2708C39.9996 12.8413 39.915 12.416 39.7507 12.0192C39.5863 11.6224 39.3454 11.2619 39.0417 10.9582C38.738 10.6545 38.3775 10.4136 37.9807 10.2492C37.5839 10.0848 37.1586 10.0002 36.7291 10.0002C36.2996 10.0002 35.8743 10.0848 35.4775 10.2492C35.0807 10.4136 34.7202 10.6545 34.4165 10.9582Z" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M36.4704 31.1762V36.4703C36.4704 37.4063 36.0985 38.304 35.4366 38.9659C34.7748 39.6278 33.877 39.9997 32.941 39.9997H13.5294C12.5933 39.9997 11.6956 39.6278 11.0337 38.9659C10.3718 38.304 10 37.4063 10 36.4703V17.0587C10 16.1226 10.3718 15.2249 11.0337 14.563C11.6956 13.9011 12.5933 13.5293 13.5294 13.5293H18.8235" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                                <a href="@Url.Action("OpenModal", "EnterpriseRemove", new { EntityId = Model.EntityId })">
+                                    <svg class="trash-bucket" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 13.1875H28.5C28.5 12.2592 28.1313 11.369 27.4749 10.7126C26.8185 10.0562 25.9283 9.6875 25 9.6875C24.0717 9.6875 23.1815 10.0562 22.5251 10.7126C21.8687 11.369 21.5 12.2592 21.5 13.1875ZM18.875 13.1875C18.875 12.3832 19.0334 11.5867 19.3412 10.8436C19.649 10.1004 20.1002 9.42523 20.669 8.85647C21.2377 8.28771 21.9129 7.83655 22.6561 7.52874C23.3992 7.22093 24.1957 7.0625 25 7.0625C25.8043 7.0625 26.6008 7.22093 27.3439 7.52874C28.0871 7.83655 28.7623 8.28771 29.331 8.85647C29.8998 9.42523 30.351 10.1004 30.6588 10.8436C30.9666 11.5867 31.125 12.3832 31.125 13.1875H41.1875C41.5356 13.1875 41.8694 13.3258 42.1156 13.5719C42.3617 13.8181 42.5 14.1519 42.5 14.5C42.5 14.8481 42.3617 15.1819 42.1156 15.4281C41.8694 15.6742 41.5356 15.8125 41.1875 15.8125H38.8775L36.83 37.0068C36.6729 38.6307 35.9166 40.1379 34.7084 41.2344C33.5003 42.331 31.927 42.9381 30.2955 42.9375H19.7045C18.0733 42.9377 16.5004 42.3303 15.2927 41.2339C14.0849 40.1374 13.3288 38.6304 13.1718 37.0068L11.1225 15.8125H8.8125C8.4644 15.8125 8.13056 15.6742 7.88442 15.4281C7.63828 15.1819 7.5 14.8481 7.5 14.5C7.5 14.1519 7.63828 13.8181 7.88442 13.5719C8.13056 13.3258 8.4644 13.1875 8.8125 13.1875H18.875ZM22.375 21.5C22.375 21.1519 22.2367 20.8181 21.9906 20.5719C21.7444 20.3258 21.4106 20.1875 21.0625 20.1875C20.7144 20.1875 20.3806 20.3258 20.1344 20.5719C19.8883 20.8181 19.75 21.1519 19.75 21.5V34.625C19.75 34.9731 19.8883 35.3069 20.1344 35.5531C20.3806 35.7992 20.7144 35.9375 21.0625 35.9375C21.4106 35.9375 21.7444 35.7992 21.9906 35.5531C22.2367 35.3069 22.375 34.9731 22.375 34.625V21.5ZM28.9375 20.1875C29.2856 20.1875 29.6194 20.3258 29.8656 20.5719C30.1117 20.8181 30.25 21.1519 30.25 21.5V34.625C30.25 34.9731 30.1117 35.3069 29.8656 35.5531C29.6194 35.7992 29.2856 35.9375 28.9375 35.9375C28.5894 35.9375 28.2556 35.7992 28.0094 35.5531C27.7633 35.3069 27.625 34.9731 27.625 34.625V21.5C27.625 21.1519 27.7633 20.8181 28.0094 20.5719C28.2556 20.3258 28.5894 20.1875 28.9375 20.1875ZM15.7845 36.7547C15.8789 37.7289 16.3327 38.6329 17.0574 39.2907C17.7821 39.9484 18.7258 40.3127 19.7045 40.3125H30.2955C31.2742 40.3127 32.2179 39.9484 32.9426 39.2907C33.6673 38.6329 34.1211 37.7289 34.2155 36.7547L36.242 15.8125H13.758L15.7845 36.7547Z" fill="#595586" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="right-details-container">
+                <div class="graph-container">
+                    <div class="graph">
+                        @if (Model.NumberOrdersPerMonth.All(num => num == 0))
+                        {
+                            <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Аналітика відсутня</span>
+                        }
+                        else
+                        {
+                            <canvas id="myChart"></canvas>
+                        }
+                    </div>
+                </div>
+                <div class="diagram-container">
+                    @if (Model.Enterprise.TotalOrdersNumber == 0)
+                    {
+                        <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Аналітика відсутня</span>
+                    }
+                    else
+                    {
+                        <div class="diagram-container-col">
+                            <div class="labl">
+                                <span>Високий пріорітет</span>
+                            </div>
+                            <div class="labl">
+                                <span>Середній пріорітет</span>
+                            </div>
+                            <div class="labl">
+                                <span>Низький пріорітет</span>
+                            </div>
+                        </div>
+                        <div class="diagram-container-col">
+                            <div class="percent-labl">
+                                <span style="font-weight: 900;">@(Model.Enterprise.NumberHighPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberHighPriorityOrders)</span>
+                            </div>
+                            <div class="percent-labl">
+                                <span style="font-weight: 900;">@(Model.Enterprise.NumberMediumPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberMediumPriorityOrders)</span>
+                            </div>
+                            <div class="percent-labl">
+                                <span style="font-weight: 900;">@(Model.Enterprise.NumberLowPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberLowPriorityOrders)</span>
+                            </div>
+                        </div>
+                        <div class="diagram-container-col">
+                            <div class="bar-container">
+                                <div class="percent-bar" style="border: 3px solid #FF6B00; width: @(Model.Enterprise.NumberHighPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
+                                <div class="bg-bar"></div>
+                            </div>
+                            <div class="bar-container">
+                                <div class="percent-bar" style="border: 3px solid #FAD200; width: @(Model.Enterprise.NumberMediumPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
+                                <div class="bg-bar"></div>
+                            </div>
+                            <div class="bar-container">
+                                <div class="percent-bar" style="border: 3px solid #00E4F2; width: @(Model.Enterprise.NumberLowPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
+                                <div class="bg-bar"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.Months)),
+            datasets: [{
+                label: 'Кількість замовлень',
+                data: @Html.Raw(Json.Serialize(Model.NumberOrdersPerMonth)),
+                backgroundColor: '#A8C5FF',
+                borderWidth: 1,
+                borderRadius: 5,
+                yAxisID: 'ordersCountYAxis'
+            }, {
+                label: 'Загальна сума замовлень',
+                data: @Html.Raw(Json.Serialize(Model.TotalOrderAmounts)),
+                backgroundColor: '#4962E9',
+                borderWidth: 1,
+                borderRadius: 5,
+                yAxisID: 'totalOrderAmountsYAxis'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        maxRotation: 70,
+                        minRotation: 70,
+                        autoSkip: false
+                    }
+                },
+                ordersCountYAxis: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value;
+                        }
+                    }
+                },
+                averageOrderAmountYAxis: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            if (value >= 1000) {
+                                return (value / 1000) + 'k ';
+                            } else {
+                                return value;
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y;
+                            }
+                            if (context.dataset.label !== 'Кількість замовлень') {
+                                label += ' €';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>

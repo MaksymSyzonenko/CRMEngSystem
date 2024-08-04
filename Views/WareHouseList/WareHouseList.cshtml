@@ -1,0 +1,212 @@
+﻿@using CRMEngSystem.Models.ViewModels.WareHouse
+@using CRMEngSystem.Models.ViewModels.Notify
+@model WareHouseListViewModel
+
+<head>
+    <style>
+        .header-container {
+            background-color: #DDE9FF;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 5px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .header-part {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 18% 10% 17% 15% 20% 10% calc(10% - 13px);
+            padding-right: 13px;
+        }
+
+        .header-part-column {
+            font-size: 12px;
+            color: #4962E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            justify-content: flex-start;
+        }
+
+            .header-part-column a {
+                margin-left: 5px;
+                text-decoration: none;
+            }
+
+            .header-part-column:last-child {
+                justify-content: center;
+            }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 60vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+            .cards-container::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            .cards-container::-webkit-scrollbar-track {
+                background: #E1E2F3;
+                border-radius: 3px;
+            }
+
+            .cards-container::-webkit-scrollbar-thumb {
+                background: #4962E9;
+                border-radius: 3px;
+            }
+
+                .cards-container::-webkit-scrollbar-thumb:hover {
+                    background: #59CDFF;
+                }
+
+        .card-data {
+            background-color: white;
+            border-radius: 5px;
+            gap: 5px;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 18% 10% 17% 15% 20% 10% calc(10% - 13px);
+            align-items: center;
+            height: 23px;
+            padding: 0 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 0;
+        }
+
+            .card-data img {
+                height: 15px;
+                width: 15px;
+            }
+
+            .card-data span {
+                font-size: 12px;
+                color: #595586;
+                display: flex;
+                align-items: center;
+                margin: 0 15px;
+            }
+
+        .card-data a:hover span {
+            color: #4962E9;
+        }
+
+        .card-data a {
+            text-decoration: none;
+        }
+
+        .location-btn {
+            display: flex;
+            justify-content: center;
+        }
+
+            .location-btn svg {
+                height: 15px;
+                width: 15px;
+                cursor: pointer;
+            }
+
+                .location-btn svg:hover path {
+                    stroke: #4962E9;
+                }
+
+        .location-btn-empty {
+            display: flex;
+            justify-content: center;
+        }
+
+            .location-btn-empty svg {
+                height: 15px;
+                width: 15px;
+            }
+
+                .location-btn-empty svg:hover path {
+                    stroke: #4962E9;
+                }
+    </style>
+    <script src="~/js/googleMapsScript.js"></script>
+</head>
+<body>
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    else if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    <div class="page-container">
+        @using (Html.BeginForm("WareHouseList", "WareHouseList", FormMethod.Get, new { @class = "search", style = "height: 30px;" }))
+        {
+            <img src="~/icons/Search.svg" />
+            @Html.TextBoxFor(m => m.SearchGeneral, new { placeholder = "Загальний пошук", @Value = Model.SearchGeneral })
+        }
+        @Html.ActionLink("Додати склад", "WareHouseCreate", "WareHouseCreate", null, new { @class = "add-btn-fullwidth" })
+        <div class="header-container">
+            <div class="header-part">
+                <div class="header-part-column">
+                    <span>Назва складу</span>
+                </div>
+                <div class="header-part-column">
+                    <span>Країна</span>
+                </div>
+                <div class="header-part-column">
+                    <span>Регіон / Область</span>
+                </div>
+                <div class="header-part-column">
+                    <span>Населений пункт</span>
+                </div>
+                <div class="header-part-column">
+                    <span>Вулиця</span>
+                </div>
+                <div class="header-part-column">
+                    <span>Пошт. індекс</span>
+                </div>
+                <div class="header-part-column">На карті</div>
+            </div>
+        </div>
+        <div class="cards-container">
+            @foreach (var entity in Model.Entities)
+            {
+                <div class="card-data">
+                    <a href="@Url.Action("WareHouseDetails","WareHouseDetails", new { WareHouseId = entity.WareHouseId})"><span>@entity.Name</span></a>
+                    <div class="scrollable"><span>@entity.Country</span></div>
+                    <div class="scrollable"><span>@entity.Region</span></div>
+                    <div class="scrollable"><span>@entity.City</span></div>
+                    <div class="scrollable"><span>@entity.Street</span></div>
+                    <div class="scrollable"><span>@entity.PostalCode</span></div>
+                    @if (entity.Coordinate != null)
+                    {
+                        <div class="location-btn">
+                            <svg onclick="openGoogleMaps('@entity.Coordinate')" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.0002 17.5C10.0002 17.5 4.10742 12.8123 4.10742 8.39275C4.10742 4.70978 7.0538 2.5 10.0002 2.5C12.9465 2.5 15.8929 4.70978 15.8929 8.39275C15.8929 12.8123 10.0002 17.5 10.0002 17.5ZM11.5716 8.39275C11.5716 8.13228 11.4681 7.29319 11.2839 7.10901C11.0997 6.92482 10.2606 6.82135 10.0002 6.82135C9.7397 6.82135 8.90062 6.92482 8.71643 7.10901C8.53225 7.29319 8.42877 8.13228 8.42877 8.39275C8.42877 8.65323 8.53225 9.49231 8.71643 9.67649C8.90062 9.86068 9.7397 9.96415 10.0002 9.96415C10.2606 9.96415 11.0997 9.86068 11.2839 9.67649C11.4681 9.49231 11.5716 8.65323 11.5716 8.39275Z" stroke="#595586" stroke-width="2" />
+                            </svg>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="location-btn-empty">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.0002 17.5C10.0002 17.5 4.10742 12.8123 4.10742 8.39275C4.10742 4.70978 7.0538 2.5 10.0002 2.5C12.9465 2.5 15.8929 4.70978 15.8929 8.39275C15.8929 12.8123 10.0002 17.5 10.0002 17.5ZM11.5716 8.39275C11.5716 8.13228 11.4681 7.29319 11.2839 7.10901C11.0997 6.92482 10.2606 6.82135 10.0002 6.82135C9.7397 6.82135 8.90062 6.92482 8.71643 7.10901C8.53225 7.29319 8.42877 8.13228 8.42877 8.39275C8.42877 8.65323 8.53225 9.49231 8.71643 9.67649C8.90062 9.86068 9.7397 9.96415 10.0002 9.96415C10.2606 9.96415 11.0997 9.86068 11.2839 9.67649C11.4681 9.49231 11.5716 8.65323 11.5716 8.39275Z" stroke="#595586" stroke-width="2" />
+                            </svg>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        @await Html.PartialAsync("_Pagination", Model)
+    </div>
+</body>
+

@@ -1,0 +1,95 @@
+﻿@using CRMEngSystem.Models.ViewModels.Notify
+@model NotifyModalViewModel
+
+<head>
+    <style>
+        .modal-background {
+            background-color: rgba(0, 0, 0, 0.3);
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .modal-window {
+            background: white;
+            border-radius: 10px;
+            max-height: 150px;
+            height: 18%;
+            width: 35%;
+            padding: 7px 14px;
+            margin-bottom: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .notify-text {
+            height: calc(100% - 25px);
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 25px;
+            color: #595586;
+            font-size: 18px;
+        }
+
+        .notify-text-error {
+            height: calc(100% - 25px);
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 25px;
+            color: #FF705C;
+            font-size: 18px;
+        }
+
+        .modal-window a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 25px;
+            color: #595586;
+        }
+
+        .close-link {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 25px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var modalBackground = document.querySelector('.modal-background');
+            var closeLink = document.querySelector('.close-link a');
+
+            function closeModal() {
+                modalBackground.style.display = 'none';
+            }
+
+            modalBackground.addEventListener('click', closeModal);
+            closeLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                closeModal();
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="modal-background">
+        <div class="modal-window">
+            <div class="close-link"><a href="#">×</a></div>
+            <div class='@(Model.IsError ? "notify-text-error" : "notify-text")'>
+                <span>@Model.NotifyText</span>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,116 @@
+﻿@using CRMEngSystem.Dto.Order
+@model OrderEquipmentPositionDto
+
+<head>
+    <style>
+        .card-data {
+            background-color: white;
+            border-radius: 5px;
+            grid-gap: 5px;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 9% 33% 5% 10% 6% 6% 10% 6% calc(15% - 13px);
+            align-items: center;
+            height: 23px;
+            padding: 0 10px 0 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 0;
+        }
+
+        .card-data span {
+            font-size: 12px;
+            color: #595586;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scrollable {
+            margin-right: 15px;
+            height: 21px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .scrollable span{
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .scrollable::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .scrollable::-webkit-scrollbar-thumb {
+            background-color: #E1E2F3;
+            border-radius: 2px;
+        }
+
+        .scrollable::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 2px;
+        }
+
+        .scrollable::-webkit-scrollbar-thumb:hover {
+            background-color: #59CDFF;
+        }
+
+        .card-data span:nth-child(2){
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .card-data a:hover span {
+            color: #4962E9;
+        }
+
+        .card-data a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-link-symbol{
+            font-weight: bold;
+            color: #595586;
+        }
+
+        .action-link-symbol:hover{
+                color: #4962E9;
+        }
+
+        .code-link{
+            font-size: 12px;
+            color: #595586;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .code-link:hover{
+                color: #4962E9;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-data">
+        <a href="@Url.ActionLink("OrderEquipmentDetails", "OrderEquipmentDetails", new { EntityId = Model.EquipmentOrderPositionId })" class="code-link">@Model.EquipmentCode</a>
+        <a href="@Url.ActionLink("CatalogDetails", "CatalogDetails", new { EntityId = Model.EquipmentCatalogPositionId})" class="scrollable"><span>@Model.NameUA</span></a>
+        <span>@Model.QuantityToTake / @Model.QuantityInStock шт</span>
+        <span>@Model.BasePrice £</span>
+        <span>@Model.Discount %</span>
+        <span>@Model.MarkUp %</span>
+        <span>@Model.SellPrice €</span>
+        <span style="display: flex; gap: 5px; justify-content: center;">
+            @Html.ActionLink("—", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = Model.OrderId, EquipmentOrderPositionId = Model.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment"}, new { @class="action-link-symbol" })
+            @Model.Quantity шт 
+            @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = Model.OrderId, EquipmentOrderPositionId = Model.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment"}, new { @class = "action-link-symbol" })
+        </span>
+        <span>@(Model.SellPrice * @Model.Quantity) €</span>
+    </div>
+</body>

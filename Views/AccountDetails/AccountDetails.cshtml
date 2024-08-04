@@ -1,0 +1,82 @@
+﻿@using CRMEngSystem.Models.ViewModels.Account
+@using CRMEngSystem.Models.ViewModels.Confirm
+@using CRMEngSystem.Models.ViewModels.Notify
+@model AccountDetailsViewModel
+
+<head>
+    <style>
+        .tab-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .details-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            color: #595586;
+            width: 100%;
+        }
+
+        .details-container-data {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .details-container-data-row {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .details-container-data-row-filled {
+            display: flex;
+            border-radius: 5px;
+            width: 100%;
+            padding: 5px 10px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #E1E2F3;
+        }
+
+        .details-container-data span:last-child {
+            text-align: right;
+        }
+
+        .details-container-data span:first-child {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false})
+    }
+    <div class="page-container">
+        @await Html.PartialAsync("_ContactMenuTab", Model)
+        <div class="tab-container">
+            <div class="details-container">
+                <div class="details-container-data">
+                    <div class="details-container-data-row-filled">
+                        <span>Ім'я користувача:</span>
+                        <span>@Model.Account.UserName</span>
+                    </div>
+                    <div class="details-container-data-row">
+                        <span>Рівень доступа:</span>
+                        <span>@Convert.ToInt32(Model.Account.AccessLevel)</span>
+                    </div>
+                    @Html.ActionLink("Змінити пароль", "AccountChangePassword", "AccountChangePassword", null, new { @class = "add-btn", style="width: 145px; height: 30px; font-size: 12px;", type="submit"})
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

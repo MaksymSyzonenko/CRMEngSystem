@@ -1,0 +1,284 @@
+﻿@using CRMEngSystem.Models.ViewModels.Order
+@using CRMEngSystem.Models.ViewModels.Notify
+@model OrderListViewModel
+
+<head>
+    <style>
+        
+
+        .header-container {
+            background-color: #DDE9FF;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .header-part {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 8% 33% 8% 20% 17% calc(14% - 13px);
+            padding-right: 13px;
+        }
+
+        .header-part-column {
+            font-size: 12px;
+            color: #4962E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-part-column a{
+            margin-left: 5px;
+            text-decoration: none;
+        }
+
+        .header-part-column:nth-child(2), .header-part-column:nth-child(4) {
+            justify-content: flex-start;
+            padding: 0 15px 5px 15px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 60vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+            .cards-container::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            .cards-container::-webkit-scrollbar-track {
+                background: #E1E2F3;
+                border-radius: 3px;
+            }
+
+            .cards-container::-webkit-scrollbar-thumb {
+                background: #4962E9;
+                border-radius: 3px;
+            }
+
+                .cards-container::-webkit-scrollbar-thumb:hover {
+                    background: #59CDFF;
+                }
+
+
+        .filter select {
+            width: 100%;
+            border-radius: 5px;
+            color: #E1E2F3;
+            font-size: 12px;
+            padding: 6px 0 6px 0;
+            background-color: white;
+            outline: none;
+            border: none;
+        }
+
+            .filter select option {
+                color: #595586;
+            }
+
+            .filter select:focus {
+                outline: none;
+            }
+
+        .date-pickers-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .date-picker-part {
+            width: 50%;
+        }
+
+        .date-picker {
+            font-size: 12px;
+            color: #E1E2F3;
+            border: none;
+            border-radius: 5px;
+            padding: 4px 0 4px 2px;
+            outline: none;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    @if (TempData["NotifyModal"] != null && (bool)TempData["NotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = false })
+    }
+    else if (TempData["ErrorNotifyModal"] != null && (bool)TempData["ErrorNotifyModal"]!)
+    {
+        @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
+    }
+    <div class="page-container">
+        <div class="tabs-menu">
+            @{
+                OrderListViewModel CreateViewModelWithStatus(string status)
+                => new()
+                {
+                    FilterStatus = status,
+                    FilterPriority = Model.FilterPriority,
+                    SearchOrderId = Model.SearchOrderId,
+                    SearchCustomerName = Model.SearchCustomerName,
+                    SearchInitiatorInitials = Model.SearchInitiatorInitials,
+                    SortOrderId = Model.SortOrderId,
+                    SortAlphabetCustomerName = Model.SortAlphabetCustomerName,
+                    SortPriority = Model.SortPriority,
+                    SortDateTimeCreate = Model.SortDateTimeCreate,
+                    NumberItemsPerPage = Model.NumberItemsPerPage,
+                    TotalPageCount = Model.TotalPageCount
+                };
+            }
+            <div class='@(Model.FilterStatus == "Processing" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Обробка", "OrderList", "OrderList", CreateViewModelWithStatus("Processing"), new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberItemsPerProcessing</div>
+            </div>
+            <div class='@(Model.FilterStatus == "Offer" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Пропозиція", "OrderList", "OrderList", CreateViewModelWithStatus("Offer"), new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberItemsPerOffer</div>
+            </div>
+            <div class='@(Model.FilterStatus == "Execution" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Виконання", "OrderList", "OrderList", CreateViewModelWithStatus("Execution"), new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberItemsPerExecution</div>
+            </div>
+            <div class='@(Model.FilterStatus == "Completed" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Завершені", "OrderList", "OrderList", CreateViewModelWithStatus("Completed"), new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberItemsPerCompleted</div>
+            </div>
+            <div class='@(Model.FilterStatus == "All" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Всі замовлення", "OrderList", "OrderList", CreateViewModelWithStatus("All"), new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberItemsPerAll</div>
+            </div>
+        </div>
+        @if(Model.FilterStatus == "Execution" && Model.NumberItemsPerExecution > 0)
+        {
+            @Html.ActionLink("Створити комерційне замовлення", "OrdersCreateOrder", "OrdersCreateOrder", null, new { @class = "add-btn-fullwidth" })
+        }
+        <div class="header-container">
+            <div class="header-part">
+                @{
+                    OrderListViewModel CreateViewModelWithSort(bool? sortOrderId, bool? sortAlphabetCustomerName, bool? sortPriority, bool? sortDateTimeCreate)
+                    => new()
+                    {
+                        FilterStatus = Model.FilterStatus,
+                        FilterPriority = Model.FilterPriority,
+                        SearchOrderId = Model.SearchOrderId,
+                        SearchCustomerName = Model.SearchCustomerName,
+                        SearchInitiatorInitials = Model.SearchInitiatorInitials,
+                        SortOrderId = sortOrderId,
+                        SortAlphabetCustomerName = sortAlphabetCustomerName,
+                        SortPriority = sortPriority,
+                        SortDateTimeCreate = sortDateTimeCreate,
+                        NumberItemsPerPage = Model.NumberItemsPerPage,
+                        TotalPageCount = Model.TotalPageCount
+                    };
+                }
+                <div class="header-part-column">
+                    <span>Код</span>
+                    @Html.ActionLink("↓", "OrderList", "OrderList", CreateViewModelWithSort(true, null, null, null))
+                </div>
+                <div class="header-part-column">
+                    <span>Підприємство</span>
+                    @Html.ActionLink("↓", "OrderList", "OrderList", CreateViewModelWithSort(null, true, null, null))
+                </div>
+                <div class="header-part-column">
+                    <span>Пріорітет</span>
+                    @Html.ActionLink("↓", "OrderList", "OrderList", CreateViewModelWithSort(null, null, true, null))
+                </div>
+                <div class="header-part-column"><span>Ініціатор</span></div>
+                <div class="header-part-column">
+                    <span>Дата створення</span>
+                    @Html.ActionLink("↓", "OrderList", "OrderList", CreateViewModelWithSort(null, null, null, true))
+                </div>
+                <div class="header-part-column"><span>Статус</span></div>
+            </div>
+            <div class="header-part">
+                @{
+                    void JoinSearches(string currentQuery)
+                    {
+                        @Html.HiddenFor(m => m.FilterStatus)
+                        
+                        if (!string.IsNullOrEmpty(Model.SearchOrderId) && currentQuery != "SearchOrderId")
+                            @Html.HiddenFor(m => m.SearchOrderId)
+
+                        if (!string.IsNullOrEmpty(Model.SearchCustomerName) && currentQuery != "SearchCustomerName")
+                            @Html.HiddenFor(m => m.SearchCustomerName)
+
+                        if (!string.IsNullOrEmpty(Model.SearchInitiatorInitials) && currentQuery != "SearchInitiatorInitials")
+                            @Html.HiddenFor(m => m.SearchInitiatorInitials)
+
+                        if (!string.IsNullOrEmpty(Model.FilterPriority) && currentQuery != "FilterPriority")
+                            @Html.HiddenFor(m => m.FilterPriority)
+
+                        if (Model.FilterDateStart != null && currentQuery != "FilterDateStart")
+                            @Html.HiddenFor(m => m.FilterDateStart)
+
+                        if (Model.FilterDateEnd != null && currentQuery != "FilterDateEnd")
+                            @Html.HiddenFor(m => m.FilterDateEnd)
+
+                        @Html.HiddenFor(m => m.NumberItemsPerPage)
+                    }
+                }
+                @using (Html.BeginForm("OrderList", "OrderList", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.SearchOrderId, new { placeholder = "Пошук", @Value = Model.SearchOrderId })
+                    JoinSearches("SearchOrderId");
+                    <input type="submit" style="visibility: hidden; position: absolute;" />
+                }
+                @using (Html.BeginForm("OrderList", "OrderList", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.SearchCustomerName, new { placeholder = "Пошук", @Value = Model.SearchCustomerName })
+                    JoinSearches("SearchCustomerName");
+                    <input type="submit" style="visibility: hidden; position: absolute;" />
+                }
+                @using (Html.BeginForm("OrderList", "OrderList", FormMethod.Get, new { @class = "filter" }))
+                {
+                    @Html.DropDownList("FilterPriority", new SelectList(new[] { "Низький", "Середній", "Високий" }), "Всі", new { onchange = "this.form.submit();" })
+                    JoinSearches("FilterPriority");
+                }
+                @using (Html.BeginForm("OrderList", "OrderList", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.SearchInitiatorInitials, new { placeholder = "Пошук", @Value = Model.SearchInitiatorInitials })
+                    JoinSearches("SearchInitiatorInitials");
+                    <input type="submit" style="visibility: hidden; position: absolute;" />
+                }
+                <div class="date-pickers-container">
+                    @using (Html.BeginForm("OrderList", "OrderList", FormMethod.Get, new { @class = "date-picker-part" }))
+                    {
+                        @Html.TextBoxFor(m => m.FilterDateStart, "{0:yyyy-MM-dd}", new { type = "date", @class = "date-picker", onchange = "this.form.submit();" })
+                        JoinSearches("FilterDateStart");
+                    }
+                    @using (Html.BeginForm("OrderList", "OrderList", FormMethod.Get, new { @class = "date-picker-part" }))
+                    {
+                        @Html.TextBoxFor(m => m.FilterDateEnd, "{0:yyyy-MM-dd}", new { type = "date", @class = "date-picker", onchange = "this.form.submit();" })
+                        JoinSearches("FilterDateEnd");
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="cards-container">
+            @foreach (var entity in Model.Entities)
+            {
+                @await Html.PartialAsync("_OrderDataCard", entity)
+            }
+        </div>
+        @await Html.PartialAsync("_Pagination", Model)
+    </div>
+</body>

@@ -1,0 +1,139 @@
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.AssemblyInfo.cs
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.RazorAssemblyInfo.cache
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.RazorAssemblyInfo.cs
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\appsettings.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.staticwebassets.runtime.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.exe
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.deps.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.runtimeconfig.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.pdb
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\EntityFramework.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Npgsql.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.CRMEngSystem.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.build.CRMEngSystem.props
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.CRMEngSystem.props
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.CRMEngSystem.props
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\scopedcss\bundle\CRMEngSystem.styles.css
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\scopedcss\projectbundle\CRMEngSystem.bundle.scp.css
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSy.B4D1C486.Up2Date
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\refint\CRMEngSystem.dll
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.pdb
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.genruntimeconfig.cache
+C:\Users\user\Desktop\Deploy\CRMEngSystem\obj\Debug\net6.0\ref\CRMEngSystem.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\appsettings.Development.json
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\appsettings.json
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.staticwebassets.runtime.json
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.exe
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.deps.json
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.runtimeconfig.json
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.pdb
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\AutoMapper.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\DocumentFormat.OpenXml.Framework.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Npgsql.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\bin\Debug\net6.0\System.IO.Packaging.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.csproj.AssemblyReference.cache
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.AssemblyInfoInputs.cache
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.AssemblyInfo.cs
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.csproj.CoreCompileInputs.cache
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.MvcApplicationPartsAssemblyInfo.cache
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.RazorAssemblyInfo.cache
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.RazorAssemblyInfo.cs
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets.build.json
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets.development.json
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.CRMEngSystem.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.build.CRMEngSystem.props
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.CRMEngSystem.props
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.CRMEngSystem.props
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\staticwebassets.pack.json
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\scopedcss\bundle\CRMEngSystem.styles.css
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\scopedcss\projectbundle\CRMEngSystem.bundle.scp.css
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSy.B4D1C486.Up2Date
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\refint\CRMEngSystem.dll
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.pdb
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.genruntimeconfig.cache
+D:\Desktop Folder\Deploy\CRMEngSystem\obj\Debug\net6.0\ref\CRMEngSystem.dll

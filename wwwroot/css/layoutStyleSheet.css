@@ -1,0 +1,105 @@
+﻿body {
+    background-color: #F1F4FC;
+    font-family: Lato;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+}
+
+.account-container {
+    background-color: white;
+    max-width: max-content;
+    border-radius: 5px;
+    float: right;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+}
+
+.account-container img {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    transition: outline 0.3s ease ease-in;
+}
+
+.account-container img:hover {
+    outline: 2px solid #4962E9;
+    outline-offset: 1px;
+}
+
+.account-container svg {
+    height: 20px;
+    width: 20px;
+}
+
+.account-container svg:hover path {
+    fill: #FF705C;
+}
+
+.menu-container {
+    position: fixed;
+    height: 100%;
+    width: 70px;
+    background-color: white;
+    overflow: hidden;
+    transition: width 0.5s ease;
+}
+
+.menu-item {
+    display: flex;
+    margin: 10px 20px 35px 20px;
+}
+
+.menu-item span {
+    margin-left: 10px;
+    color: #595586;
+    visibility: hidden;
+    font-size: 14px;
+    width: 100px;
+    text-align: left;
+}
+
+.menu-item a {
+    text-decoration: none;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item svg {
+    width: 25px;
+    height: 25px;
+}
+
+.menu-item a:hover path {
+    stroke: #4962E9;
+}
+
+.logo {
+    width: 25px;
+    height: 50px;
+    margin: auto;
+    display: flex;
+    transition: all 0.5s ease;
+}
+
+.menu-item a:hover span {
+    color: #4962E9;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    transition: background-color 999s ease-in-out 0s;
+}
+
+.page-container {
+    padding: 10px 10px 0 80px;
+    height: 100vh;
+}
+
