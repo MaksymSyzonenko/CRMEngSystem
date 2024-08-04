@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CRMEngSystem.Controllers.WareHouse
 {
+    [RequireHttps]
     public class WareHouseGetExampleController : Controller
     {
         [HttpGet]
