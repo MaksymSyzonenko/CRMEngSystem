@@ -70,7 +70,7 @@
         @using (Html.BeginForm("ContactEdit", "ContactEdit", FormMethod.Post, new { @class = "form-container", enctype = "multipart/form-data" }))
         {
             <div class="form-container-row">
-                <div class="header-row"><span>Ініціали: </span></div>
+                <div class="header-row"><span>Ініціали (ПІБ): </span></div>
                 @Html.TextBoxFor(m => m.LastName, new { placeholder = "Прізвище", @class = "data-input", required = "required" })
                 @Html.TextBoxFor(m => m.FirstName, new { placeholder = "Ім'я", @class = "data-input", required = "required" })
                 @Html.TextBoxFor(m => m.MiddleName, new { placeholder = "По батькові (Якщо відсутнє - залишити пустим)", @class = "data-input" })
