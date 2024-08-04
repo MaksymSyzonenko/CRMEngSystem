@@ -5,21 +5,14 @@ namespace CRMEngSystem.Controllers.Control
 {
     public class ControlManualController : Controller
     {
+        [HttpGet]
         public IActionResult ControlManual()
         {
-            try
-            {
-                var fileBytes = Convert.FromBase64String(ConfigurationSettings.Manual);
-                // Логирование размера файла
-                Console.WriteLine($"File size: {fileBytes.Length}");
-                return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "Інструкція.docx");
-            }
-            catch (Exception ex)
-            {
-                // Логирование ошибки
-                Console.WriteLine($"Error: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
+            var fileBytes = Convert.FromBase64String(ConfigurationSettings.Manual);
+            Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+            Response.Headers.Add("Pragma", "no-cache");
+            Response.Headers.Add("Expires", "0");
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "Інструкція.docx");
         }
     }
 }
