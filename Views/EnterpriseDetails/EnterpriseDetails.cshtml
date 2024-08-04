@@ -265,11 +265,11 @@
                         <span>Дата оновлення:</span>
                         <span>@Model.Enterprise.DateTimeUpdate</span>
                     </div>
-                    @if(Model.EntityId != 1)
+                    @if (Model.EntityId != 1)
                     {
                         <div class="func-btns">
                             <div class="left">
-                                @Html.ActionLink("Створити замовлення", "EnterpriseCreateOrder", "EnterpriseCreateOrder", new { EntityId = Model.EntityId }, new { @class = "add-btn", style="width: 190px; height: 30px; font-size: 12px;", type="submit"})
+                                @Html.ActionLink("Створити замовлення", "EnterpriseCreateOrder", "EnterpriseCreateOrder", new { EntityId = Model.EntityId }, new { @class = "add-btn", style = "width: 190px; height: 30px; font-size: 12px;", type = "submit" })
                             </div>
                             <div class="right-btns">
                                 <a href="@Url.ActionLink("EnterpriseEdit", "EnterpriseEdit", new { EnterpriseId = Model.EntityId })">
@@ -288,66 +288,69 @@
                     }
                 </div>
             </div>
-            <div class="right-details-container">
-                <div class="graph-container">
-                    <div class="graph">
-                        @if (Model.NumberOrdersPerMonth.All(num => num == 0))
+            @if (Model.EntityId != 1)
+            {
+                <div class="right-details-container">
+                    <div class="graph-container">
+                        <div class="graph">
+                            @if (Model.NumberOrdersPerMonth.All(num => num == 0))
+                            {
+                                <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Аналітика відсутня</span>
+                            }
+                            else
+                            {
+                                <canvas id="myChart"></canvas>
+                            }
+                        </div>
+                    </div>
+                    <div class="diagram-container">
+                        @if (Model.Enterprise.TotalOrdersNumber == 0)
                         {
                             <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Аналітика відсутня</span>
                         }
                         else
                         {
-                            <canvas id="myChart"></canvas>
+                            <div class="diagram-container-col">
+                                <div class="labl">
+                                    <span>Високий пріорітет</span>
+                                </div>
+                                <div class="labl">
+                                    <span>Середній пріорітет</span>
+                                </div>
+                                <div class="labl">
+                                    <span>Низький пріорітет</span>
+                                </div>
+                            </div>
+                            <div class="diagram-container-col">
+                                <div class="percent-labl">
+                                    <span style="font-weight: 900;">@(Model.Enterprise.NumberHighPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberHighPriorityOrders)</span>
+                                </div>
+                                <div class="percent-labl">
+                                    <span style="font-weight: 900;">@(Model.Enterprise.NumberMediumPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberMediumPriorityOrders)</span>
+                                </div>
+                                <div class="percent-labl">
+                                    <span style="font-weight: 900;">@(Model.Enterprise.NumberLowPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberLowPriorityOrders)</span>
+                                </div>
+                            </div>
+                            <div class="diagram-container-col">
+                                <div class="bar-container">
+                                    <div class="percent-bar" style="border: 3px solid #FF6B00; width: @(Model.Enterprise.NumberHighPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
+                                    <div class="bg-bar"></div>
+                                </div>
+                                <div class="bar-container">
+                                    <div class="percent-bar" style="border: 3px solid #FAD200; width: @(Model.Enterprise.NumberMediumPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
+                                    <div class="bg-bar"></div>
+                                </div>
+                                <div class="bar-container">
+                                    <div class="percent-bar" style="border: 3px solid #00E4F2; width: @(Model.Enterprise.NumberLowPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
+                                    <div class="bg-bar"></div>
+                                </div>
+                            </div>
                         }
                     </div>
                 </div>
-                <div class="diagram-container">
-                    @if (Model.Enterprise.TotalOrdersNumber == 0)
-                    {
-                        <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Аналітика відсутня</span>
-                    }
-                    else
-                    {
-                        <div class="diagram-container-col">
-                            <div class="labl">
-                                <span>Високий пріорітет</span>
-                            </div>
-                            <div class="labl">
-                                <span>Середній пріорітет</span>
-                            </div>
-                            <div class="labl">
-                                <span>Низький пріорітет</span>
-                            </div>
-                        </div>
-                        <div class="diagram-container-col">
-                            <div class="percent-labl">
-                                <span style="font-weight: 900;">@(Model.Enterprise.NumberHighPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberHighPriorityOrders)</span>
-                            </div>
-                            <div class="percent-labl">
-                                <span style="font-weight: 900;">@(Model.Enterprise.NumberMediumPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberMediumPriorityOrders)</span>
-                            </div>
-                            <div class="percent-labl">
-                                <span style="font-weight: 900;">@(Model.Enterprise.NumberLowPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%(@Model.Enterprise.NumberLowPriorityOrders)</span>
-                            </div>
-                        </div>
-                        <div class="diagram-container-col">
-                            <div class="bar-container">
-                                <div class="percent-bar" style="border: 3px solid #FF6B00; width: @(Model.Enterprise.NumberHighPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
-                                <div class="bg-bar"></div>
-                            </div>
-                            <div class="bar-container">
-                                <div class="percent-bar" style="border: 3px solid #FAD200; width: @(Model.Enterprise.NumberMediumPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
-                                <div class="bg-bar"></div>
-                            </div>
-                            <div class="bar-container">
-                                <div class="percent-bar" style="border: 3px solid #00E4F2; width: @(Model.Enterprise.NumberLowPriorityOrders * 100 / Model.Enterprise.TotalOrdersNumber)%;"></div>
-                                <div class="bg-bar"></div>
-                            </div>
-                        </div>
-                    }
-                </div>
             </div>
-        </div>
+            }
     </div>
 </body>
 
