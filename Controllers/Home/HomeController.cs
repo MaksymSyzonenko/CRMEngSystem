@@ -14,6 +14,7 @@ using CRMEngSystem.Dto.Order;
 using CRMEngSystem.Models;
 using CRMEngSystem.Models.ViewModels.Home;
 using CRMEngSystem.Services.Calculate;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -42,18 +43,10 @@ namespace CRMEngSystem.Controllers.Home
         [HttpGet]
         public async Task<IActionResult> Index(HomeViewModel model)
         {
-            var contactName = await _memoryCache.GetOrCreateAsync("contactName", async entry =>
-            {
-                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1);
-                var user = await _userManager.GetUserAsync(User);
-                var contact = await _repositoryFactory
+            var user = await _userManager.GetUserAsync(User);
+            string contactName = (await _repositoryFactory
                     .Instantiate<ContactEntity>()
-                    .GetEntityAsync(new ContactDataLoader(true, false, false, false, false),
-                                    contact => contact.ContactId,
-                                    user!.ContactId);
-
-                return contact!.Details.FirstName;
-            });
+                    .GetEntityAsync(new ContactDataLoader(true, false, false, false, false), contact => contact.ContactId, user!.ContactId))!.Details.FirstName;
 
             var ordersList = await _memoryCache.GetOrCreateAsync("ordersList", async entry =>
             {
