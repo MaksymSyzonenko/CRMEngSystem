@@ -1,3 +1,4 @@
+# Исключаем ненужные файлы и папки
 **/.classpath
 **/.dockerignore
 **/.env
@@ -32,3 +33,6 @@ obj/
 bin/
 **/obj/**/Microsoft.EntityFrameworkCore.Analyzers/
 **/bin/**/Microsoft.EntityFrameworkCore.Analyzers/
+
+# Добавляем исключение для скрипта резервного копирования
+!backup.sh
