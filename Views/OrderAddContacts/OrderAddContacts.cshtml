@@ -128,20 +128,26 @@
                 text-overflow: ellipsis;
             }
 
-        .select-checkbox{
+        .select-checkbox {
             width: 100%;
             display: flex;
             align-items: center;
             flex-direction: row;
             padding: 0 5px;
             margin-top: 10px;
-            gap: 15px;
         }
 
-        .select-checkbox label{
-            cursor: pointer;
-            user-select: none;
-        }
+            .select-checkbox label {
+                cursor: pointer;
+                user-select: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .select-checkbox label span {
+                    padding: 2px 0 0 5px;
+                }
     </style>
 </head>
 <body>

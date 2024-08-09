@@ -41,11 +41,11 @@
             align-items: center;
         }
 
-            .form-container-row span {
-                font-size: 12px;
-                color: #595586;
-                font-weight: bold;
-            }
+        .form-container-row span {
+            font-size: 12px;
+            color: #595586;
+            font-weight: bold;
+        }
 
         .header-row {
             width: 180px;
@@ -74,6 +74,10 @@
             <div class="form-container-row">
                 <div class="header-row"><span>Форма власності (Англ.): </span></div>
                 @Html.TextBoxFor(m => m.OwnershipFormEN, new { placeholder = "Форма власності англійською (Повністю)", @class = "data-input", required = "required" })
+            </div>
+            <div class="form-container-row">
+                <div class="header-row"><span>ЄДРПОУ: </span></div>
+                @Html.TextBoxFor(m => m.EDRPOU, new { placeholder = "ЄДРПОУ", @class = "data-input", required = "required" })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Сфера діяльності: </span></div>
@@ -110,6 +114,10 @@
             <div class="form-container-row">
                 <div class="header-row"><span>Координати: </span></div>
                 @Html.TextBoxFor(m => m.Coordinate, new { placeholder = "Координати (Якщо відсутні - залишити пустим, можна скопіювати в Google Maps)", @class = "data-input" })
+            </div>
+            <div class="form-container-row">
+                <div class="header-row"><span>Посилання: </span></div>
+                @Html.TextBoxFor(m => m.Link, new { placeholder = "Посилання (Якщо відсутнє - залишити пустим)", @class = "data-input" })
             </div>
             @Html.HiddenFor(m => m.EnterpriseId)
             <div class="button-container">

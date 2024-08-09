@@ -28,10 +28,8 @@ namespace CRMEngSystem.AutoMapper.Enterprise
                 .ForMember(dest => dest.IndustryBranch, opt => opt.MapFrom(src => src.Details.IndustryBranch))
                 .ForMember(dest => dest.TradeGroup, opt => opt.MapFrom(src => src.Details.TradeGroup))
                 .ForMember(dest => dest.Franchise, opt => opt.MapFrom(src => src.Details.Franchise))
-                .ForMember(dest => dest.NumberHighPriorityOrders, opt => opt.MapFrom(src => src.Orders!.Count(order => order.Priority == PriorityValue.High)))
-                .ForMember(dest => dest.NumberMediumPriorityOrders, opt => opt.MapFrom(src => src.Orders!.Count(order => order.Priority == PriorityValue.Medium)))
-                .ForMember(dest => dest.NumberLowPriorityOrders, opt => opt.MapFrom(src => src.Orders!.Count(order => order.Priority == PriorityValue.Low)))
-                .ForMember(dest => dest.TotalOrdersNumber, opt => opt.MapFrom(src => src.Orders!.Count()))
+                .ForMember(dest => dest.EDRPOU, opt => opt.MapFrom(src => src.Details.EDRPOU))
+                .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Details.Link))
                 .ReverseMap();
 
             CreateMap<OrderEntity, EnterpriseOrderDto>()

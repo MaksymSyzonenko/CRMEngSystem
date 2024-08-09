@@ -11,11 +11,7 @@
         public string IndustryBranch { get; init; } = default!;
         public string TradeGroup { get; init; } = default!;
         public string Franchise { get; init; } = default!;
-        public DateTime DateTimeCreate { get; init; }
-        public DateTime DateTimeUpdate { get; init; }
-        public int NumberHighPriorityOrders { get; init; }
-        public int NumberMediumPriorityOrders { get; init; }
-        public int NumberLowPriorityOrders { get; init; }
-        public int TotalOrdersNumber { get; init; }
+        public string? Link { get; init; }
+        public string EDRPOU { get; init; } = default!;
     }
 }

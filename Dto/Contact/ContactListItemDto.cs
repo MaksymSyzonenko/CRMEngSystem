@@ -9,5 +9,6 @@
         public string EnterpriseNameUA { get; init; } = default!;
         public string Email { get; init; } = default!;
         public string PhoneNumber { get; init; } = default!;
+        public string Position { get; init; } = default!;
     }
 }

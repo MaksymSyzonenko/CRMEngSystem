@@ -15,6 +15,7 @@ namespace CRMEngSystem.AutoMapper.Contact
                 .ForMember(dest => dest.EnterpriseNameUA, opt => opt.MapFrom(src => src.Enterprise.Details.NameUA))
                 .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Details.FirstPhoneNumber))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Details.FirstEmail))
+                .ForMember(dest => dest.Position, opt => opt.MapFrom(src => src.Details.Position))
                 .ReverseMap();
 
             CreateMap<ContactEntity, ContactDto>()

@@ -1,0 +1,232 @@
+﻿@using CRMEngSystem.Models.ViewModels.Enterprise
+@model EnterpriseStatisticViewModel
+
+<head>
+    <style>
+        .graph-container {
+            background-color: white;
+            border-radius: 0 5px 5px 0;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .graph {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagram-container {
+            background-color: white;
+            border-radius: 0 5px 5px 0;
+            width: 100%;
+            height: 100%;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .diagram-container-col {
+            display: flex;
+            font-size: 14px;
+            color: #595586;
+            flex-direction: column;
+            gap: 35px;
+            align-items: center;
+            width: 100%;
+        }
+
+            .diagram-container-col span {
+                white-space: nowrap;
+                width: 100%;
+            }
+
+        .bg-bar {
+            width: 100%;
+            border: 3px solid #E1E2F3;
+            border-radius: 3px;
+        }
+
+        .labl {
+            display: flex;
+            width: 120px;
+        }
+
+        .percent-labl {
+            display: flex;
+        }
+
+        .percent-bar {
+            position: absolute;
+            z-index: 999;
+            border-radius: 3px;
+        }
+
+        .bar-container {
+            height: 21px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        @await Html.PartialAsync("_EnterpriseMenuTab", Model)
+        <div style="display: grid; grid-template-columns: 30% 70%; margin-top: 10px; width: 100%; height: 300px;">
+            <div class="diagram-container">
+                @if (Model.TotalOrdersNumber == 0)
+                {
+                    <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Статистика відсутня</span>
+                }
+                else
+                {
+                    <div class="diagram-container-col">
+                        <div class="labl">
+                            <span>Високий пріорітет</span>
+                        </div>
+                        <div class="labl">
+                            <span>Середній пріорітет</span>
+                        </div>
+                        <div class="labl">
+                            <span>Низький пріорітет</span>
+                        </div>
+                    </div>
+                    <div class="diagram-container-col">
+                        <div class="percent-labl">
+                            <span style="font-weight: 900;">@(Model.NumberHighPriorityOrders * 100 / Model.TotalOrdersNumber)%(@Model.NumberHighPriorityOrders)</span>
+                        </div>
+                        <div class="percent-labl">
+                            <span style="font-weight: 900;">@(Model.NumberMediumPriorityOrders * 100 / Model.TotalOrdersNumber)%(@Model.NumberMediumPriorityOrders)</span>
+                        </div>
+                        <div class="percent-labl">
+                            <span style="font-weight: 900;">@(Model.NumberLowPriorityOrders * 100 / Model.TotalOrdersNumber)%(@Model.NumberLowPriorityOrders)</span>
+                        </div>
+                    </div>
+                    <div class="diagram-container-col">
+                        <div class="bar-container">
+                            <div class="percent-bar" style="border: 3px solid #FF6B00; width: @(Model.NumberHighPriorityOrders * 100 / Model.TotalOrdersNumber)%;"></div>
+                            <div class="bg-bar"></div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="percent-bar" style="border: 3px solid #FAD200; width: @(Model.NumberMediumPriorityOrders * 100 / Model.TotalOrdersNumber)%;"></div>
+                            <div class="bg-bar"></div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="percent-bar" style="border: 3px solid #00E4F2; width: @(Model.NumberLowPriorityOrders * 100 / Model.TotalOrdersNumber)%;"></div>
+                            <div class="bg-bar"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="graph-container">
+                <div class="graph">
+                    @if (Model.NumberOrdersPerMonth.All(num => num == 0))
+                    {
+                        <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Статистика відсутня</span>
+                    }
+                    else
+                    {
+                        <canvas id="myChart"></canvas>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.Months)),
+            datasets: [{
+                label: 'Кількість замовлень',
+                data: @Html.Raw(Json.Serialize(Model.NumberOrdersPerMonth)),
+                backgroundColor: '#A8C5FF',
+                borderWidth: 1,
+                borderRadius: 5,
+                yAxisID: 'ordersCountYAxis'
+            }, {
+                label: 'Загальна сума замовлень',
+                data: @Html.Raw(Json.Serialize(Model.TotalOrderAmounts)),
+                backgroundColor: '#4962E9',
+                borderWidth: 1,
+                borderRadius: 5,
+                yAxisID: 'totalOrderAmountsYAxis'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        maxRotation: 70,
+                        minRotation: 70,
+                        autoSkip: false
+                    }
+                },
+                ordersCountYAxis: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value;
+                        }
+                    }
+                },
+                averageOrderAmountYAxis: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            if (value >= 1000) {
+                                return (value / 1000) + 'k ';
+                            } else {
+                                return value;
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y;
+                            }
+                            if (context.dataset.label !== 'Кількість замовлень') {
+                                label += ' €';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>

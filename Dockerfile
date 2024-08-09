@@ -22,21 +22,3 @@ RUN dotnet publish "./CRMEngSystem.csproj" -c $BUILD_CONFIGURATION -o /app/publi
 # Финальный образ
 FROM base AS final
 WORKDIR /app
-
-# Установка cron
-RUN apt-get update && apt-get install -y cron
-
-# Копирование скрипта резервного копирования в контейнер
-COPY backup.sh /usr/local/bin/backup.sh
-
-# Установка прав на выполнение скрипта
-RUN chmod +x /usr/local/bin/backup.sh
-
-# Добавление cron job
-RUN echo "0 0 * * * /usr/local/bin/backup.sh" >> /etc/crontab
-
-# Копирование опубликованных файлов
-COPY --from=publish /app/publish .
-
-# Запуск cron и приложения
-CMD cron && dotnet CRMEngSystem.dll

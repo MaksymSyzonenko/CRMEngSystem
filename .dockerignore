@@ -33,6 +33,3 @@ obj/
 bin/
 **/obj/**/Microsoft.EntityFrameworkCore.Analyzers/
 **/bin/**/Microsoft.EntityFrameworkCore.Analyzers/
-
-# Добавляем исключение для скрипта резервного копирования
-!backup.sh

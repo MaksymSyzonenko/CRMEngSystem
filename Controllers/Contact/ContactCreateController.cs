@@ -70,13 +70,15 @@ namespace CRMEngSystem.Controllers.Contact
         {
             TempData["ErrorNotifyModal"] = false;
             TempData["NotifyModal"] = true;
-            return RedirectToAction("EnterpriseContacts", "EnterpriseContacts", new { EntityId });
+            TempData["NotifyText"] = "Контакт успішно створено!";
+            return EntityId != 1 ? RedirectToAction("EnterpriseDetails", "EnterpriseDetails", new { EntityId }) : RedirectToAction("EnterpriseContacts", "EnterpriseContacts", new { EntityId });
         }
         public IActionResult OpenErrorModal(int EntityId)
         {
             TempData["ErrorNotifyModal"] = true;
             TempData["NotifyModal"] = false;
-            return RedirectToAction("EnterpriseContacts", "EnterpriseContacts", new { EntityId });
+            TempData["NotifyText"] = "Помилка при створенні контакта.";
+            return EntityId != 1 ? RedirectToAction("EnterpriseDetails", "EnterpriseDetails", new { EntityId }) : RedirectToAction("EnterpriseContacts", "EnterpriseContacts", new { EntityId });
         }
     }
 }

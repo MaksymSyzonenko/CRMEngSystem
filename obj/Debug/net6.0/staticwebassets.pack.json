@@ -1,343 +1,343 @@
 {
   "Files": [
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CRMEngSystem.bundle.scp.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CRMEngSystem.bundle.scp.css",
       "PackagePath": "staticwebassets\\CRMEngSystem.bundle.scp.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\css\\addButtonStyleSheet.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\css\\addButtonStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\addButtonStyleSheet.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\css\\enterpriseListStyleSheet.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\css\\enterpriseListStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\enterpriseListStyleSheet.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\css\\layoutStyleSheet.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\css\\layoutStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\layoutStyleSheet.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\css\\menuTabStyleSheet.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\css\\menuTabStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\menuTabStyleSheet.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\css\\searchStyleSheet.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\css\\searchStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\searchStyleSheet.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\css\\site.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Copy.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Copy.svg",
       "PackagePath": "staticwebassets\\icons\\Copy.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Filter.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Filter.svg",
       "PackagePath": "staticwebassets\\icons\\Filter.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Logo_Big.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Logo_Big.svg",
       "PackagePath": "staticwebassets\\icons\\Logo_Big.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Logo_Small.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Logo_Small.svg",
       "PackagePath": "staticwebassets\\icons\\Logo_Small.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Priority_High.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Priority_High.svg",
       "PackagePath": "staticwebassets\\icons\\Priority_High.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Priority_High_Big.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Priority_High_Big.svg",
       "PackagePath": "staticwebassets\\icons\\Priority_High_Big.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Priority_Low.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Priority_Low.svg",
       "PackagePath": "staticwebassets\\icons\\Priority_Low.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Priority_Low_Big.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Priority_Low_Big.svg",
       "PackagePath": "staticwebassets\\icons\\Priority_Low_Big.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Priority_Medium.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Priority_Medium.svg",
       "PackagePath": "staticwebassets\\icons\\Priority_Medium.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Priority_Medium_Big.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Priority_Medium_Big.svg",
       "PackagePath": "staticwebassets\\icons\\Priority_Medium_Big.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Search.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Search.svg",
       "PackagePath": "staticwebassets\\icons\\Search.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Status_Completed.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Status_Completed.svg",
       "PackagePath": "staticwebassets\\icons\\Status_Completed.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Status_Execution.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Status_Execution.svg",
       "PackagePath": "staticwebassets\\icons\\Status_Execution.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Status_Offer.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Status_Offer.svg",
       "PackagePath": "staticwebassets\\icons\\Status_Offer.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\icons\\Status_Processing.svg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\icons\\Status_Processing.svg",
       "PackagePath": "staticwebassets\\icons\\Status_Processing.svg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\images\\contact\\Contact_Empty_Image.png",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\images\\contact\\Contact_Empty_Image.png",
       "PackagePath": "staticwebassets\\images\\contact\\Contact_Empty_Image.png"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\images\\equipment\\Equipment_Empty_Image.jpg",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\images\\equipment\\Equipment_Empty_Image.jpg",
       "PackagePath": "staticwebassets\\images\\equipment\\Equipment_Empty_Image.jpg"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\js\\googleMapsScript.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\js\\googleMapsScript.js",
       "PackagePath": "staticwebassets\\js\\googleMapsScript.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\js\\layoutScript.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\js\\layoutScript.js",
       "PackagePath": "staticwebassets\\js\\layoutScript.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "D:\\Desktop Folder\\Deploy\\CRMEngSystem\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {

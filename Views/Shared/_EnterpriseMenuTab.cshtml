@@ -13,13 +13,22 @@
                 <div class="number-container">@Model.NumberOrders</div>
             </div>
         }
-        <div class='@(Model.ActiveTab == "Contacts" ? "tab-link-container-active" : "tab-link-container")'>
-            @Html.ActionLink("Контакти", "EnterpriseContacts", "EnterpriseContacts", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
-            <div class="number-container">@Model.NumberContacts</div>
-        </div>
+        @if (Model.EntityId == 1)
+        {
+            <div class='@(Model.ActiveTab == "Contacts" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Контакти", "EnterpriseContacts", "EnterpriseContacts", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberContacts</div>
+            </div>
+        }
         <div class='@(Model.ActiveTab == "Comments" ? "tab-link-container-active" : "tab-link-container")'>
             @Html.ActionLink("Коментарі", "EnterpriseComments", "EnterpriseComments", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
             <div class="number-container">@Model.NumberComments</div>
         </div>
+        @if (Model.EntityId != 1)
+        {
+            <div class='@(Model.ActiveTab == "Statistic" ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Статистика", "EnterpriseStatistic", "EnterpriseStatistic", new { EntityId = Model.EntityId }, new { @class = "tab-link" })
+            </div>
+        }
     </div>
 </body>

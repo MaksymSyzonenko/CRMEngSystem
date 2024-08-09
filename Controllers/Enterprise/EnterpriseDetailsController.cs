@@ -8,6 +8,8 @@ using CRMEngSystem.Models.ViewModels.Enterprise;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CRMEngSystem.Attributes.Cache;
+using CRMEngSystem.Dto.Order;
+using CRMEngSystem.Dto.Contact;
 
 namespace CRMEngSystem.Controllers.Enterprise
 {
@@ -33,9 +35,8 @@ namespace CRMEngSystem.Controllers.Enterprise
             return View(new EnterpriseDetailsViewModel
             {
                 Enterprise = _mapper.Map<EnterpriseDto>(entity),
-                NumberOrdersPerMonth = orderCounts,
-                TotalOrderAmounts = totalOrderAmounts,
-                Months = months,
+                LastOrders = _mapper.Map<IEnumerable<EnterpriseOrderDto>>(entity.Orders.OrderByDescending(order => order.DateTimeCreate).Take(5).ToList()),
+                Contacts = _mapper.Map<IEnumerable<ContactListItemDto>>(entity!.Contacts!.OrderByDescending(entity => entity.DateTimeCreate)),
                 EntityId = entity!.EnterpriseId,
                 ActiveTab = "Details",
                 NumberOrders = entity.Orders != null ? entity.Orders.Count : 0,

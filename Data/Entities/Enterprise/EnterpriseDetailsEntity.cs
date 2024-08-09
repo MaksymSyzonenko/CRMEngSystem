@@ -9,6 +9,8 @@ namespace CRMEngSystem.Data.Entities.Enterprise
         public string NameEN { get; set; } = default!;
         public string OwnershipFormUA { get; set; } = default!;
         public string OwnershipFormEN { get; set; } = default!;
+        public string EDRPOU { get; set; } = default!;
+        public string? Link { get; set; } = default!;
         public string IndustryBranch { get; set; } = default!;
         public string TradeGroup { get; set; } = default!;
         public string? Franchise { get; set; }

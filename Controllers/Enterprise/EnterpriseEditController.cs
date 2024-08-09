@@ -27,6 +27,7 @@ namespace CRMEngSystem.Controllers.Enterprise
                 OwnershipFormUA = enterprise!.Details.OwnershipFormUA,
                 OwnershipFormEN = enterprise!.Details.OwnershipFormEN,
                 IndustryBranch = enterprise!.Details.IndustryBranch,
+                EDRPOU = enterprise!.Details.EDRPOU,
                 TradeGroup = enterprise!.Details.TradeGroup,
                 Franchise = enterprise!.Details.Franchise!,
                 Country = enterprise!.Details.Country,
@@ -34,7 +35,8 @@ namespace CRMEngSystem.Controllers.Enterprise
                 City = enterprise!.Details.City,
                 Street = enterprise!.Details.Street,
                 PostalCode = enterprise!.Details.PostalCode,
-                Coordinate = enterprise!.Details.Coordinate
+                Coordinate = enterprise!.Details.Coordinate,
+                Link = enterprise!.Details.Link
             });
         }
         [HttpPost]
@@ -46,6 +48,7 @@ namespace CRMEngSystem.Controllers.Enterprise
             enterprise!.Details.NameEN = model.NameEN;
             enterprise!.Details.OwnershipFormUA = model.OwnershipFormUA;
             enterprise!.Details.OwnershipFormEN = model.OwnershipFormEN;
+            enterprise!.Details.EDRPOU = model.EDRPOU;
             enterprise!.Details.IndustryBranch = model.IndustryBranch;
             enterprise!.Details.TradeGroup = model.TradeGroup;
             enterprise!.Details.Franchise = model.Franchise!;
@@ -55,6 +58,7 @@ namespace CRMEngSystem.Controllers.Enterprise
             enterprise!.Details.Street = model.Street;
             enterprise!.Details.PostalCode = model.PostalCode;
             enterprise!.Details.Coordinate = model.Coordinate;
+            enterprise!.Details.Link = model.Link;
             enterprise.DateTimeUpdate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time"));
 
             var result = await _repositoryFactory.Instantiate<EnterpriseEntity>().UpdateEntityAsync(enterprise!.EnterpriseId, enterprise);

@@ -27,6 +27,7 @@ namespace CRMEngSystem.Controllers.Enterprise
                     NameEN = model.NameEN,
                     OwnershipFormUA = model.OwnershipFormUA,
                     OwnershipFormEN = model.OwnershipFormEN,
+                    EDRPOU = model.EDRPOU,
                     IndustryBranch = model.IndustryBranch,
                     TradeGroup = model.TradeGroup,
                     Franchise = model.Franchise,
@@ -35,7 +36,8 @@ namespace CRMEngSystem.Controllers.Enterprise
                     Region = model.Region,
                     PostalCode = model.PostalCode,
                     Street = model.Street,
-                    Coordinate = model.Coordinate
+                    Coordinate = model.Coordinate,
+                    Link = model.Link,
                 },
                 DateTimeCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time")),
                 DateTimeUpdate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time"))

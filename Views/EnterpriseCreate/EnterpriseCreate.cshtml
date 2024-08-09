@@ -76,6 +76,10 @@
                 @Html.TextBoxFor(m => m.OwnershipFormEN, new { placeholder = "Форма власності англійською (Повністю)", @class = "data-input", required = "required" })
             </div>
             <div class="form-container-row">
+                <div class="header-row"><span>ЄДРПОУ: </span></div>
+                @Html.TextBoxFor(m => m.EDRPOU, new { placeholder = "ЄДРПОУ", @class = "data-input", required = "required" })
+            </div>
+            <div class="form-container-row">
                 <div class="header-row"><span>Сфера діяльності: </span></div>
                 @Html.TextBoxFor(m => m.IndustryBranch, new { placeholder = "Сфера діяльності (Вид промисловості)", @class = "data-input", required = "required" })
             </div>
@@ -110,6 +114,10 @@
             <div class="form-container-row">
                 <div class="header-row"><span>Координати: </span></div>
                 @Html.TextBoxFor(m => m.Coordinate, new { placeholder = "Координати (Якщо відсутні - залишити пустим, можна скопіювати в Google Maps)", @class = "data-input" })
+            </div>
+            <div class="form-container-row">
+                <div class="header-row"><span>Посилання: </span></div>
+                @Html.TextBoxFor(m => m.Link, new { placeholder = "Посилання (Якщо відсутнє - залишити пустим)", @class = "data-input" })
             </div>
             <div class="button-container">
                 <input class="add-btn" value="Створити підприємство" type="submit" style="width: 190px;" />
