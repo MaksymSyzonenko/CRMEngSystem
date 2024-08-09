@@ -22,3 +22,6 @@ RUN dotnet publish "./CRMEngSystem.csproj" -c $BUILD_CONFIGURATION -o /app/publi
 # Финальный образ
 FROM base AS final
 WORKDIR /app
+COPY --from=publish /app/publish .
+COPY CRMEngSystem/appsettings.json
+ENTRYPOINT ["dotnet", "CRMEngSystem.dll"]
