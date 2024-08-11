@@ -50,8 +50,9 @@
         .header-part {
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 8% 33% 8% 20% 17% calc(14% - 13px);
+            grid-template-columns: 8% 33% 10% 18% 17% calc(14% - 13px);
             padding-right: 13px;
+            overflow: hidden;
         }
 
         .header-part-column {
@@ -70,36 +71,84 @@
             padding: 0 15px;
         }
 
+        .hidden {
+            opacity: 0;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        .resizer {
+            cursor: col-resize;
+            width: 13px;
+            height: 17px;
+            margin-left: 7px;
+        }
     </style>
 </head>
 <body>
     <div class="page-container">
         @await Html.PartialAsync("_ContactMenuTab", Model)
-        <div class="tab-container">
-            @using (Html.BeginForm("ContactOrders", "ContactOrders", FormMethod.Get, new { @class = "search" }))
-            {
-                <img src="~/icons/Search.svg" />
-                @Html.TextBoxFor(m => m.OrdersSearchGeneral, new { placeholder = "Пошук", @Value = Model.OrdersSearchGeneral })
-                @Html.HiddenFor(m => m.EntityId)
-                <input type="submit" style="visibility: hidden; position: absolute;" />
-            }
-            <div class="header-container">
-                <div class="header-part">
-                    <div class="header-part-column"><span>Код</span></div>
-                    <div class="header-part-column"><span>Підприємство</span></div>
-                    <div class="header-part-column"><span>Пріорітет</span></div>
-                    <div class="header-part-column"><span>Ініціатор</span></div>
-                    <div class="header-part-column"><span>Дата створення</span></div>
-                    <div class="header-part-column"><span>Статус</span></div>
+        <div class="content hidden" data-page-identifier="ContactOrders">
+            <div class="tab-container">
+                @using (Html.BeginForm("ContactOrders", "ContactOrders", FormMethod.Get, new { @class = "search" }))
+                {
+                    <img src="~/icons/Search.svg" />
+                    @Html.TextBoxFor(m => m.OrdersSearchGeneral, new { placeholder = "Пошук", @Value = Model.OrdersSearchGeneral })
+                    @Html.HiddenFor(m => m.EntityId)
+                    <input type="submit" style="visibility: hidden; position: absolute;" />
+                }
+                <div class="header-container">
+                    <div class="header-part">
+                        <div class="header-part-column">
+                            <span>Код</span><svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="header-part-column">
+                            <span>Підприємство</span><svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="header-part-column">
+                            <span>Пріорітет</span><svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="header-part-column">
+                            <span>Ініціатор</span><svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="header-part-column">
+                            <span>Дата створення</span><svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="header-part-column">
+                            <span>Статус</span><svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="cards-container">
+                    @foreach (var entity in Model.Orders)
+                    {
+                        @await Html.PartialAsync("_OrderDataCard", entity)
+                    }
                 </div>
             </div>
-            <div class="cards-container">
-                @foreach (var entity in Model.Orders)
-                {
-                    @await Html.PartialAsync("_OrderDataCard", entity)
-                }
-            </div>
+            @await Html.PartialAsync("_Pagination", Model)
         </div>
-        @await Html.PartialAsync("_Pagination", Model)
     </div>
 </body>
+<script src="~/js/resizerScript.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentElement = document.querySelector('.content');
+        const pageIdentifier = contentElement.getAttribute('data-page-identifier');
+        initColumnResizer(pageIdentifier);
+    });
+</script>

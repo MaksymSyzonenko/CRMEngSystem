@@ -51,8 +51,9 @@
         .header-part {
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 9% 33% 5% 10% 6% 6% 10% 6% calc(15% - 13px);
+            grid-template-columns: 7% 37% 5% 9% 6% 6% 9% 6% calc(15% - 13px);
             padding-right: 13px;
+            overflow: hidden;
         }
 
         .header-part-column {
@@ -80,8 +81,9 @@
             font-weight: bold;
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 42% 5% 10% 6% 6% 10% 6% calc(15% - 13px);
+            grid-template-columns: 7% 37% 5% 9% 6% 6% 9% 6% calc(15% - 13px);
             padding: 5px 13px 5px 5px;
+            overflow: hidden;
         }
 
         .result-container-column{
@@ -93,15 +95,22 @@
             text-overflow: ellipsis;
         }
 
-        .result-container-column:first-child{
+        .result-container-column span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-container-column:nth-child(2) {
             justify-content: flex-end;
             display: flex;
             align-items: center;
+            padding-right: 20px;
         }
 
         .percent-input {
             background-color: white;
-            width: 70px;
+            width: 50px;
             height: 25px;
             border: 1px solid #595586;
             border-radius: 3px;
@@ -117,6 +126,114 @@
                 -webkit-appearance: none;
                 margin: 0;
             }
+
+        .card-data {
+            background-color: white;
+            border-radius: 5px;
+            grid-gap: 5px;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 7% 37% 5% 9% 6% 6% 9% 6% calc(15% - 13px);
+            align-items: center;
+            height: 23px;
+            padding: 0 10px 0 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 0;
+        }
+
+            .card-data span {
+                font-size: 12px;
+                color: #595586;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        .scrollable {
+            margin-right: 15px;
+            height: 21px;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+            .scrollable span {
+                display: inline-block;
+                white-space: nowrap;
+            }
+
+            .scrollable::-webkit-scrollbar {
+                height: 3px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb {
+                background-color: #E1E2F3;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-track {
+                background-color: transparent;
+                border-radius: 2px;
+            }
+
+            .scrollable::-webkit-scrollbar-thumb:hover {
+                background-color: #59CDFF;
+            }
+
+        .card-data span:nth-child(2) {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .card-data a:hover span {
+            color: #4962E9;
+        }
+
+        .card-data a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-link-symbol {
+            font-weight: bold;
+            color: #595586;
+        }
+
+            .action-link-symbol:hover {
+                color: #4962E9;
+            }
+
+        .code-link {
+            font-size: 12px;
+            color: #595586;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .code-link:hover {
+                color: #4962E9;
+            }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        .resizer {
+            cursor: col-resize;
+            width: 13px;
+            height: 17px;
+            margin-left: 7px;
+        }
     </style>
 </head>
 <body>
@@ -131,65 +248,135 @@
     <div class="page-container">
         @await Html.PartialAsync("_OrderMenuTab", Model)
         @Html.ActionLink("Додати обладнання", "CatalogList", "CatalogList", new CatalogListViewModel{ OrderId = Model.EntityId }, new { @class = "add-btn-fullwidth" })
-        @if(Model.EquipmentPositions.Count() != 0)
-        {
-            <div class="tab-container">
-                <div class="header-container">
-                    <div class="header-part">
-                        <div class="header-part-column"><span>Код</span></div>
-                        <div class="header-part-column"><span>Найменування (Укр.)</span></div>
-                        <div class="header-part-column"><span>Склад</span></div>
-                        <div class="header-part-column"><span>Прайс (£)</span></div>
-                        <div class="header-part-column"><span>Знижка (%)</span></div>
-                        <div class="header-part-column"><span>Націнка (%)</span></div>
-                        <div class="header-part-column"><span>Ціна (€)</span></div>
-                        <div class="header-part-column"><span>Кількість</span></div>
-                        <div class="header-part-column"><span>Заг. ціна (€)</span></div>
+        <div class="content hidden" data-page-identifier="OrderEquipment">
+            @if(Model.EquipmentPositions.Count() != 0)
+            {
+                <div class="tab-container">
+                    <div class="header-container">
+                        <div class="header-part">
+                            <div class="header-part-column">
+                                <span>Код</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Найменування (Укр.)</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Склад</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Прайс</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Знижка</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Націнка</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Ціна</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Кількість</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="header-part-column">
+                                <span>Заг. ціна</span>
+                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="cards-container">
+                        @foreach (var entity in Model.EquipmentPositions)
+                        {
+                            <div class="card-data">
+                                <a href="@Url.ActionLink("OrderEquipmentDetails", "OrderEquipmentDetails", new { EntityId = entity.EquipmentOrderPositionId })" class="code-link">@entity.EquipmentCode</a>
+                                <a href="@Url.ActionLink("CatalogDetails", "CatalogDetails", new { EntityId = entity.EquipmentCatalogPositionId})" class="scrollable"><span>@entity.NameUA</span></a>
+                                <span>@entity.QuantityToTake / @entity.QuantityInStock шт</span>
+                                <span>@entity.BasePrice £</span>
+                                <span>@entity.Discount %</span>
+                                <span>@entity.MarkUp %</span>
+                                <span>@entity.SellPrice €</span>
+                                <span style="display: flex; gap: 5px; justify-content: center;">
+                                    @Html.ActionLink("—", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
+                                    @entity.Quantity шт
+                                    @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
+                                </span>
+                                <span>@(entity.SellPrice * @entity.Quantity) €</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="result-container">
+                        <div></div>
+                        <span class="result-container-column">
+                            Всього:
+                        </span>
+                        <span class="result-container-column">
+                            —
+                        </span>
+                        <span class="result-container-column">
+                            @Model.EquipmentPositions.Sum(equipment => equipment.BasePrice) £
+                        </span>
+                        <span class="result-container-column">
+                            @using (Html.BeginForm("OrderTotalDiscountUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
+                            {
+                                @Html.TextBox("Discount", null, new{ placeholder = "0%", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                                @Html.Hidden("OrderId", Model.EntityId)
+                            }
+                        </span>
+                        <span class="result-container-column">
+                            @using (Html.BeginForm("OrderTotalMarkUpUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
+                            {
+                                @Html.TextBox("MarkUp", null, new{ placeholder = "0%", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                                @Html.Hidden("OrderId", Model.EntityId)
+                            }
+                        </span>
+                        <span class="result-container-column">
+                            @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice) €
+                        </span>
+                        <span class="result-container-column">
+                            @Model.EquipmentPositions.Sum(equipment => equipment.Quantity) шт
+                        </span>
+                        <span class="result-container-column">
+                            @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice * equipment.Quantity) €
+                        </span>
                     </div>
                 </div>
-            
-                <div class="cards-container">
-                    @foreach (var entity in Model.EquipmentPositions)
-                    {
-                        @await Html.PartialAsync("_OrderEquipmentDataCard", entity)
-                    }
-                </div>
-                <div class="result-container">
-                    <span class="result-container-column">
-                        Всього:
-                    </span>
-                    <span class="result-container-column">
-                        —
-                    </span>
-                    <span class="result-container-column">
-                        @Model.EquipmentPositions.Sum(equipment => equipment.BasePrice) £
-                    </span>
-                    <span class="result-container-column">
-                        @using (Html.BeginForm("OrderTotalDiscountUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
-                        {
-                            @Html.TextBox("Discount", null, new{ placeholder = "Заг. зниж.", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
-                            @Html.Hidden("OrderId", Model.EntityId)
-                        }
-                    </span>
-                    <span class="result-container-column">
-                        @using (Html.BeginForm("OrderTotalMarkUpUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
-                        {
-                            @Html.TextBox("MarkUp", null, new{ placeholder = "Заг. нац.", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
-                            @Html.Hidden("OrderId", Model.EntityId)
-                        }
-                    </span>
-                    <span class="result-container-column">
-                        @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice) €
-                    </span>
-                    <span class="result-container-column">
-                        @Model.EquipmentPositions.Sum(equipment => equipment.Quantity) шт
-                    </span>
-                    <span class="result-container-column">
-                        @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice * equipment.Quantity) €
-                    </span>
-                </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </body>
+<script src="~/js/resizerScript.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentElement = document.querySelector('.content');
+        const pageIdentifier = contentElement.getAttribute('data-page-identifier');
+        initColumnResizer(pageIdentifier);
+    });
+</script>
 

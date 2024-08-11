@@ -20,6 +20,7 @@ namespace CRMEngSystem.Data.Context
         {
         }
         public DbSet<SettingsEntity> Settings { get; set; }
+        public DbSet<ColumnResizeSettingsEntity> ColumnResizeSettings { get; set; }
         public DbSet<ContactEntity> Contacts { get; set; }
         public DbSet<ContactDetailsEntity> ContactsDetails { get; set; }
         public DbSet<EnterpriseEntity> Enterprises { get; set; }

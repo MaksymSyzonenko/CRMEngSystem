@@ -48,6 +48,7 @@ body::-webkit-scrollbar {
     background-color: white;
     overflow: hidden;
     transition: width 0.5s ease;
+    z-index: 999;
 }
 
 .menu-item {

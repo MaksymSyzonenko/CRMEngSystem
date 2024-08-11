@@ -7,7 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\resizerScript.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\resizerScript.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\resizerScript.js" />
   </ItemGroup>
 
   <ItemGroup>

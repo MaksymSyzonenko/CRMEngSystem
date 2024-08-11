@@ -4,30 +4,41 @@
 
 <head>
     <style>
+        .hidden {
+            opacity: 0;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
         .header-container {
             background-color: #DDE9FF;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             padding: 10px;
             display: inline-block;
             width: 100%;
+            overflow: hidden;
         }
 
         .header-part {
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 10% 35% 10% 15% 15% calc(15% - 13px);
+            grid-template-columns: 8% 35% 15% 14% 14% calc(14% - 13px);
             padding-right: 13px;
+            overflow: hidden;
         }
 
         .header-part-order {
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 10% 10% 25% 10% 15% 15% calc(15% - 13px);
+            grid-template-columns: 10% 8% 25% 15% 14% 14% calc(14% - 13px);
             padding-right: 13px;
         }
 
         .header-part-column {
+            position: relative;
             font-size: 12px;
             color: #4962E9;
             display: flex;
@@ -35,9 +46,16 @@
             justify-content: center;
             padding: 0 0 5px 0;
             white-space: nowrap;
-            overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        .resizer {
+            cursor: col-resize;
+            width: 13px;
+            height: 17px;
+            margin-left: 7px;
+        }
+
 
             .header-part-column a {
                 margin-left: 5px;
@@ -161,11 +179,12 @@
             grid-gap: 5px;
             display: grid;
             width: 100%;
-            grid-template-columns: 10% 35% 10% 15% 15% calc(15% - 13px);
+            grid-template-columns: 8% 35% 15% 14% 14% calc(14% - 13px);
             align-items: center;
             height: 23px;
             padding: 0 10px 0 10px;
             flex-shrink: 0;
+            overflow: hidden;
         }
 
             .card-data span {
@@ -200,7 +219,7 @@
             grid-gap: 5px;
             display: grid;
             width: 100%;
-            grid-template-columns: 10% 10% 25% 10% 15% 15% calc(15% - 13px);
+            grid-template-columns: 10% 8% 25% 15% 14% 14% calc(14% - 13px);
             align-items: center;
             height: 23px;
             padding: 0 10px 0 10px;
@@ -302,204 +321,243 @@
             }
             @Html.ActionLink("Створити обладнання", "CatalogCreate", "CatalogCreate", null, new { @class = "add-btn-fullwidth" })
         }
-        <div class="header-container">
-            @{
-                var classNameHeader = (Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0) ? "header-part-order" : "header-part";
-            }
-            <div class="@classNameHeader">
+        @{
+            string dataPageIdentifier = Model.OrderId != null || Model.WareHouseId != null ? "OrderWareHouseCatalogList" : "CatalogList";
+        }
+        <div class="content hidden" data-page-identifier="@dataPageIdentifier">
+            <div class="header-container">
                 @{
-                    CatalogListViewModel CreateViewModelWithSort(bool? sortCode, bool? sortAlphabetNameEN, bool? sortPrice, bool? sortWeight, bool? sortVolume)
-                    => new()
-                    {
-                        OrderId = Model.OrderId,
-                        WareHouseId = Model.WareHouseId,
-                        SearchGeneral = Model.SearchGeneral,
-                        FilterType = Model.FilterType,
-                        FilterMinBasePrice = Model.FilterMinBasePrice,
-                        FilterMaxBasePrice = Model.FilterMaxBasePrice,
-                        FilterMinWeight = Model.FilterMinWeight,
-                        FilterMaxWeight = Model.FilterMaxWeight,
-                        FilterMinVolume = Model.FilterMinVolume,
-                        FilterMaxVolume = Model.FilterMaxVolume,
-                        SearchEquipmentCode = Model.SearchEquipmentCode,
-                        SearchNameEN = Model.SearchNameEN,
-                        SortCode = sortCode,
-                        SortAlphabetNameEN = sortAlphabetNameEN,
-                        SortPrice = sortPrice,
-                        SortWeight = sortWeight,
-                        SortVolume = sortVolume,
-                        NumberItemsPerPage = Model.NumberItemsPerPage,
-                        TotalPageCount = Model.TotalPageCount
-                    };
+                    var classNameHeader = (Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0) ? "header-part-order" : "header-part";
                 }
-                @if ((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0))
-                {
+                <div class="@classNameHeader">
+                    @{
+                        CatalogListViewModel CreateViewModelWithSort(bool? sortCode, bool? sortAlphabetNameEN, bool? sortPrice, bool? sortWeight, bool? sortVolume)
+                        => new()
+                        {
+                            OrderId = Model.OrderId,
+                            WareHouseId = Model.WareHouseId,
+                            SearchGeneral = Model.SearchGeneral,
+                            FilterType = Model.FilterType,
+                            FilterMinBasePrice = Model.FilterMinBasePrice,
+                            FilterMaxBasePrice = Model.FilterMaxBasePrice,
+                            FilterMinWeight = Model.FilterMinWeight,
+                            FilterMaxWeight = Model.FilterMaxWeight,
+                            FilterMinVolume = Model.FilterMinVolume,
+                            FilterMaxVolume = Model.FilterMaxVolume,
+                            SearchEquipmentCode = Model.SearchEquipmentCode,
+                            SearchNameEN = Model.SearchNameEN,
+                            SortCode = sortCode,
+                            SortAlphabetNameEN = sortAlphabetNameEN,
+                            SortPrice = sortPrice,
+                            SortWeight = sortWeight,
+                            SortVolume = sortVolume,
+                            NumberItemsPerPage = Model.NumberItemsPerPage,
+                            TotalPageCount = Model.TotalPageCount
+                        };
+                    }
+                    @if ((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0))
+                    {
+                        <div class="header-part-column">
+                            <span>Додати</span>
+                            <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    }
                     <div class="header-part-column">
-                        <span>Додати</span>
+                        <span>Код</span>
+                        @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(true, null, null, null, null))
+                        <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    @{
+                        var headerpartName = Model.OrderId != null && Model.OrderId != 0 ? "header-part-column-order" : "header-part-column-left";
+                    }
+                    <div class="@headerpartName">
+                        <span>
+                            Найменування (Англ.)
+                            @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, true, null, null, null))
+                        </span>
+                        <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        
+                    </div>
+                    <div class="header-part-column">
+                        <span>Тип обладнання</span>
+                        <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="header-part-column">
+                        <span>Прайс</span>
+                        @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, null, true, null, null))
+                        <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="header-part-column">
+                        <span>Вага</span>
+                        @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, null, null, true, null))
+                        <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="header-part-column">
+                        <span>Об'єм</span>
+                        @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, null, null, null, true))
+                        <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="@classNameHeader">
+                    @{
+                        void JoinSearches(string currentQuery)
+                        {
+                            if (!string.IsNullOrEmpty(Model.SearchGeneral) && currentQuery != "SearchGeneral")
+                                    @Html.HiddenFor(m => m.SearchGeneral)
+
+                            if (!string.IsNullOrEmpty(Model.SearchEquipmentCode) && currentQuery != "SearchEquipmentCode")
+                                    @Html.HiddenFor(m => m.SearchEquipmentCode)
+
+                            if (!string.IsNullOrEmpty(Model.SearchNameEN) && currentQuery != "SearchNameEN")
+                                    @Html.HiddenFor(m => m.SearchNameEN)
+
+                            if (!string.IsNullOrEmpty(Model.FilterType) && currentQuery != "FilterType")
+                                    @Html.HiddenFor(m => m.FilterType)
+
+                            if (currentQuery != "FilterBasePrice")
+                            {
+                                if (Model.FilterMinBasePrice != null)
+                                        @Html.HiddenFor(m => m.FilterMinBasePrice)
+
+                                if (Model.FilterMaxBasePrice != null)
+                                        @Html.HiddenFor(m => m.FilterMaxBasePrice)
+                            }
+
+                            if (currentQuery != "FilterWeight")
+                            {
+                                if (Model.FilterMinWeight != null)
+                                        @Html.HiddenFor(m => m.FilterMinWeight)
+
+                                if (Model.FilterMaxWeight != null)
+                                        @Html.HiddenFor(m => m.FilterMaxWeight)
+                            }
+
+                            if (currentQuery != "FilterVolume")
+                            {
+                                if (Model.FilterMinVolume != null)
+                                        @Html.HiddenFor(m => m.FilterMinVolume)
+
+                                if (Model.FilterMaxVolume != null)
+                                        @Html.HiddenFor(m => m.FilterMaxVolume)
+                            }
+
+                                @Html.HiddenFor(m => m.OrderId)
+                                @Html.HiddenFor(m => m.WareHouseId)
+                                @Html.HiddenFor(m => m.NumberItemsPerPage)
+                        }
+                    }
+                    @if ((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0))
+                    {
+                        <div></div>
+                    }
+                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "search" }))
+                    {
+                        <img src="~/icons/Search.svg" />
+                        @Html.TextBoxFor(m => m.SearchEquipmentCode, new { placeholder = "Пошук", @Value = Model.SearchEquipmentCode })
+                        JoinSearches("SearchEquipmentCode");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "search" }))
+                    {
+                        <img src="~/icons/Search.svg" />
+                        @Html.TextBoxFor(m => m.SearchNameEN, new { placeholder = "Пошук", @Value = Model.SearchNameEN })
+                        JoinSearches("SearchNameEN");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "filter" }))
+                    {
+                        @Html.DropDownList("FilterType", new SelectList(new[] { "Основне", "Деталь", "Ремкомплект" }), "Всі", new { onchange = "this.form.submit();" })
+                        JoinSearches("FilterType");
+                    }
+                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
+                    {
+                        @Html.TextBoxFor(m => m.FilterMinBasePrice, new { placeholder = "Мін.", type = "number", step="any"})
+                        @Html.TextBoxFor(m => m.FilterMaxBasePrice, new { placeholder = "Макс.", type = "number", step="any"})
+                        JoinSearches("FilterBasePrice");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
+                    {
+                        @Html.TextBoxFor(m => m.FilterMinWeight, new { placeholder = "Мін.", type = "number", step="any"})
+                        @Html.TextBoxFor(m => m.FilterMaxWeight, new { placeholder = "Макс.", type = "number", step="any"})
+                        JoinSearches("FilterWeight");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
+                    {
+                        @Html.TextBoxFor(m => m.FilterMinVolume, new { placeholder = "Мін.", type = "number", step="any"})
+                        @Html.TextBoxFor(m => m.FilterMaxVolume, new { placeholder = "Макс.", type = "number", step="any"})
+                        JoinSearches("FilterVolume");
+                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                    }
+                </div>
+            </div>
+            <div class="cards-container">
+                @foreach (var entity in Model.Entities)
+                {
+                    var className = (Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0) ? "card-data-order" : "card-data";
+                    <div class="@className">
+                        @if (Model.OrderId != null && Model.OrderId != 0)
+                        {
+                            <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+                                @Html.ActionLink("Додати", "OrderAddEquipment", "OrderAddEquipment", new{ OrderId = Model.OrderId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchNameEN = Model.SearchNameEN, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
+                        }, new{ @class = "add-btn-empty", style = "height: 18px; font-size: 10px; margin: 0 20px; max-width: 100px;"})
+                            </div>
+                        }
+                        else if (Model.WareHouseId != null && Model.WareHouseId != 0)
+                        {
+                            <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+                                @Html.ActionLink("Додати", "WareHouseAddEquipment", "WareHouseAddEquipment", new{ WareHouseId = Model.WareHouseId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchNameEN = Model.SearchNameEN, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
+                        }, new{ @class = "add-btn-empty", style = "height: 18px; font-size: 10px; margin: 0 20px; max-width: 100px;"})
+                            </div>
+                        }
+                        <span>@entity.EquipmentCode</span>
+                        <a class="scrollable" href="@Url.Action("CatalogDetails","CatalogDetails", new { EntityId = entity.EquipmentCatalogPositionId})"><span>@entity.NameEN</span></a>
+                        <span>
+                            @{
+                                switch (entity.Type.ToString())
+                                {
+                                    case "Main":
+                                            <span>Основне</span>
+                                        break;
+                                    case "Detail":
+                                            <span>Деталь</span>
+                                        break;
+                                    case "MaintenanceKit":
+                                            <span>Ремкоплект</span>
+                                        break;
+                                }
+                            }
+                        </span>
+                        <span>@entity.BasePrice £</span>
+                        <span>@entity.Weight кг</span>
+                        <span>@entity.Volume м³</span>
                     </div>
                 }
-                <div class="header-part-column">
-                    <span>Код</span>
-                    @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(true, null, null, null, null))
-                </div>
-                @{
-                    var headerpartName = Model.OrderId != null && Model.OrderId != 0 ? "header-part-column-order" : "header-part-column-left";
-                }
-                <div class="@headerpartName">
-                    <span>Найменування (Англ.)</span>
-                    @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, true, null, null, null))
-                </div>
-                <div class="header-part-column"><span>Тип обладнання</span></div>
-                <div class="header-part-column">
-                    <span>Прайс (£)</span>
-                    @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, null, true, null, null))
-                </div>
-                <div class="header-part-column">
-                    <span>Вага (кг)</span>
-                    @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, null, null, true, null))
-                </div>
-                <div class="header-part-column">
-                    <span>Об'єм (м³)</span>
-                    @Html.ActionLink("↓", "CatalogList", "CatalogList", CreateViewModelWithSort(null, null, null, null, true))
-                </div>
             </div>
-            <div class="@classNameHeader">
-                @{
-                    void JoinSearches(string currentQuery)
-                    {
-                        if (!string.IsNullOrEmpty(Model.SearchGeneral) && currentQuery != "SearchGeneral")
-                            @Html.HiddenFor(m => m.SearchGeneral)
-
-                        if (!string.IsNullOrEmpty(Model.SearchEquipmentCode) && currentQuery != "SearchEquipmentCode")
-                            @Html.HiddenFor(m => m.SearchEquipmentCode)
-
-                        if (!string.IsNullOrEmpty(Model.SearchNameEN) && currentQuery != "SearchNameEN")
-                            @Html.HiddenFor(m => m.SearchNameEN)
-
-                        if (!string.IsNullOrEmpty(Model.FilterType) && currentQuery != "FilterType")
-                            @Html.HiddenFor(m => m.FilterType)
-
-                        if (currentQuery != "FilterBasePrice")
-                        {
-                            if (Model.FilterMinBasePrice != null)
-                                @Html.HiddenFor(m => m.FilterMinBasePrice)
-
-                            if (Model.FilterMaxBasePrice != null)
-                                @Html.HiddenFor(m => m.FilterMaxBasePrice)
-                        }
-
-                        if (currentQuery != "FilterWeight")
-                        {
-                            if (Model.FilterMinWeight != null)
-                                @Html.HiddenFor(m => m.FilterMinWeight)
-
-                            if (Model.FilterMaxWeight != null)
-                                @Html.HiddenFor(m => m.FilterMaxWeight)
-                        }
-
-                        if (currentQuery != "FilterVolume")
-                        {
-                            if (Model.FilterMinVolume != null)
-                                @Html.HiddenFor(m => m.FilterMinVolume)
-
-                            if (Model.FilterMaxVolume != null)
-                                @Html.HiddenFor(m => m.FilterMaxVolume)
-                        }
-
-                        @Html.HiddenFor(m => m.OrderId)
-                        @Html.HiddenFor(m => m.WareHouseId)
-                        @Html.HiddenFor(m => m.NumberItemsPerPage)
-                    }
-                }
-                @if ((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0))
-                {
-                    <div></div>
-                }
-                @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "search" }))
-                {
-                    <img src="~/icons/Search.svg" />
-                    @Html.TextBoxFor(m => m.SearchEquipmentCode, new { placeholder = "Пошук", @Value = Model.SearchEquipmentCode })
-                    JoinSearches("SearchEquipmentCode");
-                    <input type="submit" style="visibility: hidden; position: absolute;" />
-                }
-                @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "search" }))
-                {
-                    <img src="~/icons/Search.svg" />
-                    @Html.TextBoxFor(m => m.SearchNameEN, new { placeholder = "Пошук", @Value = Model.SearchNameEN })
-                    JoinSearches("SearchNameEN");
-                    <input type="submit" style="visibility: hidden; position: absolute;" />
-                }
-                @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "filter" }))
-                {
-                    @Html.DropDownList("FilterType", new SelectList(new[] { "Основне", "Деталь", "Ремкомплект" }), "Всі", new { onchange = "this.form.submit();" })
-                    JoinSearches("FilterType");
-                }
-                @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
-                {
-                    @Html.TextBoxFor(m => m.FilterMinBasePrice, new { placeholder = "Мін.", type = "number", step="any"})
-                    @Html.TextBoxFor(m => m.FilterMaxBasePrice, new { placeholder = "Макс.", type = "number", step="any"})
-                    JoinSearches("FilterBasePrice");
-                    <input type="submit" style="visibility: hidden; position: absolute;" />
-                }
-                @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
-                {
-                    @Html.TextBoxFor(m => m.FilterMinWeight, new { placeholder = "Мін.", type = "number", step="any"})
-                    @Html.TextBoxFor(m => m.FilterMaxWeight, new { placeholder = "Макс.", type = "number", step="any"})
-                    JoinSearches("FilterWeight");
-                    <input type="submit" style="visibility: hidden; position: absolute;" />
-                }
-                @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
-                {
-                    @Html.TextBoxFor(m => m.FilterMinVolume, new { placeholder = "Мін.", type = "number", step="any"})
-                    @Html.TextBoxFor(m => m.FilterMaxVolume, new { placeholder = "Макс.", type = "number", step="any"})
-                    JoinSearches("FilterVolume");
-                    <input type="submit" style="visibility: hidden; position: absolute;" />
-                }
-            </div>
+            @await Html.PartialAsync("_Pagination", Model)
         </div>
-        <div class="cards-container">
-            @foreach (var entity in Model.Entities)
-            {
-                var className = (Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0) ? "card-data-order" : "card-data";
-                <div class="@className">
-                    @if (Model.OrderId != null && Model.OrderId != 0)
-                    {
-                        <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
-                            @Html.ActionLink("Додати", "OrderAddEquipment", "OrderAddEquipment", new{ OrderId = Model.OrderId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchNameEN = Model.SearchNameEN, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
-                    }, new{ @class = "add-btn-empty", style = "height: 18px; font-size: 10px; margin: 0 20px; max-width: 100px;"})
-                        </div>
-                    }
-                    else if (Model.WareHouseId != null && Model.WareHouseId != 0)
-                    {
-                        <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
-                            @Html.ActionLink("Додати", "WareHouseAddEquipment", "WareHouseAddEquipment", new{ WareHouseId = Model.WareHouseId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchNameEN = Model.SearchNameEN, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
-                    }, new{ @class = "add-btn-empty", style = "height: 18px; font-size: 10px; margin: 0 20px; max-width: 100px;"})
-                        </div>
-                    }
-                    <span>@entity.EquipmentCode</span>
-                    <a class="scrollable" href="@Url.Action("CatalogDetails","CatalogDetails", new { EntityId = entity.EquipmentCatalogPositionId})"><span>@entity.NameEN</span></a>
-                    <span>
-                        @{
-                            switch (entity.Type.ToString())
-                            {
-                                case "Main":
-                                    <span>Основне</span>
-                                    break;
-                                case "Detail":
-                                    <span>Деталь</span>
-                                    break;
-                                case "MaintenanceKit":
-                                    <span>Ремкоплект</span>
-                                    break;
-                            }
-                        }
-                    </span>
-                    <span>@entity.BasePrice £</span>
-                    <span>@entity.Weight кг</span>
-                    <span>@entity.Volume м³</span>
-                </div>
-            }
-        </div>
-        @await Html.PartialAsync("_Pagination", Model)
     </div>
 </body>
+<script src="~/js/resizerScript.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentElement = document.querySelector('.content');
+        const pageIdentifier = contentElement.getAttribute('data-page-identifier');
+        initColumnResizer(pageIdentifier);
+    });
+</script>
