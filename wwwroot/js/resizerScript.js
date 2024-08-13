@@ -63,11 +63,7 @@
     function resize(e) {
         if (currentResizer) {
             const newWidth = startWidth + (e.clientX - startX);
-            let coeff = 50;
-            if (pageIdentifier == "OrderEquipment" || pageIdentifier == "WareHouseDetails") {
-                coeff = 20;
-            }
-            const minWidth = currentResizer.parentElement.querySelector('span').offsetWidth + coeff;
+            const minWidth = currentResizer.parentElement.querySelector('span').offsetWidth;
             const totalWidth = currentResizer.parentElement.parentElement.offsetWidth;
             const percentageWidth = (newWidth / totalWidth) * 100;
             const minPercentageWidth = (minWidth / totalWidth) * 100;
@@ -75,12 +71,15 @@
             if (percentageWidth > minPercentageWidth) {
                 gridTemplateColumns[columnIndex] = `${percentageWidth}%`;
 
-                document.querySelectorAll('.header-part, .header-part-order, .card-data, .card-data-order, .result-container').forEach(part => {
-                    part.style.gridTemplateColumns = gridTemplateColumns.join(' ');
+                window.requestAnimationFrame(() => {
+                    document.querySelectorAll('.header-part, .header-part-order, .card-data, .card-data-order, .result-container').forEach(part => {
+                        part.style.gridTemplateColumns = gridTemplateColumns.join(' ');
+                    });
                 });
             }
         }
     }
+
 
 
 

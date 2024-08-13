@@ -106,7 +106,7 @@
             left: 50%;
             transform: translateX(-50%);
             background-color: white;
-            min-width: 160px;
+            min-width: 180px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             z-index: 1;
             border-radius: 5px;
@@ -200,11 +200,11 @@
                     </div>
                     <div class="details-container-data-row-filled">
                         <span>Підприємство:</span>
-                        <a class="card-data-link" href="@Url.Action("EnterpriseDetails", "EnterpriseDetails", new { EntityId = Model.Order.CustomerId})"><span style="font-weight: normal;">@Model.Order.CustomerNameUA</span></a>
+                        <a class="card-data-link" href="@Url.Action("EnterpriseDetails", "EnterpriseDetails", new { EntityId = Model.Order.CustomerId})"><span style="font-weight: 500;">@Model.Order.CustomerNameUA</span></a>
                     </div>
                     <div class="details-container-data-row">
                         <span>Ініціатор:</span>
-                        <a class="card-data-link" href="@Url.Action("ContactDetails", "ContactDetails", new { EntityId = Model.Order.InitiatorId})"><span style="font-weight: normal;">@Model.Order.InitiatorInitials</span></a>
+                        <a class="card-data-link" href="@Url.Action("ContactDetails", "ContactDetails", new { EntityId = Model.Order.InitiatorId})"><span style="font-weight: 500;">@Model.Order.InitiatorInitials</span></a>
                     </div>
                     <div class="details-container-data-row">
                         <span>Дата створення:</span>

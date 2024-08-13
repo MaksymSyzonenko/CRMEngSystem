@@ -49,6 +49,8 @@ namespace CRMEngSystem.Controllers.Enterprise
         [HttpPost]
         public async Task<IActionResult> EnterpriseComments(CommentListViewModel model)
         {
+            if (string.IsNullOrEmpty(model.Text))
+                return await EnterpriseComments(model.EntityId);
             await _repositoryFactory.Instantiate<CommentEntity>().AddEntityAsync(new CommentEntity
             {
                 AuthorId = (await _userManager.GetUserAsync(User))!.ContactId,

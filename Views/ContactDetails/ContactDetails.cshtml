@@ -186,7 +186,7 @@
 
         .labl
         {
-            width: 110px;
+            width: 130px;
         }
 
         .card-data-link:hover span {
@@ -262,7 +262,7 @@
                 <div class="details-container-data">
                     <div class="details-container-data-row-filled">
                         <span>Підприємство:</span>
-                        <a class="card-data-link" href="@Url.Action("EnterpriseDetails", "EnterpriseDetails", new { EntityId = Model.Contact.EnterpriseId})"><span style="font-weight: normal;">@Model.Contact.EnterpriseNameUA</span></a>
+                        <a class="card-data-link" href="@Url.Action("EnterpriseDetails", "EnterpriseDetails", new { EntityId = Model.Contact.EnterpriseId})"><span style="font-weight: 500;">@Model.Contact.EnterpriseNameUA</span></a>
                     </div>
                     <div class="details-container-data-row">
                         <span>Адреса під-ства:</span>
@@ -317,7 +317,7 @@
                                 <div class="labl">
                                     <span>Високий пріорітет</span>
                                 </div>
-                                <span style="font-weight: 900;">@(Model.Contact.NumberHighPriorityOrders * 100 / Model.Contact.TotalOrdersNumber)%</span>
+                                <span style="font-weight: 600;">@(Model.Contact.NumberHighPriorityOrders * 100 / Model.Contact.TotalOrdersNumber)%</span>
                             </div>
                             <div class="diagram-label">
                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -326,7 +326,7 @@
                                 <div class="labl">
                                     <span>Середній пріорітет</span>
                                 </div>
-                                <span style="font-weight: 900;">@(Model.Contact.NumberMediumPriorityOrders * 100 / Model.Contact.TotalOrdersNumber)%</span>
+                                <span style="font-weight: 600;">@(Model.Contact.NumberMediumPriorityOrders * 100 / Model.Contact.TotalOrdersNumber)%</span>
                             </div>
                             <div class="diagram-label">
                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -335,7 +335,7 @@
                                 <div class="labl">
                                     <span>Низький пріорітет</span>
                                 </div>
-                                <span style="font-weight: 900;">@(Model.Contact.NumberLowPriorityOrders * 100 / Model.Contact.TotalOrdersNumber)%</span>
+                                <span style="font-weight: 600;">@(Model.Contact.NumberLowPriorityOrders * 100 / Model.Contact.TotalOrdersNumber)%</span>
                             </div>
                         </div>
                     }

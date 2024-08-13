@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Shared\_Resizer.cshtml" />
     <_ContentIncludedByDefault Remove="wwwroot\js\resizerScript.js" />
   </ItemGroup>
 
@@ -19,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\_Resizer.cshtml" />
     <None Include="wwwroot\js\resizerScript.js" />
   </ItemGroup>
 
@@ -29,6 +31,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.29" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.29" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Shared\_Resizer.cshtml" />
   </ItemGroup>
 
 </Project>

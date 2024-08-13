@@ -1,9 +1,15 @@
 ﻿body {
     background-color: #F1F4FC;
     font-family: 'Montserrat';
+    font-weight: 500;
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+input {
+    font-weight: 500;
+}
+
 
 body::-webkit-scrollbar {
     width: 0px;

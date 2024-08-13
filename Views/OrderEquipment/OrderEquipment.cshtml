@@ -1,6 +1,7 @@
 ﻿@using CRMEngSystem.Models.ViewModels.Order
 @using CRMEngSystem.Models.ViewModels.Catalog
 @using CRMEngSystem.Models.ViewModels.Notify
+@using CRMEngSystem.Models.ViewModels.Resizer
 @model OrderEquipmentViewModel
 
 <head>
@@ -51,7 +52,7 @@
         .header-part {
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 7% 37% 5% 9% 6% 6% 9% 6% calc(15% - 13px);
+            grid-template-columns: 7% 36% 5% 9% 6% 6% 9% 7% calc(15% - 13px);
             padding-right: 13px;
             overflow: hidden;
         }
@@ -65,6 +66,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            position: relative;
         }
 
         .header-part-column:nth-child(2) {
@@ -74,15 +76,12 @@
         }
 
         .result-container{
-            background-color: #E1E2F3;
-            color: #595586;
-            border-radius: 5px;
             font-size: 12px;
             font-weight: bold;
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 7% 37% 5% 9% 6% 6% 9% 6% calc(15% - 13px);
-            padding: 5px 13px 5px 5px;
+            grid-template-columns: 7% 36% 5% 9% 6% 6% 9% 7% calc(15% - 13px);
+            padding-right: 13px;
             overflow: hidden;
         }
 
@@ -91,8 +90,6 @@
             align-items: center;
             justify-content: center;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .result-container-column span{
@@ -105,7 +102,6 @@
             justify-content: flex-end;
             display: flex;
             align-items: center;
-            padding-right: 20px;
         }
 
         .percent-input {
@@ -133,7 +129,7 @@
             grid-gap: 5px;
             display: grid;
             width: 100%;
-            grid-template-columns: 7% 37% 5% 9% 6% 6% 9% 6% calc(15% - 13px);
+            grid-template-columns: 7% 36% 5% 9% 6% 6% 9% 7% calc(15% - 13px);
             align-items: center;
             height: 23px;
             padding: 0 10px 0 10px;
@@ -152,7 +148,6 @@
             }
 
         .scrollable {
-            margin-right: 15px;
             height: 21px;
             display: flex;
             align-items: center;
@@ -227,13 +222,6 @@
         .visible {
             opacity: 1;
         }
-
-        .resizer {
-            cursor: col-resize;
-            width: 13px;
-            height: 17px;
-            margin-left: 7px;
-        }
     </style>
 </head>
 <body>
@@ -255,58 +243,31 @@
                     <div class="header-container">
                         <div class="header-part">
                             <div class="header-part-column">
-                                <span>Код</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Код" })
                             </div>
                             <div class="header-part-column">
-                                <span>Найменування (Укр.)</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Найменування" })
                             </div>
                             <div class="header-part-column">
-                                <span>Склад</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Склад" })
                             </div>
                             <div class="header-part-column">
-                                <span>Прайс</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Прайс" })
                             </div>
                             <div class="header-part-column">
-                                <span>Знижка</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Знижка" })
                             </div>
                             <div class="header-part-column">
-                                <span>Націнка</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Націнка" })
                             </div>
                             <div class="header-part-column">
-                                <span>Ціна</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Ціна" })
                             </div>
                             <div class="header-part-column">
-                                <span>Кількість</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Кількість" })
                             </div>
                             <div class="header-part-column">
-                                <span>Заг. ціна</span>
-                                <svg class="resizer" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9429 11.0572L2.74293 19.2572C2.64267 19.3532 2.56289 19.4685 2.50839 19.5962C2.45388 19.7238 2.42578 19.8612 2.42578 20C2.42578 20.1388 2.45388 20.2762 2.50839 20.4039C2.56289 20.5315 2.64267 20.6469 2.74293 20.7429L10.9429 28.9429M23.0572 11.0572L27.1572 15.1572L31.2572 19.2572C31.3575 19.3532 31.4373 19.4685 31.4918 19.5962C31.5463 19.7238 31.5744 19.8612 31.5744 20C31.5744 20.1388 31.5463 20.2762 31.4918 20.4039C31.4373 20.5315 31.3575 20.6469 31.2572 20.7429L23.0572 28.9429M17.0001 38.5714V1.42859" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Заг. ціна" })
                             </div>
                         </div>
                     </div>
@@ -323,7 +284,7 @@
                                 <span>@entity.MarkUp %</span>
                                 <span>@entity.SellPrice €</span>
                                 <span style="display: flex; gap: 5px; justify-content: center;">
-                                    @Html.ActionLink("—", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
+                                    @Html.ActionLink("-", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
                                     @entity.Quantity шт
                                     @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
                                 </span>
@@ -331,40 +292,42 @@
                             </div>
                         }
                     </div>
-                    <div class="result-container">
-                        <div></div>
-                        <span class="result-container-column">
-                            Всього:
-                        </span>
-                        <span class="result-container-column">
-                            —
-                        </span>
-                        <span class="result-container-column">
-                            @Model.EquipmentPositions.Sum(equipment => equipment.BasePrice) £
-                        </span>
-                        <span class="result-container-column">
-                            @using (Html.BeginForm("OrderTotalDiscountUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
-                            {
-                                @Html.TextBox("Discount", null, new{ placeholder = "0%", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
-                                @Html.Hidden("OrderId", Model.EntityId)
-                            }
-                        </span>
-                        <span class="result-container-column">
-                            @using (Html.BeginForm("OrderTotalMarkUpUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
-                            {
-                                @Html.TextBox("MarkUp", null, new{ placeholder = "0%", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
-                                @Html.Hidden("OrderId", Model.EntityId)
-                            }
-                        </span>
-                        <span class="result-container-column">
-                            @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice) €
-                        </span>
-                        <span class="result-container-column">
-                            @Model.EquipmentPositions.Sum(equipment => equipment.Quantity) шт
-                        </span>
-                        <span class="result-container-column">
-                            @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice * equipment.Quantity) €
-                        </span>
+                    <div style="padding: 5px 10px; display: inline-block; background-color: #E1E2F3; color: #595586; border-radius: 5px;">
+                        <div class="result-container">
+                            <div></div>
+                            <span class="result-container-column">
+                                Всього:
+                            </span>
+                            <span class="result-container-column">
+                                —
+                            </span>
+                            <span class="result-container-column">
+                                —
+                            </span>
+                            <span class="result-container-column">
+                                @using (Html.BeginForm("OrderTotalDiscountUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
+                                {
+                                    @Html.TextBox("Discount", null, new{ placeholder = "0%", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                                    @Html.Hidden("OrderId", Model.EntityId)
+                                }
+                            </span>
+                            <span class="result-container-column">
+                                @using (Html.BeginForm("OrderTotalMarkUpUpdate", "OrderTotalPriceValuesUpdate", FormMethod.Post))
+                                {
+                                    @Html.TextBox("MarkUp", null, new{ placeholder = "0%", @class="percent-input", type="number", min = "1", max = "100", step = "1", pattern = "[0-9]*"})
+                                    @Html.Hidden("OrderId", Model.EntityId)
+                                }
+                            </span>
+                            <span class="result-container-column">
+                                —
+                            </span>
+                            <span class="result-container-column">
+                                @Model.EquipmentPositions.Sum(equipment => equipment.Quantity) шт
+                            </span>
+                            <span class="result-container-column">
+                                @Model.EquipmentPositions.Sum(equipment => equipment.SellPrice * equipment.Quantity) €
+                            </span>
+                        </div>
                     </div>
                 </div>
             }
