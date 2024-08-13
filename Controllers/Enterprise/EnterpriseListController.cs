@@ -30,10 +30,10 @@ namespace CRMEngSystem.Controllers.Enterprise
         {
             var entities = _repositoryFactory.Instantiate<EnterpriseEntity>().GetAllEntitiesAsQueryable(new EnterpriseDataLoader(true, false, false, false));
 
-            var sortService = new EnterpriseSortService(model.SortEnterpriseId, model.SortAlphabetCountry, model.SortAlphabetRegion, model.SortAlphabetCity);
+            var sortService = new EnterpriseSortService(model.SortEnterpriseId, model.SortAlphabetStreet, model.SortAlphabetRegion, model.SortAlphabetCity);
             entities = sortService.Sort(entities);
 
-            var searchService = new EnterpriseSearchService(model.SearchGeneral, model.SearchName, model.SearchCountry, model.SearchRegion, model.SearchCity);
+            var searchService = new EnterpriseSearchService(model.SearchGeneral, model.SearchName, model.SearchStreet, model.SearchRegion, model.SearchCity);
             entities = searchService.Search(entities);
 
             model.TotalPageCount = (int)Math.Ceiling((decimal)entities.Count() / model.NumberItemsPerPage);

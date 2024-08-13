@@ -12,7 +12,8 @@ namespace CRMEngSystem.AutoMapper.Enterprise
         {
             CreateMap<EnterpriseEntity, EnterpriseListItemDto>()
                 .ForMember(dest => dest.NameUA, opt => opt.MapFrom(src => src.Details.NameUA))
-                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Details.Country))
+                .ForMember(dest => dest.OwnershipFormUA, opt => opt.MapFrom(src => src.Details.OwnershipFormUA))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Details.Street))
                 .ForMember(dest => dest.Region, opt => opt.MapFrom(src => src.Details.Region))
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Details.City))
                 .ForMember(dest => dest.Coordinate, opt => opt.MapFrom(src => src.Details.Coordinate))

@@ -37,18 +37,18 @@
             <div class="header-container">
                 <div class="header-part">
                     @{
-                        EnterpriseListViewModel CreateViewModelWithSort(bool? sortEnterpriseId, bool? sortAlphabetCountry, bool? sortAlphabetRegion, bool? sortAlphabetCity)
+                        EnterpriseListViewModel CreateViewModelWithSort(bool? sortEnterpriseId, bool? sortAlphabetStreet, bool? sortAlphabetCity, bool? sortAlphabetRegion)
                         => new()
                         {
                             SearchGeneral = Model.SearchGeneral,
                             SearchName = Model.SearchName,
-                            SearchCountry = Model.SearchCountry,
+                            SearchStreet = Model.SearchStreet,
                             SearchRegion = Model.SearchRegion,
                             SearchCity = Model.SearchCity,
                             SortEnterpriseId = sortEnterpriseId,
-                            SortAlphabetCountry = sortAlphabetCountry,
-                            SortAlphabetRegion = sortAlphabetRegion,
+                            SortAlphabetStreet = sortAlphabetStreet,
                             SortAlphabetCity = sortAlphabetCity,
+                            SortAlphabetRegion = sortAlphabetRegion,
                             NumberItemsPerPage = Model.NumberItemsPerPage,
                             TotalPageCount = Model.TotalPageCount
                         };
@@ -57,13 +57,13 @@
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Підприємство", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(true, null, null, null) })
                     </div>
                     <div class="header-part-column">
-                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Країна", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, true, null, null) })
+                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Адреса", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, true, null, null) })
                     </div>
                     <div class="header-part-column">
-                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Регіон / Область", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, null, true, null) })
+                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Населений пункт", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, null, true, null) })
                     </div>
                     <div class="header-part-column">
-                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Населений пункт", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, null, null, true) })
+                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Регіон / Область", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, null, null, true) })
                     </div>
                     <div class="header-part-column">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "На карті" })
@@ -79,8 +79,8 @@
                             if (!string.IsNullOrEmpty(Model.SearchName) && currentQuery != "SearchName")
                                 @Html.HiddenFor(m => m.SearchName)
 
-                            if (!string.IsNullOrEmpty(Model.SearchCountry) && currentQuery != "SearchCountry")
-                                @Html.HiddenFor(m => m.SearchCountry)
+                            if (!string.IsNullOrEmpty(Model.SearchStreet) && currentQuery != "SearchStreet")
+                                @Html.HiddenFor(m => m.SearchStreet)
 
                             if (!string.IsNullOrEmpty(Model.SearchRegion) && currentQuery != "SearchRegion")
                                 @Html.HiddenFor(m => m.SearchRegion)
@@ -101,8 +101,8 @@
                     @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))
                     {
                         <img src="~/icons/Search.svg" />
-                        @Html.TextBoxFor(m => m.SearchCountry, new { placeholder = "Пошук", @Value = Model.SearchCountry })
-                        JoinSearches("SearchCountry");
+                        @Html.TextBoxFor(m => m.SearchStreet, new { placeholder = "Пошук", @Value = Model.SearchStreet })
+                        JoinSearches("SearchStreet");
                         <input type="submit" style="visibility: hidden;" />
                     }
                     @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))

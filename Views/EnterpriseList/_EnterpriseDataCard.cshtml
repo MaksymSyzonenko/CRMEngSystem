@@ -105,10 +105,10 @@
 </head>
 <body>
     <div class="card-data">
-        <a class="scrollable" href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = Model.EnterpriseId})"><span>@Model.NameUA</span></a>
-        <div class="scrollable"><span>@Model.Country</span></div>
-        <div class="scrollable"><span>@Model.Region</span></div>
+        <a class="scrollable" href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = Model.EnterpriseId})"><span>@Model.NameUA, @Model.OwnershipFormUA</span></a>
+        <div class="scrollable"><span>@Model.Street</span></div>
         <div class="scrollable"><span>@Model.City</span></div>
+        <div class="scrollable"><span>@Model.Region</span></div>
         
             @if(Model.Coordinate != null)
             {

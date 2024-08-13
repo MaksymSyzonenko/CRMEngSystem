@@ -7,14 +7,14 @@ namespace CRMEngSystem.Services.Search.Enterprise
     {
         private readonly string? _searchGeneral;
         private readonly string? _searchName;
-        private readonly string? _searchCountry;
+        private readonly string? _searchStreet;
         private readonly string? _searchRegion;
         private readonly string? _searchCity;
-        public EnterpriseSearchService(string? searchGeneral, string? searchName, string? searchCountry, string? searchRegion, string? searchCity)
+        public EnterpriseSearchService(string? searchGeneral, string? searchName, string? searchStreet, string? searchRegion, string? searchCity)
         {
             _searchGeneral = searchGeneral;
             _searchName = searchName;
-            _searchCountry = searchCountry;
+            _searchStreet = searchStreet;
             _searchRegion = searchRegion;
             _searchCity = searchCity;
         }
@@ -38,8 +38,8 @@ namespace CRMEngSystem.Services.Search.Enterprise
                 (string.IsNullOrEmpty(_searchName) ||
                     (entity.Details.NameUA != null && entity.Details.NameUA.ToLower().Contains(_searchName.ToLower())) ||
                     (entity.Details.NameEN != null && entity.Details.NameEN.ToLower().Contains(_searchName.ToLower()))) &&
-                (string.IsNullOrEmpty(_searchCountry) ||
-                    (entity.Details.Country != null && entity.Details.Country.ToLower().Contains(_searchCountry.ToLower()))) &&
+                (string.IsNullOrEmpty(_searchStreet) ||
+                    (entity.Details.Street != null && entity.Details.Street.ToLower().Contains(_searchStreet.ToLower()))) &&
                 (string.IsNullOrEmpty(_searchRegion) ||
                     (entity.Details.Region != null && entity.Details.Region.ToLower().Contains(_searchRegion.ToLower()))) &&
                 (string.IsNullOrEmpty(_searchCity) ||

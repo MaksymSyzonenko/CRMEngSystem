@@ -35,7 +35,7 @@
         .header-part-order {
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 10% 8% 25% 15% 14% 14% calc(14% - 13px);
+            grid-template-columns: 10% 8% 53% 15% calc(14% - 13px);
             padding-right: 13px;
         }
 
@@ -213,7 +213,7 @@
             grid-gap: 5px;
             display: grid;
             width: 100%;
-            grid-template-columns: 10% 8% 25% 15% 14% 14% calc(14% - 13px);
+            grid-template-columns: 10% 8% 53% 15% calc(14% - 13px);
             align-items: center;
             height: 23px;
             padding: 0 10px 0 10px;
@@ -370,12 +370,15 @@
                     <div class="header-part-column">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Прайс", SortActionName = "CatalogList", SortControllerName = "CatalogList", SortRouteValues = CreateViewModelWithSort(null, null, true, null, null) })
                     </div>
-                    <div class="header-part-column">
-                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Вага", SortActionName = "CatalogList", SortControllerName = "CatalogList", SortRouteValues = CreateViewModelWithSort(null, null, null, true, null) })
-                    </div>
-                    <div class="header-part-column">
-                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Об'єм", SortActionName = "CatalogList", SortControllerName = "CatalogList", SortRouteValues = CreateViewModelWithSort(null, null, null, null, true) })
-                    </div>
+                    @if(!(Model.OrderId != null || Model.WareHouseId != null))
+                    {
+                        <div class="header-part-column">
+                            @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Вага", SortActionName = "CatalogList", SortControllerName = "CatalogList", SortRouteValues = CreateViewModelWithSort(null, null, null, true, null) })
+                        </div>
+                        <div class="header-part-column">
+                            @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Об'єм", SortActionName = "CatalogList", SortControllerName = "CatalogList", SortRouteValues = CreateViewModelWithSort(null, null, null, null, true) })
+                        </div>
+                    }
                 </div>
                 <div class="@classNameHeader">
                     @{
@@ -455,19 +458,22 @@
                         JoinSearches("FilterBasePrice");
                         <input type="submit" style="visibility: hidden; position: absolute;" />
                     }
-                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
+                    @if (!(Model.OrderId != null || Model.WareHouseId != null))
                     {
-                        @Html.TextBoxFor(m => m.FilterMinWeight, new { placeholder = "Мін.", type = "number", step="any"})
-                        @Html.TextBoxFor(m => m.FilterMaxWeight, new { placeholder = "Макс.", type = "number", step="any"})
-                        JoinSearches("FilterWeight");
-                        <input type="submit" style="visibility: hidden; position: absolute;" />
-                    }
-                    @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
-                    {
-                        @Html.TextBoxFor(m => m.FilterMinVolume, new { placeholder = "Мін.", type = "number", step="any"})
-                        @Html.TextBoxFor(m => m.FilterMaxVolume, new { placeholder = "Макс.", type = "number", step="any"})
-                        JoinSearches("FilterVolume");
-                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                        @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
+                        {
+                            @Html.TextBoxFor(m => m.FilterMinWeight, new { placeholder = "Мін.", type = "number", step = "any" })
+                            @Html.TextBoxFor(m => m.FilterMaxWeight, new { placeholder = "Макс.", type = "number", step = "any" })
+                            JoinSearches("FilterWeight");
+                            <input type="submit" style="visibility: hidden; position: absolute;" />
+                        }
+                        @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
+                        {
+                            @Html.TextBoxFor(m => m.FilterMinVolume, new { placeholder = "Мін.", type = "number", step = "any" })
+                            @Html.TextBoxFor(m => m.FilterMaxVolume, new { placeholder = "Макс.", type = "number", step = "any" })
+                            JoinSearches("FilterVolume");
+                            <input type="submit" style="visibility: hidden; position: absolute;" />
+                        }
                     }
                 </div>
             </div>
@@ -508,9 +514,12 @@
                                 }
                             }
                         </span>
-                        <span>@entity.BasePrice £</span>
-                        <span>@entity.Weight кг</span>
-                        <span>@entity.Volume м³</span>
+                        <span>@entity.BasePrice.ToString("0.00") £</span>
+                        @if (!(Model.OrderId != null || Model.WareHouseId != null))
+                        {
+                            <span>@entity.Weight кг</span>
+                            <span>@entity.Volume м³</span>
+                        }
                     </div>
                 }
             </div>

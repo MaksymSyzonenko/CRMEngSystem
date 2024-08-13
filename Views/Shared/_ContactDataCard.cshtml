@@ -141,9 +141,9 @@
             <span>@Model.Initials</span>
         </a>
         <div class="card-data-footer">
+            <a href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = Model.EnterpriseId})" class="card-data-link"><div class="scrollable" style="margin-bottom: 2px;"><span>@Model.EnterpriseNameUA</span></div></a>
             <div class="copy-container" onclick="copyToClipboard('@Model.PhoneNumber')"><span>@Model.PhoneNumber</span><img src="~/icons/Copy.svg" /></div>
             <div class="copy-container" onclick="copyToClipboard('@Model.Email')"><span>@Model.Email</span><img src="~/icons/Copy.svg" /></div>
-            <a href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = Model.EnterpriseId})" class="card-data-link"><div class="scrollable" style="margin-bottom: 2px;"><span>@Model.EnterpriseNameUA</span></div></a>
         </div>
     </div>
 </body>
