@@ -63,8 +63,6 @@ namespace CRMEngSystem.Controllers.WareHouse
                 EquipmentWareHousePositionId = item.Entity.EquipmentWareHousePositionId,
                 EquipmentCode = item.Entity.EquipmentCatalogPosition.EquipmentCode,
                 NameUA = item.Entity.EquipmentCatalogPosition.NameUA,
-                Weight = item.Entity.EquipmentCatalogPosition.Weight,
-                Volume = item.Entity.EquipmentCatalogPosition.Volume,
                 BasePrice = item.Entity.EquipmentCatalogPosition.BasePrice,
                 Quantity = item.Entity.Quantity,
                 Number = item.Number

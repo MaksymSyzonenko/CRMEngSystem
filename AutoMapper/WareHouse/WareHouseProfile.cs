@@ -14,8 +14,6 @@ namespace CRMEngSystem.AutoMapper.WareHouse
                 .ForMember(dest => dest.NameUA, opt => opt.MapFrom(src => src.EquipmentCatalogPosition.NameUA))
                 .ForMember(dest => dest.EquipmentCode, opt => opt.MapFrom(src => src.EquipmentCatalogPosition.EquipmentCode))
                 .ForMember(dest => dest.BasePrice, opt => opt.MapFrom(src => src.EquipmentCatalogPosition.BasePrice))
-                .ForMember(dest => dest.Volume, opt => opt.MapFrom(src => src.EquipmentCatalogPosition.Volume))
-                .ForMember(dest => dest.Weight, opt => opt.MapFrom(src => src.EquipmentCatalogPosition.Weight))
                 .ReverseMap();
         }
     }

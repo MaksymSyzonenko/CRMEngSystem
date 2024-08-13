@@ -54,7 +54,7 @@
         .header-part {
             display: grid;
             grid-gap: 5px;
-            grid-template-columns: 5% 8% 25% 8% 8% 8% 10% 8% 8% calc(12% - 13px);
+            grid-template-columns: 5% 8% 57% 8% 10% calc(12% - 13px);
             padding-right: 13px;
             overflow: hidden;
             position: relative;
@@ -85,7 +85,7 @@
             font-weight: bold;
             display: flex;
             flex-direction: row;
-            gap: 20px;
+            gap: 10px;
             margin-top: 10px;
             white-space: nowrap;
             overflow: hidden;
@@ -101,7 +101,7 @@
             grid-gap: 5px;
             display: grid;
             width: 100%;
-            grid-template-columns: 5% 8% 25% 8% 8% 8% 10% 8% 8% calc(12% - 13px);
+            grid-template-columns: 5% 8% 57% 8% 10% calc(12% - 13px);
             align-items: center;
             height: 23px;
             padding: 0 10px 0 10px;
@@ -327,22 +327,10 @@
                                 @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Прайс" })
                             </div>
                             <div class="header-part-column">
-                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Вага" })
-                            </div>
-                            <div class="header-part-column">
-                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Об'єм" })
-                            </div>
-                            <div class="header-part-column">
                                 @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Кількість" })
                             </div>
                             <div class="header-part-column">
                                 @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Заг. прайс" })
-                            </div>
-                            <div class="header-part-column">
-                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Заг. вага" })
-                            </div>
-                            <div class="header-part-column">
-                                @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Заг. об'єм" })
                             </div>
                         </div>
                     </div>
@@ -354,16 +342,12 @@
                                 <span>@entity.EquipmentCode</span>
                                 <a href="@Url.ActionLink("CatalogDetails", "CatalogDetails", new { EntityId = entity.EquipmentCatalogPositionId})" class="scrollable"><span>@entity.NameUA</span></a>
                                 <span>@entity.BasePrice £</span>
-                                <span>@entity.Weight кг</span>
-                                <span>@entity.Volume м³</span>
                                 <span style="display: flex; gap: 5px; justify-content: center;">
                                     @Html.ActionLink("—", "WareHouseEquipmentRemove", "WareHouseEquipmentRemove", new { WareHouseId = Model.WareHouseId, EquipmentWareHousePositionId = entity.EquipmentWareHousePositionId, SearchGeneral = Model.SearchGeneral, CurrentPage = Model.CurrentPage }, new { @class="action-link-symbol" })
                                     @entity.Quantity шт
                                     @Html.ActionLink("+", "WareHouseEquipmentAdd", "WareHouseEquipmentAdd", new { WareHouseId = Model.WareHouseId, EquipmentWareHousePositionId = entity.EquipmentWareHousePositionId, SearchGeneral = Model.SearchGeneral, CurrentPage = Model.CurrentPage }, new { @class = "action-link-symbol" })
                                 </span>
                                 <span>@(entity.BasePrice * entity.Quantity) £</span>
-                                <span>@(entity.Weight * entity.Quantity) кг</span>
-                                <span>@(entity.Volume * entity.Quantity) м³</span>
                             </div>
                         }
                     </div>
