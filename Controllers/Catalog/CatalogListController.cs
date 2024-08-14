@@ -39,7 +39,7 @@ namespace CRMEngSystem.Controllers.Catalog
             var sortService = new CatalogSortService(model.SortCode, model.SortAlphabetNameEN, model.SortPrice, model.SortWeight, model.SortVolume);
             entities = sortService.Sort(entities);
 
-            var searchService = new CatalogSearchService(model.SearchGeneral, model.SearchEquipmentCode, model.SearchNameEN);
+            var searchService = new CatalogSearchService(model.SearchGeneral, model.SearchEquipmentCode, model.SearchName);
             entities = searchService.Search(entities);
 
 

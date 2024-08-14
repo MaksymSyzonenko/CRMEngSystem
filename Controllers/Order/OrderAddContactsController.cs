@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CRMEngSystem.Controllers.Order
 {
+
     [Authorize]
     public class OrderAddContactsController : Controller
     {
@@ -24,6 +25,7 @@ namespace CRMEngSystem.Controllers.Order
         [HttpGet]
         public async Task<IActionResult> OrderAddContacts(int OrderId, bool WorkGroup)
         {
+            var order = await _repositoryFactory.Instantiate<OrderEntity>().GetEntityAsync(new OrderDataLoader(true, false, true, false, false), order => order.OrderId, OrderId);
             int enterpriseId = 0;
             if (WorkGroup)
             {
@@ -31,14 +33,20 @@ namespace CRMEngSystem.Controllers.Order
             }
             else
             {
-                enterpriseId = (await _repositoryFactory.Instantiate<OrderEntity>().GetEntityAsync(new OrderDataLoader(true, false, false, false, false), order => order.OrderId, OrderId)).Customer.EnterpriseId;
+                enterpriseId = order.Customer.EnterpriseId;
             }
             var enterprise =  await _repositoryFactory.Instantiate<EnterpriseEntity>().GetEntityAsync(new EnterpriseDataLoader(true, false, true, false), enterprise => enterprise.EnterpriseId, enterpriseId);
+            var orderContacts = order.ContactOrders != null ? order.ContactOrders.Select(contactorder => contactorder.Contact) : null;
+            var contacts = enterprise.Contacts.AsEnumerable();
+            if (orderContacts != null) 
+            {
+                contacts = contacts.Except(orderContacts);
+            }
             return View(new OrderAddContactsViewModel
             {
                 WorkGroup = WorkGroup,
                 OrderId = OrderId,
-                Contacts = _mapper.Map<List<ContactSelectDto>>(enterprise.Contacts)
+                Contacts = _mapper.Map<List<ContactSelectDto>>(contacts)
             });
         }
         [HttpPost]

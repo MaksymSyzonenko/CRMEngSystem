@@ -10,7 +10,7 @@ namespace CRMEngSystem.Models.ViewModels.Catalog
         public IEnumerable<CatalogListItemDto> Entities { get; set; } = default!;
         public string? SearchGeneral { get; set; }
         public string? SearchEquipmentCode { get; set; }
-        public string? SearchNameEN { get; set; }
+        public string? SearchName { get; set; }
         public string? FilterType { get; set; }
         public decimal? FilterMinBasePrice { get; set; }
         public decimal? FilterMaxBasePrice { get; set; }

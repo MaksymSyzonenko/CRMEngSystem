@@ -9,247 +9,247 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CRMEngSystem
 build_property.RootNamespace = CRMEngSystem
-build_property.ProjectDir = C:\Users\user\Documents\GitHub\CRMEngSystem\
+build_property.ProjectDir = C:\Users\user\Desktop\CRMEngSystem\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\user\Documents\GitHub\CRMEngSystem
+build_property.MSBuildProjectDirectory = C:\Users\user\Desktop\CRMEngSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/AccountChangePassword/AccountChangePassword.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/AccountChangePassword/AccountChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudENoYW5nZVBhc3N3b3JkXEFjY291bnRDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/AccountCreate/AccountCreate.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/AccountCreate/AccountCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudENyZWF0ZVxBY2NvdW50Q3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/AccountDetails/AccountDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/AccountDetails/AccountDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudERldGFpbHNcQWNjb3VudERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/AccountLogin/AccountLogin.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/AccountLogin/AccountLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudExvZ2luXEFjY291bnRMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/CatalogCreate/CatalogCreate.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/CatalogCreate/CatalogCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ0NyZWF0ZVxDYXRhbG9nQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/CatalogDetails/CatalogDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/CatalogDetails/CatalogDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ0RldGFpbHNcQ2F0YWxvZ0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/CatalogEdit/CatalogEdit.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/CatalogEdit/CatalogEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ0VkaXRcQ2F0YWxvZ0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/CatalogList/CatalogList.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/CatalogList/CatalogList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ0xpc3RcQ2F0YWxvZ0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/ContactComments/ContactComments.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/ContactComments/ContactComments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdENvbW1lbnRzXENvbnRhY3RDb21tZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/ContactCreate/ContactCreate.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/ContactCreate/ContactCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdENyZWF0ZVxDb250YWN0Q3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/ContactDetails/ContactDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/ContactDetails/ContactDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdERldGFpbHNcQ29udGFjdERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/ContactEdit/ContactEdit.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/ContactEdit/ContactEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdEVkaXRcQ29udGFjdEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/ContactList/ContactList.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/ContactList/ContactList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdExpc3RcQ29udGFjdExpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/ContactOrders/ContactOrders.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/ContactOrders/ContactOrders.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdE9yZGVyc1xDb250YWN0T3JkZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/ControlDetails/ControlDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/ControlDetails/ControlDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJvbERldGFpbHNcQ29udHJvbERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseChange/EnterpriseChange.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseChange/EnterpriseChange.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZUNoYW5nZVxFbnRlcnByaXNlQ2hhbmdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseComments/EnterpriseComments.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseComments/EnterpriseComments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZUNvbW1lbnRzXEVudGVycHJpc2VDb21tZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseContacts/EnterpriseContacts.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseContacts/EnterpriseContacts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZUNvbnRhY3RzXEVudGVycHJpc2VDb250YWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseCreate/EnterpriseCreate.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseCreate/EnterpriseCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZUNyZWF0ZVxFbnRlcnByaXNlQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseDetails/EnterpriseDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseDetails/EnterpriseDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZURldGFpbHNcRW50ZXJwcmlzZURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseEdit/EnterpriseEdit.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseEdit/EnterpriseEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZUVkaXRcRW50ZXJwcmlzZUVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseList/EnterpriseList.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseList/EnterpriseList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZUxpc3RcRW50ZXJwcmlzZUxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseList/_EnterpriseDataCard.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseList/_EnterpriseDataCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZUxpc3RcX0VudGVycHJpc2VEYXRhQ2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseOrders/EnterpriseOrders.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseOrders/EnterpriseOrders.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZU9yZGVyc1xFbnRlcnByaXNlT3JkZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/EnterpriseStatistic/EnterpriseStatistic.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/EnterpriseStatistic/EnterpriseStatistic.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW50ZXJwcmlzZVN0YXRpc3RpY1xFbnRlcnByaXNlU3RhdGlzdGljLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Home/Index.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Home/Privacy.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderAddContacts/OrderAddContacts.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderAddContacts/OrderAddContacts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJBZGRDb250YWN0c1xPcmRlckFkZENvbnRhY3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderComments/OrderComments.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderComments/OrderComments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJDb21tZW50c1xPcmRlckNvbW1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderContacts/OrderContacts.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderContacts/OrderContacts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJDb250YWN0c1xPcmRlckNvbnRhY3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderDetails/OrderDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderDetails/OrderDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxzXE9yZGVyRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderDetails/_OrderChooseCurrencyConfirmModal.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderDetails/_OrderChooseCurrencyConfirmModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxzXF9PcmRlckNob29zZUN1cnJlbmN5Q29uZmlybU1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderDetails/_OrderStatus.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderDetails/_OrderStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxzXF9PcmRlclN0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderDetails/_OrderWareHouseConfirm.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderDetails/_OrderWareHouseConfirm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJEZXRhaWxzXF9PcmRlcldhcmVIb3VzZUNvbmZpcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderEquipmentDetails/OrderEquipmentDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderEquipmentDetails/OrderEquipmentDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJFcXVpcG1lbnREZXRhaWxzXE9yZGVyRXF1aXBtZW50RGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderEquipment/OrderEquipment.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderEquipment/OrderEquipment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJFcXVpcG1lbnRcT3JkZXJFcXVpcG1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderList/OrderList.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderList/OrderList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJMaXN0XE9yZGVyTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrdersCreateOrder/OrdersCreateOrder.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrdersCreateOrder/OrdersCreateOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzQ3JlYXRlT3JkZXJcT3JkZXJzQ3JlYXRlT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/OrderWorkGroup/OrderWorkGroup.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/OrderWorkGroup/OrderWorkGroup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJXb3JrR3JvdXBcT3JkZXJXb3JrR3JvdXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/Error.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_CommentDataCard.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_CommentDataCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db21tZW50RGF0YUNhcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_CommentsList.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_CommentsList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db21tZW50c0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_ConfirmModal.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_ConfirmModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db25maXJtTW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_ContactDataCard.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_ContactDataCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db250YWN0RGF0YUNhcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_ContactMenuTab.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_ContactMenuTab.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db250YWN0TWVudVRhYi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_EnterpriseMenuTab.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_EnterpriseMenuTab.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FbnRlcnByaXNlTWVudVRhYi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_NotifyModal.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_NotifyModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZnlNb2RhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_OrderDataCard.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_OrderDataCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9PcmRlckRhdGFDYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_OrderMenuTab.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_OrderMenuTab.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9PcmRlck1lbnVUYWIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_Pagination.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_Pagination.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdpbmF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_Resizer.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_Resizer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SZXNpemVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/WareHouseCreate/WareHouseCreate.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/WareHouseCreate/WareHouseCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2FyZUhvdXNlQ3JlYXRlXFdhcmVIb3VzZUNyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/WareHouseDetails/WareHouseDetails.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/WareHouseDetails/WareHouseDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2FyZUhvdXNlRGV0YWlsc1xXYXJlSG91c2VEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/WareHouseEdit/WareHouseEdit.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/WareHouseEdit/WareHouseEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2FyZUhvdXNlRWRpdFxXYXJlSG91c2VFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/WareHouseList/WareHouseList.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/WareHouseList/WareHouseList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2FyZUhvdXNlTGlzdFxXYXJlSG91c2VMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/_ViewImports.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/_ViewStart.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Documents/GitHub/CRMEngSystem/Views/Shared/_Layout.cshtml]
+[C:/Users/user/Desktop/CRMEngSystem/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ulkeyxpggs

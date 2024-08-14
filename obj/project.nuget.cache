@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OYnMhWXDpsY=",
+  "dgSpecHash": "eryiJIsOGjA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\CRMEngSystem\\CRMEngSystem.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\CRMEngSystem\\CRMEngSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\chart.js\\3.7.1\\chart.js.3.7.1.nupkg.sha512",

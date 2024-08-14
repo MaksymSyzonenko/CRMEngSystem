@@ -37,7 +37,7 @@ namespace CRMEngSystem
             var configuration = configurationBuilder.Build();
 
             builder.Services.AddPostgreSQLDataBase(configuration.GetConnectionString("PostgreSQLConnectionString")!);
-            
+
             //builder.Services.AddPostgreSQLDataBase(configuration.GetConnectionString("PostgreSQLConnectionStringLocal")!);
 
             builder.Services.AddScoped<ISettingsService, SettingsService>();

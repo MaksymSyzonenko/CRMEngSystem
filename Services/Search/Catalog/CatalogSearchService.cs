@@ -7,12 +7,12 @@ namespace CRMEngSystem.Services.Search.Catalog
     {
         private readonly string? _searchGeneral;
         private readonly string? _searchEquipmentCode;
-        private readonly string? _searchNameEN;
-        public CatalogSearchService(string? searchGeneral, string? searchEquipmentCode, string? searchNameEN)
+        private readonly string? _searchName;
+        public CatalogSearchService(string? searchGeneral, string? searchEquipmentCode, string? searchName)
         {
             _searchGeneral = searchGeneral;
             _searchEquipmentCode = searchEquipmentCode;
-            _searchNameEN = searchNameEN;
+            _searchName = searchName;
         }
 
         public IQueryable<EquipmentCatalogPositionEntity> Search(IQueryable<EquipmentCatalogPositionEntity> entities)
@@ -25,8 +25,9 @@ namespace CRMEngSystem.Services.Search.Catalog
                 (entity.Country != null && entity.Country.ToLower().Contains(_searchGeneral.ToLower())));
 
             entities = entities.Where(entity =>
-                (string.IsNullOrEmpty(_searchNameEN) ||
-                    (entity.NameEN != null && entity.NameEN.ToLower().Contains(_searchNameEN.ToLower()))) &&
+                (string.IsNullOrEmpty(_searchName) ||
+                    (entity.NameEN != null && entity.NameEN.ToLower().Contains(_searchName.ToLower())) ||
+                    (entity.NameUA != null && entity.NameUA.ToLower().Contains(_searchName.ToLower()))) &&
                 (string.IsNullOrEmpty(_searchEquipmentCode) ||
                     (entity.EquipmentCode != null && entity.EquipmentCode.ToLower() == _searchEquipmentCode.ToLower())));
 

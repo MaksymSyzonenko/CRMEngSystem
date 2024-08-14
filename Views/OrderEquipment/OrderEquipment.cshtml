@@ -222,6 +222,30 @@
         .visible {
             opacity: 1;
         }
+
+        .percent-input-position {
+            background-color: white;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #E1E2F3;
+            border-radius: 3px;
+            color: #595586;
+            outline: none;
+            box-sizing: border-box;
+            text-align: center;
+            -moz-appearance: textfield;
+        }
+
+            .percent-input-position::-webkit-inner-spin-button,
+            .percent-input-position::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+
+
     </style>
 </head>
 <body>
@@ -271,27 +295,38 @@
                             </div>
                         </div>
                     </div>
-            
-                    <div class="cards-container">
-                        @foreach (var entity in Model.EquipmentPositions)
-                        {
-                            <div class="card-data">
-                                <a href="@Url.ActionLink("OrderEquipmentDetails", "OrderEquipmentDetails", new { EntityId = entity.EquipmentOrderPositionId })" class="code-link">@entity.EquipmentCode</a>
-                                <a href="@Url.ActionLink("CatalogDetails", "CatalogDetails", new { EntityId = entity.EquipmentCatalogPositionId})" class="scrollable"><span>@entity.NameUA</span></a>
-                                <span>@entity.QuantityToTake / @entity.QuantityInStock шт</span>
-                                <span>@entity.BasePrice £</span>
-                                <span>@entity.Discount %</span>
-                                <span>@entity.MarkUp %</span>
-                                <span>@entity.SellPrice €</span>
-                                <span style="display: flex; gap: 5px; justify-content: center;">
-                                    @Html.ActionLink("-", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
-                                    @entity.Quantity шт
-                                    @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
-                                </span>
-                                <span>@(entity.SellPrice * @entity.Quantity) €</span>
-                            </div>
-                        }
-                    </div>
+                    
+                        <div class="cards-container">
+                            @foreach (var entity in Model.EquipmentPositions)
+                            {
+                                @using (Html.BeginForm("OrderEquipmentUpdate", "OrderEquipmentUpdate", FormMethod.Post))
+                                {
+                                    <div class="card-data">
+                                        <a href="@Url.ActionLink("OrderEquipmentDetails", "OrderEquipmentDetails", new { EntityId = entity.EquipmentOrderPositionId })" class="code-link">@entity.EquipmentCode</a>
+                                        <a href="@Url.ActionLink("CatalogDetails", "CatalogDetails", new { EntityId = entity.EquipmentCatalogPositionId})" class="scrollable"><span>@entity.NameUA</span></a>
+                                        <span>@entity.QuantityToTake / @entity.QuantityInStock шт</span>
+                                        <span>@entity.BasePrice £</span>
+                                        <span>
+                                            @Html.TextBox("Discount", entity.Discount, new { @class = "percent-input-position", type = "number", min = "1", max = "100", step = "1", pattern = "[0-9]*" })
+                                        </span>
+                                        <span>
+                                            @Html.TextBox("MarkUp", entity.MarkUp, new { @class = "percent-input-position", type = "number", min = "1", max = "100", step = "1", pattern = "[0-9]*" })
+                                        </span>
+                                        @Html.Hidden("OrderId", Model.EntityId)
+                                        @Html.Hidden("EquipmentOrderPositionId", entity.EquipmentOrderPositionId)
+                                        <input type="submit" style="visibility: hidden; position: absolute;" />
+                                        <span>@entity.SellPrice €</span>
+                                        <span style="display: flex; gap: 5px; justify-content: center;">
+                                            @Html.ActionLink("-", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
+                                            @entity.Quantity шт
+                                            @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
+                                        </span>
+                                        <span>@(entity.SellPrice * @entity.Quantity) €</span>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    
                     <div style="padding: 5px 10px; display: inline-block; background-color: #E1E2F3; color: #595586; border-radius: 5px;">
                         <div class="result-container">
                             <div></div>

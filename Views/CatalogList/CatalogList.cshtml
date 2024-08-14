@@ -339,7 +339,7 @@
                             FilterMinVolume = Model.FilterMinVolume,
                             FilterMaxVolume = Model.FilterMaxVolume,
                             SearchEquipmentCode = Model.SearchEquipmentCode,
-                            SearchNameEN = Model.SearchNameEN,
+                            SearchName = Model.SearchName,
                             SortCode = sortCode,
                             SortAlphabetNameEN = sortAlphabetNameEN,
                             SortPrice = sortPrice,
@@ -390,8 +390,8 @@
                             if (!string.IsNullOrEmpty(Model.SearchEquipmentCode) && currentQuery != "SearchEquipmentCode")
                                     @Html.HiddenFor(m => m.SearchEquipmentCode)
 
-                            if (!string.IsNullOrEmpty(Model.SearchNameEN) && currentQuery != "SearchNameEN")
-                                    @Html.HiddenFor(m => m.SearchNameEN)
+                            if (!string.IsNullOrEmpty(Model.SearchName) && currentQuery != "SearchName")
+                                    @Html.HiddenFor(m => m.SearchName)
 
                             if (!string.IsNullOrEmpty(Model.FilterType) && currentQuery != "FilterType")
                                     @Html.HiddenFor(m => m.FilterType)
@@ -442,8 +442,8 @@
                     @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "search" }))
                     {
                         <img src="~/icons/Search.svg" />
-                        @Html.TextBoxFor(m => m.SearchNameEN, new { placeholder = "Пошук", @Value = Model.SearchNameEN })
-                        JoinSearches("SearchNameEN");
+                        @Html.TextBoxFor(m => m.SearchName, new { placeholder = "Пошук" })
+                        JoinSearches("SearchName");
                         <input type="submit" style="visibility: hidden; position: absolute;" />
                     }
                     @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "filter" }))
@@ -485,14 +485,14 @@
                         @if (Model.OrderId != null && Model.OrderId != 0)
                         {
                             <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
-                                @Html.ActionLink("Додати", "OrderAddEquipment", "OrderAddEquipment", new{ OrderId = Model.OrderId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchNameEN = Model.SearchNameEN, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
+                                @Html.ActionLink("Додати", "OrderAddEquipment", "OrderAddEquipment", new{ OrderId = Model.OrderId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchName = Model.SearchName, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
                         }, new{ @class = "add-btn-empty", style = "height: 18px; font-size: 10px; margin: 0 20px; max-width: 100px;"})
                             </div>
                         }
                         else if (Model.WareHouseId != null && Model.WareHouseId != 0)
                         {
                             <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
-                                @Html.ActionLink("Додати", "WareHouseAddEquipment", "WareHouseAddEquipment", new{ WareHouseId = Model.WareHouseId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchNameEN = Model.SearchNameEN, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
+                                @Html.ActionLink("Додати", "WareHouseAddEquipment", "WareHouseAddEquipment", new{ WareHouseId = Model.WareHouseId, EquipmentCatalogPositionId = entity.EquipmentCatalogPositionId, SearchGeneral = Model.SearchGeneral, SearchEquipmentCode = Model.SearchEquipmentCode, SearchName = Model.SearchName, FilterType = Model.FilterType, FilterMinBasePrice = Model.FilterMinBasePrice, FilterMaxBasePrice = Model.FilterMaxBasePrice, FilterMinWeight = Model.FilterMinWeight, FilterMaxWeight = Model.FilterMaxWeight, FilterMinVolume = Model.FilterMinVolume, FilterMaxVolume = Model.FilterMaxVolume, SortCode = Model.SortCode, SortAlphabetNameEN = Model.SortAlphabetNameEN, SortPrice = Model.SortPrice, SortWeight = Model.SortWeight, SortVolume = Model.SortVolume, CurrentPage = Model.CurrentPage
                         }, new{ @class = "add-btn-empty", style = "height: 18px; font-size: 10px; margin: 0 20px; max-width: 100px;"})
                             </div>
                         }

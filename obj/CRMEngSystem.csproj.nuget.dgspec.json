@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Documents\\GitHub\\CRMEngSystem\\CRMEngSystem.csproj": {}
+    "C:\\Users\\user\\Desktop\\CRMEngSystem\\CRMEngSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Documents\\GitHub\\CRMEngSystem\\CRMEngSystem.csproj": {
+    "C:\\Users\\user\\Desktop\\CRMEngSystem\\CRMEngSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Documents\\GitHub\\CRMEngSystem\\CRMEngSystem.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\CRMEngSystem\\CRMEngSystem.csproj",
         "projectName": "CRMEngSystem",
-        "projectPath": "C:\\Users\\user\\Documents\\GitHub\\CRMEngSystem\\CRMEngSystem.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\CRMEngSystem\\CRMEngSystem.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Documents\\GitHub\\CRMEngSystem\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\CRMEngSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

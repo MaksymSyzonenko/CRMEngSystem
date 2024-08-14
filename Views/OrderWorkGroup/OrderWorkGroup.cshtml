@@ -166,7 +166,7 @@
     }
     <div class="page-container">
         @await Html.PartialAsync("_OrderMenuTab", Model)
-        @Html.ActionLink("Додати працівника", "OrderAddContacts", "OrderAddContacts", new { OrderId = Model.EntityId, WorkGroup = true }, new { @class="add-btn-fullwidth" })
+        @Html.ActionLink("Додати працівників в робочу групу", "OrderAddContacts", "OrderAddContacts", new { OrderId = Model.EntityId, WorkGroup = true }, new { @class="add-btn-fullwidth" })
         <div class="cards-container">
             @foreach (var entity in Model.Contacts)
             {
