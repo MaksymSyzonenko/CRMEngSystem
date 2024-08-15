@@ -81,8 +81,21 @@
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Номер телефону: </span></div>
-                @Html.TextBoxFor(m => m.FirstPhoneNumber, new { placeholder = "Основний номер телефону", @class = "data-input", required = "required" })
-                @Html.TextBoxFor(m => m.ExtraPhoneNumber, new { placeholder = "Додатковий номер телефону (Якщо відсутній - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.FirstPhoneNumber, new
+                    {
+                        placeholder = "Основний номер телефону",
+                        @class = "data-input",
+                        required = "required",
+                        pattern = "^\\+\\d{2} \\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}$",
+                        title = "Номер телефона повинен бути у форматі +XX (XXX) XXX-XX-XX."
+                    })
+                @Html.TextBoxFor(m => m.ExtraPhoneNumber, new
+                    {
+                        placeholder = "Додатковий номер телефону (Якщо відсутній - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "^\\+\\d{2} \\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}$",
+                        title = "Номер телефона повинен бути у форматі +XX (XXX) XXX-XX-XX."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Електрона пошта: </span></div>
