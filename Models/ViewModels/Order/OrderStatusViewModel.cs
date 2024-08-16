@@ -4,6 +4,7 @@ namespace CRMEngSystem.Models.ViewModels.Order
 {
     public sealed class OrderStatusViewModel
     {
+        public int OrderId { get; set; }
         public OrderStatusValue Status { get; set; }
         public DateTime DateTimeProcessingStatusStart { get; set; }
         public DateTime? DateTimeOfferStatusStart { get; set; }

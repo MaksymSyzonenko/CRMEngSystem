@@ -250,7 +250,7 @@
             </div>
             <div class="right-details-container">
                 <img class="priority-container" src="@Url.Content($"~/icons/Priority_{Model.Order.Priority}_Big.svg")" />
-                @await Html.PartialAsync("_OrderStatus", new OrderStatusViewModel { Status = Model.Order.Status, DateTimeProcessingStatusStart = Model.Order.DateTimeProcessingStatusStart, DateTimeOfferStatusStart = Model.Order.DateTimeOfferStatusStart, DateTimeExecutionStatusStart = Model.Order.DateTimeExecutionStatusStart, DateTimeCompletedStatusStart = Model.Order.DateTimeCompletedStatusStart})
+                @await Html.PartialAsync("_OrderStatus", new OrderStatusViewModel { OrderId = Model.EntityId, Status = Model.Order.Status, DateTimeProcessingStatusStart = Model.Order.DateTimeProcessingStatusStart, DateTimeOfferStatusStart = Model.Order.DateTimeOfferStatusStart, DateTimeExecutionStatusStart = Model.Order.DateTimeExecutionStatusStart, DateTimeCompletedStatusStart = Model.Order.DateTimeCompletedStatusStart})
                 <div class="func-btns">
                     <div class="content">
                         <div class="left">

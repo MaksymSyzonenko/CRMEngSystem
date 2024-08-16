@@ -260,13 +260,12 @@
 
         .copy-container {
             width: 100%;
-            height: 21px;
+            padding: 0 5px 5px 5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 2px solid #E1E2F3;
             margin-top: 10px;
-            padding: 0 5px;
             cursor: pointer;
         }
 
@@ -520,9 +519,9 @@
                                 <span>@entity.Initials</span>
                             </a>
                             <div class="card-data-footer">
+                                <a href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = entity.EnterpriseId})" class="card-data-link"><div class="scrollable" style="margin-bottom: 2px;"><span>@entity.EnterpriseNameUA</span></div></a>
                                 <div class="copy-container" onclick="copyToClipboard('@entity.PhoneNumber')"><span>@entity.PhoneNumber</span><img src="~/icons/Copy.svg" /></div>
                                 <div class="copy-container" onclick="copyToClipboard('@entity.Email')"><span>@entity.Email</span><img src="~/icons/Copy.svg" /></div>
-                                <a href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = entity.EnterpriseId})" class="card-data-link"><div class="scrollable" style="margin-bottom: 2px;"><span>@entity.EnterpriseNameUA</span></div></a>
                             </div>
                         </div>
                     }

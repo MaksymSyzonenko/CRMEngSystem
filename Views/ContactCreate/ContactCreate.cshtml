@@ -104,35 +104,83 @@
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на телеграм: </span></div>
-                @Html.TextBoxFor(m => m.TelegramLink, new { placeholder = "Посилання на телеграм (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.TelegramLink, new 
+                    { 
+                        placeholder = "Посилання на телеграм (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (t.me/username), де username це ім'я користувача або номер телефону."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на лінкедін: </span></div>
-                @Html.TextBoxFor(m => m.LinkedInLink, new { placeholder = "Посилання на лінкедін (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.LinkedInLink, new
+                    {
+                        placeholder = "Посилання на лінкедін (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (linkedin.com/in/username)."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на вайбер: </span></div>
-                @Html.TextBoxFor(m => m.ViberLink, new { placeholder = "Посилання на вайбер (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.ViberLink, new
+                    {
+                        placeholder = "Посилання на вайбер (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (viber//chat?number=username), де username це ім'я користувача або номер телефону."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на фейсбук: </span></div>
-                @Html.TextBoxFor(m => m.FaceBookLink, new { placeholder = "Посилання на фейсбук (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.FaceBookLink, new
+                    {
+                        placeholder = "Посилання на фейсбук (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (facebook.com/username)."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на вотсап: </span></div>
-                @Html.TextBoxFor(m => m.WhatsappLink, new { placeholder = "Посилання на вотсап (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.WhatsappLink, new
+                    {
+                        placeholder = "Посилання на вотсап (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (wa.me/username), де username це ім'я користувача або номер телефону."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на скайп: </span></div>
-                @Html.TextBoxFor(m => m.SkypeLink, new { placeholder = "Посилання на скайп (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.SkypeLink, new
+                    {
+                        placeholder = "Посилання на скайп (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (join.skype.com/username)."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на твітер: </span></div>
-                @Html.TextBoxFor(m => m.TwitterLink, new { placeholder = "Посилання на твітер (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.TwitterLink, new
+                    {
+                        placeholder = "Посилання на твітер (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (twitter.com/username)."
+                    })
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Посилання на інстаграм: </span></div>
-                @Html.TextBoxFor(m => m.InstagramLink, new { placeholder = "Посилання на інстаграм (Якщо відсутнє - залишити пустим)", @class = "data-input"})
+                @Html.TextBoxFor(m => m.InstagramLink, new
+                    {
+                        placeholder = "Посилання на інстаграм (Якщо відсутнє - залишити пустим)",
+                        @class = "data-input",
+                        pattern = "https://.*",
+                        title = "Посилання повине починатися з (https://), далі наприклад (instagram.com/username)."
+                    })
             </div>
             @Html.HiddenFor(m => m.EnterpriseId)
             <div class="form-container-row">

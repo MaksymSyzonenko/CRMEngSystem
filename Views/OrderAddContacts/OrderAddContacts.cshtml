@@ -152,60 +152,69 @@
 </head>
 <body>
     <div class="page-container">
-        @if (Model.WorkGroup)
+        @if(Model.Contacts.Count() != 0)
         {
-            <div style="height: 30px; margin-bottom: 10px; align-items: center;">
-                <span style="color: #595586; font-size: 18px; font-weight: bold;">Додавання працівників до замовлення</span>
-            </div>
+            @if (Model.WorkGroup)
+            {
+                <div style="height: 30px; margin-bottom: 10px; align-items: center;">
+                    <span style="color: #595586; font-size: 18px; font-weight: bold;">Додавання працівників до замовлення</span>
+                </div>
+            }
+            else
+            {
+                <div style="height: 30px; margin-bottom: 10px; align-items: center;">
+                    <span style="color: #595586; font-size: 18px; font-weight: bold;">Додавання контактів до замовлення</span>
+                </div>
+            }
+            @using (Html.BeginForm("OrderAddContacts", "OrderAddContacts", FormMethod.Post))
+            {
+                @if (Model.WorkGroup)
+                {
+                    <input class="add-btn-fullwidth" type="submit" value="Додати обраних працівників" />
+                }
+                else
+                {
+                    <input class="add-btn-fullwidth" type="submit" value="Додати обрані контакти" />
+                }
+                <div class="cards-container">
+                    @for (int i = 0; i < Model.Contacts.Count; i++)
+                    {
+                        var entity = Model.Contacts[i];
+                        <div class="card-data">
+                            <a href="@Url.Action("ContactDetails","ContactDetails", new { EntityId = entity.ContactId})" class="card-data-header">
+                                @if (entity.Image!.Length == 0)
+                                {
+                                    <img src="~/images/contact/Contact_Empty_Image.png">
+                                }
+                                else
+                                {
+                                    <img src="data:image/jpeg;base64,@(Convert.ToBase64String(entity.Image!))">
+                                }
+                                <span>@entity.Initials</span>
+                            </a>
+                            <div class="card-data-footer">
+                                <div class="copy-container" onclick="copyToClipboard('@entity.PhoneNumber')"><span>@entity.PhoneNumber</span><img src="~/icons/Copy.svg" /></div>
+                                <div class="copy-container" onclick="copyToClipboard('@entity.Email')"><span>@entity.Email</span><img src="~/icons/Copy.svg" /></div>
+                                <div class="select-checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.Contacts[i].IsSelected)
+                                        <span>Обрати контакт</span>
+                                        @Html.HiddenFor(m => m.Contacts[i].ContactId)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @Html.HiddenFor(m => m.OrderId)
+                @Html.HiddenFor(m => m.WorkGroup)
+            }
         }
         else
         {
             <div style="height: 30px; margin-bottom: 10px; align-items: center;">
-                <span style="color: #595586; font-size: 18px; font-weight: bold;">Додавання контактів до замовлення</span>
+                <span style="color: #595586; font-size: 18px; font-weight: bold;">Контактів не знайдено</span>
             </div>
-        }
-        @using (Html.BeginForm("OrderAddContacts", "OrderAddContacts", FormMethod.Post))
-        {
-            @if (Model.WorkGroup)
-            {
-                <input class="add-btn-fullwidth" type="submit" value="Додати обраних працівників" />
-            }
-            else
-            {
-                <input class="add-btn-fullwidth" type="submit" value="Додати обрані контакти" />
-            }
-            <div class="cards-container">
-                @for (int i = 0; i < Model.Contacts.Count; i++)
-                {
-                    var entity = Model.Contacts[i];
-                    <div class="card-data">
-                        <a href="@Url.Action("ContactDetails","ContactDetails", new { EntityId = entity.ContactId})" class="card-data-header">
-                            @if (entity.Image!.Length == 0)
-                            {
-                                <img src="~/images/contact/Contact_Empty_Image.png">
-                            }
-                            else
-                            {
-                                <img src="data:image/jpeg;base64,@(Convert.ToBase64String(entity.Image!))">
-                            }
-                            <span>@entity.Initials</span>
-                        </a>
-                        <div class="card-data-footer">
-                            <div class="copy-container" onclick="copyToClipboard('@entity.PhoneNumber')"><span>@entity.PhoneNumber</span><img src="~/icons/Copy.svg" /></div>
-                            <div class="copy-container" onclick="copyToClipboard('@entity.Email')"><span>@entity.Email</span><img src="~/icons/Copy.svg" /></div>
-                            <div class="select-checkbox">
-                                <label>
-                                    @Html.CheckBoxFor(m => m.Contacts[i].IsSelected)
-                                    <span>Обрати контакт</span>
-                                    @Html.HiddenFor(m => m.Contacts[i].ContactId)
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-            @Html.HiddenFor(m => m.OrderId)
-            @Html.HiddenFor(m => m.WorkGroup)
         }
     </div>
 </body>

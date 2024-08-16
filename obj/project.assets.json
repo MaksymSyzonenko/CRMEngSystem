@@ -53,6 +53,19 @@
           }
         }
       },
+      "libphonenumber-csharp/8.13.43": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/PhoneNumbers.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/PhoneNumbers.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.29": {
         "type": "package",
         "compile": {
@@ -554,6 +567,25 @@
         "lib/net8.0/DocumentFormat.OpenXml.Framework.xml",
         "lib/netstandard2.0/DocumentFormat.OpenXml.Framework.dll",
         "lib/netstandard2.0/DocumentFormat.OpenXml.Framework.xml"
+      ]
+    },
+    "libphonenumber-csharp/8.13.43": {
+      "sha512": "2V3PRlBi2N9a58NTbJnYIrGMUNZ8WsMUAN45g7JoQ9hpjA0LtbOl69E3dm4ppRS6MVR+BRMtsIc/2cOo3IPFeQ==",
+      "type": "package",
+      "path": "libphonenumber-csharp/8.13.43",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net6.0/PhoneNumbers.dll",
+        "lib/net6.0/PhoneNumbers.xml",
+        "lib/net7.0/PhoneNumbers.dll",
+        "lib/net7.0/PhoneNumbers.xml",
+        "lib/netstandard2.0/PhoneNumbers.dll",
+        "lib/netstandard2.0/PhoneNumbers.xml",
+        "libphonenumber-csharp.8.13.43.nupkg.sha512",
+        "libphonenumber-csharp.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.29": {
@@ -1108,7 +1140,8 @@
       "DocumentFormat.OpenXml >= 3.1.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.29",
       "Newtonsoft.Json >= 13.0.3",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.29"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.29",
+      "libphonenumber-csharp >= 8.13.43"
     ]
   },
   "packageFolders": {
@@ -1179,6 +1212,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[6.0.29, )"
+          },
+          "libphonenumber-csharp": {
+            "target": "Package",
+            "version": "[8.13.43, )"
           }
         },
         "imports": [
