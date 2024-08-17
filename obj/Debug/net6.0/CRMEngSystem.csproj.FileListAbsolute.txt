@@ -188,3 +188,5 @@ C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.pdb
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.genruntimeconfig.cache
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\ref\CRMEngSystem.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\PhoneNumbers.dll
+C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Humanizer.dll
+C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using CRMEngSystem.Data.DefaultData.Enterprise;
 using CRMEngSystem.Data.Entities.Enterprise;
 
 namespace CRMEngSystem.Data.Configurations.Enterprise
@@ -15,7 +14,6 @@ namespace CRMEngSystem.Data.Configurations.Enterprise
                 .WithOne(order => order.Customer)
                 .HasForeignKey(order => order.CustomerId)
                 .OnDelete(DeleteBehavior.Cascade);
-           
 
             builder.HasOne(enterprise => enterprise.Details)
                 .WithOne(details => details.Enterprise)

@@ -25,6 +25,17 @@ namespace CRMEngSystem.Data.Repositories.Core
             return true;
         }
 
+        public async Task<TEntity?> AddEntityGetAsync(TEntity entity)
+        {
+            if (entity == null)
+                return null;
+
+            var result = await _context.Set<TEntity>().AddAsync(entity);
+            await Commit();
+
+            return result.Entity;
+        }
+
         public async Task<bool> UpdateEntityAsync<TKey>(TKey currentEntityId, TEntity updatedEntity)
         {
             if (updatedEntity == null)

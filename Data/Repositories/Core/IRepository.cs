@@ -6,6 +6,7 @@ namespace CRMEngSystem.Data.Repositories.Core
     public interface IRepository<TEntity> where TEntity : class
     {
         Task<bool> AddEntityAsync(TEntity entity);
+        Task<TEntity?> AddEntityGetAsync(TEntity entity);
         Task<bool> UpdateEntityAsync<TKey>(TKey currentEntityId, TEntity updatedEntity);
         Task<bool> UpdateRangeAsync<TKey>(string keyName, IEnumerable<TKey> currentEntityIds, IEnumerable<TEntity> updatedEntities);
         Task<bool> UpdateRangeAsync(IEnumerable<TEntity> entities);

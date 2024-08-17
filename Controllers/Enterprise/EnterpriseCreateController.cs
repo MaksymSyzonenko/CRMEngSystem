@@ -1,7 +1,10 @@
-﻿using CRMEngSystem.Data.Entities.Enterprise;
+﻿using CRMEngSystem.Data.Context;
+using CRMEngSystem.Data.Entities.Enterprise;
+using CRMEngSystem.Data.Entities.User;
 using CRMEngSystem.Data.Repositories.Factory;
 using CRMEngSystem.Models.ViewModels.Enterprise;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRMEngSystem.Controllers.Enterprise
@@ -10,16 +13,20 @@ namespace CRMEngSystem.Controllers.Enterprise
     public class EnterpriseCreateController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
-        public EnterpriseCreateController(IRepositoryFactory repositoryFactory)
+        private readonly UserManager<UserEntity> _userManager;
+        private readonly CRMEngSystemDbContext _context;
+        public EnterpriseCreateController(IRepositoryFactory repositoryFactory, UserManager<UserEntity> userManager, CRMEngSystemDbContext context)
         {
             _repositoryFactory = repositoryFactory;
+            _userManager = userManager;
+            _context = context;
         }
         [HttpGet]
         public IActionResult EnterpriseCreate() => View();
         [HttpPost]
         public async Task<IActionResult> EnterpriseCreate(EntepriseCreateViewModel model)
         {
-            var result = await _repositoryFactory.Instantiate<EnterpriseEntity>().AddEntityAsync(new EnterpriseEntity
+            var result = await _repositoryFactory.Instantiate<EnterpriseEntity>().AddEntityGetAsync(new EnterpriseEntity
             {
                 Details = new EnterpriseDetailsEntity
                 {
@@ -42,8 +49,16 @@ namespace CRMEngSystem.Controllers.Enterprise
                 DateTimeCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time")),
                 DateTimeUpdate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time"))
             });
-            if(result)
+            if(result != null)
+            {
+                await _context.EnterpriseSelects.AddAsync(new EnterpriseSelectEntity
+                {
+                    EnterpriseId = result.EnterpriseId,
+                    UserId = _userManager.GetUserId(User)
+                });
+                await _context.SaveChangesAsync();
                 return OpenModal();
+            }   
             return OpenErrorModal();
         }
         public IActionResult OpenModal()

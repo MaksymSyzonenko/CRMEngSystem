@@ -8,7 +8,7 @@ namespace CRMEngSystem.Data.Extensions
         public static IServiceCollection AddPostgreSQLDataBase(this IServiceCollection services, string connectionString)
         {
             services.AddDbContextPool<CRMEngSystemDbContext>(options =>
-                options.UseNpgsql(connectionString, builder => builder.MigrationsAssembly("CRM-EngSystem-DataBase")));
+                options.UseNpgsql(connectionString, builder => builder.MigrationsAssembly("CRMEngSystem")));
 
             return services;
         }

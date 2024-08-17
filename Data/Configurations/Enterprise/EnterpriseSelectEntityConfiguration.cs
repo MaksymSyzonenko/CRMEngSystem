@@ -9,6 +9,7 @@ namespace CRMEngSystem.Data.Configurations.Enterprise
         public void Configure(EntityTypeBuilder<EnterpriseSelectEntity> builder)
         {
             builder.HasKey(select => select.EnterpriseSelectId);
+
         }
     }
 }
