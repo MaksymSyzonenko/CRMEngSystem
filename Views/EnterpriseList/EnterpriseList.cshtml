@@ -26,7 +26,33 @@
         @await Html.PartialAsync("_NotifyModal", new NotifyModalViewModel { NotifyText = (string)TempData["NotifyText"]!, IsError = true })
     }
     <div class="page-container">
-        @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search", style = "height: 30px;" }))
+        <div class="tabs-menu" style="margin-bottom: 10px;">
+            @{
+                EnterpriseListViewModel CreateViewModel(bool IsSelectedEnterprises)
+                => new EnterpriseListViewModel
+                {
+                    IsSelectedEnterprises = IsSelectedEnterprises,
+                    SearchGeneral = Model.SearchGeneral,
+                    SearchName = Model.SearchName,
+                    SearchStreet = Model.SearchStreet,
+                    SearchRegion = Model.SearchRegion,
+                    SearchCity = Model.SearchCity,
+                    SortAlphabetCity = Model.SortAlphabetCity,
+                    SortAlphabetStreet = Model.SortAlphabetStreet,
+                    SortAlphabetRegion = Model.SortAlphabetRegion,
+                    TotalPageCount = Model.TotalPageCount
+                };
+            }
+            <div class='@(Model.IsSelectedEnterprises ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Обрані підприємства", "EnterpriseList", "EnterpriseList", CreateViewModel(true), new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberItemsSelectedEnterprises</div>
+            </div>
+            <div class='@(!Model.IsSelectedEnterprises ? "tab-link-container-active" : "tab-link-container")'>
+                @Html.ActionLink("Всі піприємства", "EnterpriseList", "EnterpriseList", CreateViewModel(false), new { @class = "tab-link" })
+                <div class="number-container">@Model.NumberItemsEnterprises</div>
+            </div>
+        </div>
+        @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search", style = "height: 30px; margin-bottom: 10px;" }))
         {
             <img src="~/icons/Search.svg" />
             @Html.TextBoxFor(m => m.SearchGeneral, new { placeholder = "Загальний пошук", @Value = Model.SearchGeneral })
@@ -53,20 +79,23 @@
                             TotalPageCount = Model.TotalPageCount
                         };
                     }
-                    <div class="header-part-column">
+                    <div class="header-part-column" style="padding: 0 15px 5px 15px;">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Підприємство", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(true, null, null, null) })
                     </div>
-                    <div class="header-part-column">
+                    <div class="header-part-column" style="padding: 0 15px 5px 15px;">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Адреса", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, true, null, null) })
                     </div>
-                    <div class="header-part-column">
+                    <div class="header-part-column" style="padding: 0 15px 5px 15px;">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Населений пункт", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, null, true, null) })
                     </div>
-                    <div class="header-part-column">
+                    <div class="header-part-column" style="padding: 0 15px 5px 15px;">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Регіон / Область", SortActionName = "EnterpriseList", SortControllerName = "EnterpriseList", SortRouteValues = CreateViewModelWithSort(null, null, null, true) })
                     </div>
-                    <div class="header-part-column">
+                    <div class="header-part-column" style="padding: 0 5px 5px 5px;">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "На карті" })
+                    </div>
+                    <div class="header-part-column" style="padding: 0 5px 5px 5px;">
+                        @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Обрати" })
                     </div>
                 </div>
                 <div class="header-part">
@@ -108,15 +137,15 @@
                     @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))
                     {
                         <img src="~/icons/Search.svg" />
-                        @Html.TextBoxFor(m => m.SearchRegion, new { placeholder = "Пошук", @Value = Model.SearchRegion })
-                        JoinSearches("SearchRegion");
+                        @Html.TextBoxFor(m => m.SearchCity, new { placeholder = "Пошук", @Value = Model.SearchCity })
+                        JoinSearches("SearchCity");
                         <input type="submit" style="visibility: hidden;" />
                     }
                     @using (Html.BeginForm("EnterpriseList", "EnterpriseList", FormMethod.Get, new { @class = "search" }))
                     {
                         <img src="~/icons/Search.svg" />
-                        @Html.TextBoxFor(m => m.SearchCity, new { placeholder = "Пошук", @Value = Model.SearchCity })
-                        JoinSearches("SearchCity");
+                        @Html.TextBoxFor(m => m.SearchRegion, new { placeholder = "Пошук", @Value = Model.SearchRegion })
+                        JoinSearches("SearchRegion");
                         <input type="submit" style="visibility: hidden;" />
                     }
                 </div>

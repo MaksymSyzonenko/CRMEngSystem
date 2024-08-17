@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using CRMEngSystem.Attributes.Cache;
 using CRMEngSystem.Dto.Order;
 using CRMEngSystem.Dto.Contact;
+using Microsoft.AspNetCore.Identity;
+using CRMEngSystem.Data.Entities.User;
+using CRMEngSystem.Data.Context;
 
 namespace CRMEngSystem.Controllers.Enterprise
 {
@@ -19,10 +22,14 @@ namespace CRMEngSystem.Controllers.Enterprise
     {
         private readonly IMapper _mapper;
         private readonly IRepositoryFactory _repositoryFactory;
-        public EnterpriseDetailsController(IMapper mapper, IRepositoryFactory repositoryFactory)
+        private readonly UserManager<UserEntity> _userManager;
+        private readonly CRMEngSystemDbContext _context;
+        public EnterpriseDetailsController(IMapper mapper, IRepositoryFactory repositoryFactory, UserManager<UserEntity> userManager, CRMEngSystemDbContext context)
         {
             _mapper = mapper;
             _repositoryFactory = repositoryFactory;
+            _userManager = userManager;
+            _context = context;
         }
         [HttpGet]
         public async Task<IActionResult> EnterpriseDetails(int EntityId)
@@ -31,6 +38,10 @@ namespace CRMEngSystem.Controllers.Enterprise
             
             var analyzer = new OrderAnalyzer(entity.Orders.ToList());
             var (months, orderCounts, totalOrderAmounts) = analyzer.AnalyzeLast12Months();
+
+            string userId = _userManager.GetUserId(User);
+            var isEnterpriseSelected = _context.EnterpriseSelects
+                .Any(select => select.EnterpriseId == EntityId && select.UserId == userId);
 
             return View(new EnterpriseDetailsViewModel
             {
@@ -41,7 +52,8 @@ namespace CRMEngSystem.Controllers.Enterprise
                 ActiveTab = "Details",
                 NumberOrders = entity.Orders != null ? entity.Orders.Count : 0,
                 NumberContacts = entity.Contacts != null ? entity.Contacts.Count : 0,
-                NumberComments = entity.Comments != null ? entity.Comments.Count : 0
+                NumberComments = entity.Comments != null ? entity.Comments.Count : 0,
+                IsSelected = isEnterpriseSelected
             });
         }
     }

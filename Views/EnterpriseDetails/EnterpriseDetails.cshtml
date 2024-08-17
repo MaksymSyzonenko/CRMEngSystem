@@ -505,8 +505,8 @@
                                 <div class="left">
                                     <div class="select-checkbox">
                                         <label>
-                                            @Html.CheckBox("empty")
-                                            <span>Обране підприємство (Скоро)</span>
+                                            @Html.CheckBox("IsSelected", Model.IsSelected, new { id = "enterpriseCheckbox", data_enterprise_id = Model.EntityId, onchange = $"handleCheckboxChange({Model.EntityId}, this)" })
+                                            <span>Обране підприємство</span>
                                         </label>
                                     </div>
                                 </div>
@@ -600,19 +600,6 @@
                             <span style="color: #595586; font-size: 18px; font-weight: bold;">Контактів не знайдено</span>
                         </div>
                     }
-                    @* <div class="graph-container">
-                        <div class="graph">
-                            @if (Model.NumberOrdersPerMonth.All(num => num == 0))
-                            {
-                                <span style="font-weight: 800; font-size: 20px; color: #595586; text-align: center; width: 100%;">Аналітика відсутня</span>
-                            }
-                            else
-                            {
-                                <canvas id="myChart"></canvas>
-                            }
-                        </div>
-                    </div> *@
-                    @*  *@
                 </div>
             
             }
@@ -629,4 +616,23 @@
         document.body.removeChild(tempElement);
         alert("Дані скопійовані: " + text);
     }
+
+    function handleCheckboxChange(enterpriseId, checkbox) {
+        var isChecked = checkbox.checked;
+        var url = isChecked
+            ? '@Url.Action("SelectEnterprise", "EnterpriseSelect")'
+            : '@Url.Action("UnSelectEnterprise", "EnterpriseSelect")';
+
+        var formData = new FormData();
+        formData.append('EnterpriseId', enterpriseId);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
+            }
+        });
+    }
 </script>
+

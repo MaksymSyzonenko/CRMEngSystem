@@ -8,5 +8,6 @@ namespace CRMEngSystem.Models.ViewModels.Enterprise
         public EnterpriseDto Enterprise { get; init; } = default!;
         public IEnumerable<EnterpriseOrderDto> LastOrders { get; init; } = default!;
         public IEnumerable<ContactListItemDto> Contacts { get; init; } = default!;
+        public bool IsSelected { get; init; }
     }
 }

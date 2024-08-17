@@ -19,6 +19,7 @@ namespace CRMEngSystem.Data.Context
         : base(options)
         {
         }
+        public DbSet<EnterpriseSelectEntity> EnterpriseSelects { get; set; }
         public DbSet<SettingsEntity> Settings { get; set; }
         public DbSet<ColumnResizeSettingsEntity> ColumnResizeSettings { get; set; }
         public DbSet<ContactEntity> Contacts { get; set; }

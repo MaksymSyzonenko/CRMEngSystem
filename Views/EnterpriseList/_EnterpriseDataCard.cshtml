@@ -11,7 +11,7 @@
             gap: 5px;
             display: grid;
             width: 100%;
-            grid-template-columns: 40% 15% 20% 15% calc(10% - 13px);
+            grid-template-columns: 34% 15% 20% 15% 8% calc(8% - 13px);
             align-items: center;
             height: 23px;
             padding: 0 10px 0 10px;
@@ -78,6 +78,11 @@
             justify-content: center;
         }
 
+        .checkbox-container {
+            display: flex;
+            justify-content: center;
+        }
+
         .location-btn svg{
                 height: 15px;
                 width: 15px;
@@ -109,22 +114,45 @@
         <div class="scrollable"><span>@Model.Street</span></div>
         <div class="scrollable"><span>@Model.City</span></div>
         <div class="scrollable"><span>@Model.Region</span></div>
-        
-            @if(Model.Coordinate != null)
-            {
-                <div class="location-btn">
-                    <svg onclick="openGoogleMaps('@Model.Coordinate')" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.0002 17.5C10.0002 17.5 4.10742 12.8123 4.10742 8.39275C4.10742 4.70978 7.0538 2.5 10.0002 2.5C12.9465 2.5 15.8929 4.70978 15.8929 8.39275C15.8929 12.8123 10.0002 17.5 10.0002 17.5ZM11.5716 8.39275C11.5716 8.13228 11.4681 7.29319 11.2839 7.10901C11.0997 6.92482 10.2606 6.82135 10.0002 6.82135C9.7397 6.82135 8.90062 6.92482 8.71643 7.10901C8.53225 7.29319 8.42877 8.13228 8.42877 8.39275C8.42877 8.65323 8.53225 9.49231 8.71643 9.67649C8.90062 9.86068 9.7397 9.96415 10.0002 9.96415C10.2606 9.96415 11.0997 9.86068 11.2839 9.67649C11.4681 9.49231 11.5716 8.65323 11.5716 8.39275Z" stroke="#595586" stroke-width="2" />
-                    </svg>
-                </div>
-            }
-            else
-            {
-                <div class="location-btn-empty">
-                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.0002 17.5C10.0002 17.5 4.10742 12.8123 4.10742 8.39275C4.10742 4.70978 7.0538 2.5 10.0002 2.5C12.9465 2.5 15.8929 4.70978 15.8929 8.39275C15.8929 12.8123 10.0002 17.5 10.0002 17.5ZM11.5716 8.39275C11.5716 8.13228 11.4681 7.29319 11.2839 7.10901C11.0997 6.92482 10.2606 6.82135 10.0002 6.82135C9.7397 6.82135 8.90062 6.92482 8.71643 7.10901C8.53225 7.29319 8.42877 8.13228 8.42877 8.39275C8.42877 8.65323 8.53225 9.49231 8.71643 9.67649C8.90062 9.86068 9.7397 9.96415 10.0002 9.96415C10.2606 9.96415 11.0997 9.86068 11.2839 9.67649C11.4681 9.49231 11.5716 8.65323 11.5716 8.39275Z" stroke="#595586" stroke-width="2" />
-                    </svg>
-                </div>
-            }
+        @if(Model.Coordinate != null)
+        {
+            <div class="location-btn">
+                <svg onclick="openGoogleMaps('@Model.Coordinate')" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.0002 17.5C10.0002 17.5 4.10742 12.8123 4.10742 8.39275C4.10742 4.70978 7.0538 2.5 10.0002 2.5C12.9465 2.5 15.8929 4.70978 15.8929 8.39275C15.8929 12.8123 10.0002 17.5 10.0002 17.5ZM11.5716 8.39275C11.5716 8.13228 11.4681 7.29319 11.2839 7.10901C11.0997 6.92482 10.2606 6.82135 10.0002 6.82135C9.7397 6.82135 8.90062 6.92482 8.71643 7.10901C8.53225 7.29319 8.42877 8.13228 8.42877 8.39275C8.42877 8.65323 8.53225 9.49231 8.71643 9.67649C8.90062 9.86068 9.7397 9.96415 10.0002 9.96415C10.2606 9.96415 11.0997 9.86068 11.2839 9.67649C11.4681 9.49231 11.5716 8.65323 11.5716 8.39275Z" stroke="#595586" stroke-width="2" />
+                </svg>
+            </div>
+        }
+        else
+        {
+            <div class="location-btn-empty">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.0002 17.5C10.0002 17.5 4.10742 12.8123 4.10742 8.39275C4.10742 4.70978 7.0538 2.5 10.0002 2.5C12.9465 2.5 15.8929 4.70978 15.8929 8.39275C15.8929 12.8123 10.0002 17.5 10.0002 17.5ZM11.5716 8.39275C11.5716 8.13228 11.4681 7.29319 11.2839 7.10901C11.0997 6.92482 10.2606 6.82135 10.0002 6.82135C9.7397 6.82135 8.90062 6.92482 8.71643 7.10901C8.53225 7.29319 8.42877 8.13228 8.42877 8.39275C8.42877 8.65323 8.53225 9.49231 8.71643 9.67649C8.90062 9.86068 9.7397 9.96415 10.0002 9.96415C10.2606 9.96415 11.0997 9.86068 11.2839 9.67649C11.4681 9.49231 11.5716 8.65323 11.5716 8.39275Z" stroke="#595586" stroke-width="2" />
+                </svg>
+            </div>
+        }
+        <div class="checkbox-container">
+            <span>
+                @Html.CheckBox("IsSelected", Model.IsSelected, new { id = "enterpriseCheckbox", data_enterprise_id = Model.EnterpriseId, onchange = $"handleCheckboxChange({Model.EnterpriseId}, this)" })
+            </span>
+        </div>
     </div>
 </body>
+<script>
+    function handleCheckboxChange(enterpriseId, checkbox) {
+        var isChecked = checkbox.checked;
+        var url = isChecked
+            ? '@Url.Action("SelectEnterprise", "EnterpriseSelect")'
+            : '@Url.Action("UnSelectEnterprise", "EnterpriseSelect")';
+
+        var formData = new FormData();
+        formData.append('EnterpriseId', enterpriseId);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
+            }
+        });
+    }
+</script>

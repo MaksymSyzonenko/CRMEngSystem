@@ -15,5 +15,8 @@ namespace CRMEngSystem.Models.ViewModels.Enterprise
         public bool? SortAlphabetCity { get; init; }
         public bool? SortAlphabetRegion { get; init; }
         public bool? SortEnterpriseId { get; init; }
+        public bool IsSelectedEnterprises { get; set; } = true;
+        public int NumberItemsSelectedEnterprises { get; set; }
+        public int NumberItemsEnterprises { get; set; }
     }
 }

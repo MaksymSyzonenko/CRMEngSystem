@@ -10,7 +10,7 @@
 .header-part {
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: 40% 15% 20% 15% calc(10% - 13px);
+    grid-template-columns: 34% 15% 20% 15% 8% calc(8% - 13px);
     padding-right: 13px;
     overflow: hidden;
     position: relative;
@@ -22,7 +22,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 15px 5px 15px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -34,7 +33,7 @@
     text-decoration: none;
 }
 
-.header-part-column:last-child {
+.header-part-column:last-child .header-part-column:nth-last-child(-1) {
     justify-content: center;
 }
 

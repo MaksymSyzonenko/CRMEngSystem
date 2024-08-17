@@ -9,5 +9,6 @@
         public string Region { get; init; } = default!;
         public string City { get; init; } = default!;
         public string Coordinate { get; init; } = default!;
+        public bool IsSelected { get; set; }
     }
 }
