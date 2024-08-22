@@ -392,7 +392,7 @@
                     <div class="header-part-column">
                         @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Прайс", SortActionName = "CatalogList", SortControllerName = "CatalogList", SortRouteValues = CreateViewModelWithSort(null, null, true, null, null) })
                     </div>
-                    @if (!(Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0))
+                    @if (!((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0)))
                     {
                         <div class="header-part-column">
                             @await Html.PartialAsync("_Resizer", new ResizerViewModel { TitleName = "Вага", SortActionName = "CatalogList", SortControllerName = "CatalogList", SortRouteValues = CreateViewModelWithSort(null, null, null, true, null) })
@@ -480,7 +480,7 @@
                         JoinSearches("FilterBasePrice");
                         <input type="submit" style="visibility: hidden; position: absolute;" />
                     }
-                    @if (!(Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0))
+                    @if (!((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0)))
                     {
                         @using (Html.BeginForm("CatalogList", "CatalogList", FormMethod.Get, new { @class = "range-container" }))
                         {
@@ -547,7 +547,7 @@
                             {
                                 @if(entity.Quantity > 0)
                                 {
-                                    <input type="submit" value="Додано" class="add-btn" style="height: 18px; margin: 0 10px; padding: 0 20px;">
+                                    <input type="submit" value="Замінити" class="add-btn" style="height: 18px; margin: 0 10px; padding: 0 20px;">
                                 }
                                 else
                                 {
