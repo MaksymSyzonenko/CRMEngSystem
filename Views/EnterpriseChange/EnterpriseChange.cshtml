@@ -134,6 +134,8 @@
         {
             <img src="~/icons/Search.svg" />
             @Html.TextBoxFor(m => m.SearchGeneral, new { placeholder = "Пошук", @Value = Model.SearchGeneral })
+            @Html.HiddenFor(m => m.ContactId)
+            @Html.HiddenFor(m => m.ContactInitials)
         }
         <div class="header-container">
             <div class="header-part">

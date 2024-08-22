@@ -14,13 +14,14 @@ namespace CRMEngSystem.Controllers.Order
         {
             _repositoryFactory = repositoryFactory;
         }
+        [HttpPost]
         public async Task<IActionResult> OrderEquipmentAdd(int EntityId, int EquipmentOrderPositionId, string ActionName, string ControllerName)
         {
             var repository = _repositoryFactory.Instantiate<EquipmentOrderPositionEntity>();
             var equipment = await repository.GetEntityAsync(new EquipmentOrderPositionDataLoader(false, false), equipment => equipment.EquipmentOrderPositionId, EquipmentOrderPositionId);
             equipment.Quantity += 1;
             await repository.UpdateEntityAsync(equipment.EquipmentOrderPositionId, equipment);
-            if(ActionName == "OrderEquipment")
+            if (ActionName == "OrderEquipment")
                 return RedirectToAction(ActionName, ControllerName, new { EntityId });
             return RedirectToAction(ActionName, ControllerName, new { EntityId = EquipmentOrderPositionId });
         }

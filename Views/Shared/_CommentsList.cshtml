@@ -62,7 +62,7 @@
 <body>
     @using (Html.BeginForm(Model.ActionName, Model.ControllerName, FormMethod.Post, new { @class = "send-comment-container" }))
     {
-        @Html.TextBoxFor(m => m.Text, new { @class = "comment-input", placeholder = "Напишіть ваш коментар тут..."})
+        @Html.TextBoxFor(m => m.Text, new { @class = "comment-input", placeholder = "Напишіть ваш коментар тут..." })
         @Html.HiddenFor(m => m.EntityId)
         <div class="btn-container">
             <input style="font-size: 12px;" class="add-btn" type="submit" value="Надіслати" />

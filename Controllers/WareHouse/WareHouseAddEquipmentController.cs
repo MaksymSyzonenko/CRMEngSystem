@@ -1,7 +1,9 @@
-﻿using CRMEngSystem.Data.Entities.WareHouse;
+﻿using CRMEngSystem.Data.Entities.Order;
+using CRMEngSystem.Data.Entities.WareHouse;
 using CRMEngSystem.Data.Loaders.WareHouse;
 using CRMEngSystem.Data.Repositories.Factory;
 using CRMEngSystem.Models.ViewModels.Catalog;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,24 +35,32 @@ namespace CRMEngSystem.Controllers.WareHouse
             bool? SortPrice,
             bool? SortWeight,
             bool? SortVolume,
-            int CurrentPage
+            int CurrentPage,
+            int Quantity
         )
         {
             var wareHouse = await _repositoryFactory.Instantiate<WareHouseEntity>().GetEntityAsync(new WareHouseDataLoader(true), wareHouse => wareHouse.WareHouseId, WareHouseId);
             if (wareHouse.EquipmentWareHousePositions.Any(equipment => equipment.EquipmentCatalogPositionId == EquipmentCatalogPositionId))
             {
-                TempData["ErrorNotifyModal"] = true;
-                TempData["NotifyText"] = "Обладнання вже наявне на складі.";
-                return RedirectToAction("CatalogList", "CatalogList", new CatalogListViewModel { WareHouseId = WareHouseId });
+                var equipment = wareHouse.EquipmentWareHousePositions.FirstOrDefault(equipment => equipment.EquipmentCatalogPositionId == EquipmentCatalogPositionId);
+                equipment.Quantity = Quantity;
+                await _repositoryFactory
+                    .Instantiate<EquipmentWareHousePositionEntity>()
+                    .UpdateEntityAsync(equipment.EquipmentWareHousePositionId, equipment);
+                TempData["NotifyModal"] = true;
+                TempData["NotifyText"] = "Обладнання успішно замінено для складу!";
             }
-            await _repositoryFactory.Instantiate<EquipmentWareHousePositionEntity>().AddEntityAsync(new EquipmentWareHousePositionEntity
+            else
             {
-                WareHouseId = WareHouseId,
-                EquipmentCatalogPositionId = EquipmentCatalogPositionId,
-                Quantity = 1
-            });
-            TempData["NotifyModal"] = true;
-            TempData["NotifyText"] = "Обладнання успішно додано до складу!";
+                await _repositoryFactory.Instantiate<EquipmentWareHousePositionEntity>().AddEntityAsync(new EquipmentWareHousePositionEntity
+                {
+                    WareHouseId = WareHouseId,
+                    EquipmentCatalogPositionId = EquipmentCatalogPositionId,
+                    Quantity = Quantity
+                });
+                TempData["NotifyModal"] = true;
+                TempData["NotifyText"] = "Обладнання успішно додано до складу!";
+            }
             return RedirectToAction("CatalogList", "CatalogList", new CatalogListViewModel 
             {  
                 WareHouseId = WareHouseId,

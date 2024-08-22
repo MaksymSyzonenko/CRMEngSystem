@@ -37,38 +37,46 @@ namespace CRMEngSystem.Controllers.Order
             bool? SortPrice,
             bool? SortWeight,
             bool? SortVolume,
-            int CurrentPage
+            int CurrentPage,
+            int Quantity
         )
         {
             var order = await _repositoryFactory.Instantiate<OrderEntity>().GetEntityAsync(new OrderDataLoader(false, false, false, false, true), order => order.OrderId, OrderId);
             if(order.EquipmentOrderPositions.Any(equipment => equipment.EquipmentCatalogPositionId == EquipmentCatalogPositionId))
             {
-                TempData["ErrorNotifyModal"] = true;
-                TempData["NotifyText"] = "Обладнання вже наявне в замовленні.";
-                return RedirectToAction("CatalogList", "CatalogList", new CatalogListViewModel { OrderId = OrderId });
+                var equipment = order.EquipmentOrderPositions.FirstOrDefault(equipment => equipment.EquipmentCatalogPositionId == EquipmentCatalogPositionId);
+                equipment.Quantity = Quantity;
+                await _repositoryFactory
+                    .Instantiate<EquipmentOrderPositionEntity>()
+                    .UpdateEntityAsync(equipment.EquipmentOrderPositionId, equipment);
+                TempData["NotifyModal"] = true;
+                TempData["NotifyText"] = "Обладнання успішно замінено для замовлення!";
             }
-
-            var equipment = await _repositoryFactory.Instantiate<EquipmentCatalogPositionEntity>().GetEntityAsync(new EquipmentCatalogPositionDataLoader(false, false, false), equipment => equipment.EquipmentCatalogPositionId, EquipmentCatalogPositionId);
-            int discount = 35;
-            int markUp = 55;
-            await _repositoryFactory.Instantiate<EquipmentOrderPositionEntity>().AddEntityAsync(new EquipmentOrderPositionEntity
+            else
             {
-                OrderId = OrderId,
-                EquipmentCatalogPositionId = EquipmentCatalogPositionId,
-                BasePrice = equipment.BasePrice,
-                Discount = discount,
-                MarkUp = markUp,
-                Quantity = 1,
-                PurchasePrice = Math.Round(PriceCalculator.CalculatePurchasePrice(discount, equipment.BasePrice * ConfigurationSettings.CurrencyCoefficient), 2),
-                SellPrice = Math.Round(PriceCalculator.CalculateSellPrice(discount, markUp, equipment.BasePrice * ConfigurationSettings.CurrencyCoefficient), 2),
-                Weight = equipment.Weight,
-                Volume = equipment.Volume,
-                QuantityInStock = 1,
-                QuantityToTake = 1,
-                ShippingCost = Math.Round(PriceCalculator.CalculateShippingCost(equipment.Weight, equipment.Volume, ConfigurationSettings.ShippingRatePerKg, ConfigurationSettings.ShippingRatePerCubicMeter), 2)
-            });
-            TempData["NotifyModal"] = true;
-            TempData["NotifyText"] = "Обладнання успішно додано до замовлення!";
+                var equipment = await _repositoryFactory.Instantiate<EquipmentCatalogPositionEntity>().GetEntityAsync(new EquipmentCatalogPositionDataLoader(false, false, false), equipment => equipment.EquipmentCatalogPositionId, EquipmentCatalogPositionId);
+                int discount = 35;
+                int markUp = 55;
+                await _repositoryFactory.Instantiate<EquipmentOrderPositionEntity>().AddEntityAsync(new EquipmentOrderPositionEntity
+                {
+                    OrderId = OrderId,
+                    EquipmentCatalogPositionId = EquipmentCatalogPositionId,
+                    BasePrice = equipment.BasePrice,
+                    Discount = discount,
+                    MarkUp = markUp,
+                    Quantity = Quantity,
+                    PurchasePrice = Math.Round(PriceCalculator.CalculatePurchasePrice(discount, equipment.BasePrice * ConfigurationSettings.CurrencyCoefficient), 2),
+                    SellPrice = Math.Round(PriceCalculator.CalculateSellPrice(discount, markUp, equipment.BasePrice * ConfigurationSettings.CurrencyCoefficient), 2),
+                    Weight = equipment.Weight,
+                    Volume = equipment.Volume,
+                    QuantityInStock = 1,
+                    QuantityToTake = 1,
+                    ShippingCost = Math.Round(PriceCalculator.CalculateShippingCost(equipment.Weight, equipment.Volume, ConfigurationSettings.ShippingRatePerKg, ConfigurationSettings.ShippingRatePerCubicMeter), 2)
+                });
+                TempData["NotifyModal"] = true;
+                TempData["NotifyText"] = "Обладнання успішно додано до замовлення!";
+            }
+            
             return RedirectToAction("CatalogList", "CatalogList", new CatalogListViewModel { 
                 OrderId = OrderId,
                 SearchGeneral = SearchGeneral,

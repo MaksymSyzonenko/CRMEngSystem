@@ -13,6 +13,11 @@ using CRMEngSystem.Services.Sort.Catalog;
 using CRMEngSystem.Services.Search.Catalog;
 using Microsoft.AspNetCore.Authorization;
 using CRMEngSystem.Attributes.Cache;
+using CRMEngSystem.Data.Entities.Order;
+using CRMEngSystem.Data.Loaders.Order;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using CRMEngSystem.Data.Entities.WareHouse;
+using CRMEngSystem.Data.Loaders.WareHouse;
 
 namespace CRMEngSystem.Controllers.Catalog
 {
@@ -46,7 +51,48 @@ namespace CRMEngSystem.Controllers.Catalog
             model.TotalPageCount = (int)Math.Ceiling((decimal)entities.Count() / model.NumberItemsPerPage);
             entities = entities.Skip((model.CurrentPage - 1) * model.NumberItemsPerPage).Take(model.NumberItemsPerPage);
 
-            model.Entities = _mapper.Map<IEnumerable<CatalogListItemDto>>(await entities.ToListAsync());
+            var result = _mapper.Map<IEnumerable<CatalogListItemDto>>(await entities.ToListAsync());
+            if (model.OrderId != null && model.OrderId != 0)
+            {
+                var order = await _repositoryFactory
+                    .Instantiate<OrderEntity>()
+                    .GetEntityAsync(new OrderDataLoader(false, false, false, false, true), order => order.OrderId, (int)model.OrderId);
+                foreach (var item in result)
+                {
+                    var equipment = order.EquipmentOrderPositions
+                        .FirstOrDefault(e => e.EquipmentCatalogPosition.EquipmentCode == item.EquipmentCode);
+
+                    if (equipment != null)
+                    {
+                        item.Quantity = equipment.Quantity;
+                    }
+                    else
+                    {
+                        item.Quantity = 0;
+                    }
+                }
+            }
+            else if (model.WareHouseId != null && model.WareHouseId != 0) 
+            {
+                var wareHouse = await _repositoryFactory
+                    .Instantiate<WareHouseEntity>()
+                    .GetEntityAsync(new WareHouseDataLoader(true), wareHouse => wareHouse.WareHouseId, (int)model.WareHouseId);
+                foreach (var item in result)
+                {
+                    var equipment = wareHouse.EquipmentWareHousePositions
+                        .FirstOrDefault(e => e.EquipmentCatalogPosition.EquipmentCode == item.EquipmentCode);
+
+                    if (equipment != null)
+                    {
+                        item.Quantity = equipment.Quantity;
+                    }
+                    else
+                    {
+                        item.Quantity = 0;
+                    }
+                }
+            }
+            model.Entities = result;
 
             return View(model);
         }
