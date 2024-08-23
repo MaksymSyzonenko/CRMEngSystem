@@ -42,8 +42,4 @@
     <UpToDateCheckInput Remove="Views\Shared\_Resizer.cshtml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

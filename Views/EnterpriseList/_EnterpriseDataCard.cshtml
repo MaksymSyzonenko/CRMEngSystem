@@ -3,7 +3,7 @@
 
 <head>
     <script src="~/js/googleMapsScript.js"></script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
     <style>
         .card-data {
             background-color: white;
@@ -110,7 +110,12 @@
 </head>
 <body>
     <div class="card-data">
-        <a class="scrollable" href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = Model.EnterpriseId})"><span>@Model.NameUA, @Model.OwnershipFormUA</span></a>
+        <a class="scrollable" href="@Url.Action("EnterpriseDetails","EnterpriseDetails", new { EntityId = Model.EnterpriseId})">
+            <span>
+                <div style="margin-right: 2px;" class="flag-icon flag-icon-@Model.CountryCode"></div>
+                @Model.NameUA, @Model.OwnershipFormUA
+            </span>
+        </a>
         <div class="scrollable"><span>@Model.Street</span></div>
         <div class="scrollable"><span>@Model.City</span></div>
         <div class="scrollable"><span>@Model.Region</span></div>

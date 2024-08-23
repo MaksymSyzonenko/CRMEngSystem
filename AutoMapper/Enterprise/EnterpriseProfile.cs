@@ -17,6 +17,7 @@ namespace CRMEngSystem.AutoMapper.Enterprise
                 .ForMember(dest => dest.Region, opt => opt.MapFrom(src => src.Details.Region))
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Details.City))
                 .ForMember(dest => dest.Coordinate, opt => opt.MapFrom(src => src.Details.Coordinate))
+                .ForMember(dest => dest.CountryCode, opt => opt.MapFrom(src => src.Details.CountryCode))
                 .ReverseMap();
 
             CreateMap<EnterpriseEntity, EnterpriseDto>()
@@ -31,6 +32,7 @@ namespace CRMEngSystem.AutoMapper.Enterprise
                 .ForMember(dest => dest.Franchise, opt => opt.MapFrom(src => src.Details.Franchise))
                 .ForMember(dest => dest.EDRPOU, opt => opt.MapFrom(src => src.Details.EDRPOU))
                 .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Details.Link))
+                .ForMember(dest => dest.CountryCode, opt => opt.MapFrom(src => src.Details.CountryCode))
                 .ReverseMap();
 
             CreateMap<OrderEntity, EnterpriseOrderDto>()

@@ -30,6 +30,7 @@ namespace CRMEngSystem.Controllers.Enterprise
                 EDRPOU = enterprise!.Details.EDRPOU,
                 TradeGroup = enterprise!.Details.TradeGroup,
                 Franchise = enterprise!.Details.Franchise!,
+                CountryCode = enterprise!.Details.CountryCode,
                 Country = enterprise!.Details.Country,
                 Region = enterprise!.Details.Region,
                 City = enterprise!.Details.City,
@@ -52,6 +53,7 @@ namespace CRMEngSystem.Controllers.Enterprise
             enterprise!.Details.IndustryBranch = model.IndustryBranch;
             enterprise!.Details.TradeGroup = model.TradeGroup;
             enterprise!.Details.Franchise = model.Franchise!;
+            enterprise!.Details.CountryCode = model.CountryCode;
             enterprise!.Details.Country = model.Country;
             enterprise!.Details.Region = model.Region;
             enterprise!.Details.City = model.City;

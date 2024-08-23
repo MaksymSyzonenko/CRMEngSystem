@@ -159,12 +159,14 @@
                 <div style="height: 30px; margin-bottom: 10px; align-items: center;">
                     <span style="color: #595586; font-size: 18px; font-weight: bold;">Додавання працівників до замовлення</span>
                 </div>
+                @Html.ActionLink("Повернутися до замовлення", "OrderWorkGroup", "OrderWorkGroup", new { EntityId = Model.OrderId }, new { @class = "add-btn-fullwidth-empty" })
             }
             else
             {
                 <div style="height: 30px; margin-bottom: 10px; align-items: center;">
                     <span style="color: #595586; font-size: 18px; font-weight: bold;">Додавання контактів до замовлення</span>
                 </div>
+                @Html.ActionLink("Повернутися до замовлення", "OrderContacts", "OrderContacts", new { EntityId = Model.OrderId }, new { @class = "add-btn-fullwidth-empty" })
             }
             @using (Html.BeginForm("OrderAddContacts", "OrderAddContacts", FormMethod.Post))
             {
@@ -212,9 +214,20 @@
         }
         else
         {
-            <div style="height: 30px; margin-bottom: 10px; align-items: center;">
-                <span style="color: #595586; font-size: 18px; font-weight: bold;">Контактів не знайдено</span>
-            </div>
+            @if (Model.WorkGroup)
+            {
+                <div style="height: 30px; margin-bottom: 10px; align-items: center;">
+                    <span style="color: #595586; font-size: 18px; font-weight: bold;">Працівників не знайдено</span>
+                </div>
+                @Html.ActionLink("Повернутися до замовлення", "OrderWorkGroup", "OrderWorkGroup", new { EntityId = Model.OrderId }, new { @class = "add-btn-fullwidth-empty" })
+            }
+            else
+            {
+                <div style="height: 30px; margin-bottom: 10px; align-items: center;">
+                    <span style="color: #595586; font-size: 18px; font-weight: bold;">Контактів не знайдено</span>
+                </div>
+                @Html.ActionLink("Повернутися до замовлення", "OrderContacts", "OrderContacts", new { EntityId = Model.OrderId }, new { @class = "add-btn-fullwidth-empty" })
+            }
         }
     </div>
 </body>

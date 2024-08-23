@@ -18,5 +18,6 @@
         public string PostalCode { get; init; } = default!;
         public string Street { get; init; } = default!;
         public string Coordinate { get; init; } = default!;
+        public string CountryCode { get; init; } = default!;
     }
 }

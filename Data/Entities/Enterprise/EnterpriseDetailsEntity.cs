@@ -20,6 +20,7 @@ namespace CRMEngSystem.Data.Entities.Enterprise
         public string PostalCode { get; set; } = default!;
         public string Street { get; set; } = default!;
         public string? Coordinate { get; set; } = default!;
+        public string CountryCode { get; set; } = default!;
         //Navigation Properties
         public int EnterpriseId { get; set; }
         public virtual EnterpriseEntity Enterprise { get; set; } = null!;

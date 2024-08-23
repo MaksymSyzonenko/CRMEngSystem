@@ -5,6 +5,7 @@
 
 <head>
     <script src="~/js/googleMapsScript.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
     <style>
         .tab-container {
             display: flex;
@@ -454,7 +455,10 @@
                     <div class="details-container-data">
                         <div class="details-container-data-row-filled">
                             <span>Назва під-ства:</span>
-                            <span style="font-weight:bold">@Model.Enterprise.NameUA, @Model.Enterprise.OwnershipFormUA / @Model.Enterprise.NameEN, @Model.Enterprise.OwnershipFormEN</span>
+                            <span style="font-weight:bold">
+                                <div style="margin-right: 2px;" class="flag-icon flag-icon-@Model.Enterprise.CountryCode"></div>
+                                @Model.Enterprise.NameUA, @Model.Enterprise.OwnershipFormUA / @Model.Enterprise.NameEN, @Model.Enterprise.OwnershipFormEN
+                            </span>
                         </div>
                         <div class="details-container-data-row">
                             <span>Адреса / Координати:</span>

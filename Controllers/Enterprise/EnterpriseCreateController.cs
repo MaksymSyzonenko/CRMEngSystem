@@ -38,6 +38,7 @@ namespace CRMEngSystem.Controllers.Enterprise
                     IndustryBranch = model.IndustryBranch,
                     TradeGroup = model.TradeGroup,
                     Franchise = model.Franchise,
+                    CountryCode = model.CountryCode,
                     Country = model.Country,
                     City = model.City,
                     Region = model.Region,

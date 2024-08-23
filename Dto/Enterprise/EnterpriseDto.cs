@@ -13,5 +13,6 @@
         public string Franchise { get; init; } = default!;
         public string? Link { get; init; }
         public string EDRPOU { get; init; } = default!;
+        public string CountryCode { get; init; } = default!;
     }
 }
