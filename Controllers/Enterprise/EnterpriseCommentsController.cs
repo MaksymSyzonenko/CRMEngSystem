@@ -58,6 +58,7 @@ namespace CRMEngSystem.Controllers.Enterprise
                 DateTimeCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time")),
                 RecipientEnterpriseId = model.EntityId
             });
+            ModelState.Clear();
             return await EnterpriseComments(model.EntityId);
         }
     }

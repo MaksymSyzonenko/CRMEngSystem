@@ -14,7 +14,7 @@
             flex-direction: row;
         }
 
-        .left{
+        .left {
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -22,11 +22,11 @@
             width: 100%;
         }
 
-        .left span:first-child{
-            font-weight: 800;
-        }
+            .left span:first-child {
+                font-weight: 800;
+            }
 
-        .right{
+        .right {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -39,21 +39,76 @@
             fill: #FF705C;
         }
 
+        .edit-btn{
+            cursor: pointer;
+        }
+
+        .edit-btn:hover path {
+            stroke: #4962E9;
+        }
+
+        .data-input {
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            border: solid 1px #E1E2F3;
+            background-color: transparent;
+            color: #595586;
+            outline: none;
+            width: 100%;
+        }
+
+            .data-input::placeholder {
+                color: #E1E2F3;
+            }
     </style>
 </head>
 <body>
-    <div class="card-data">
-        <div class="left">
-            <span>@Model.AuthorInitials</span>
-            <span>@Model.Text</span>
+    @using (Html.BeginForm("CommentEdit", "CommentEdit", FormMethod.Post))
+    {
+        <div class="card-data">
+            <div class="left">
+                <span>@Model.AuthorInitials</span>
+                <span id="comment-text-@Model.CommentId">@Model.Text</span>
+                @Html.TextBox("NewText", Model.Text, null, new { required = "required", type = "text", id = $"comment-input-{Model.CommentId}", style = "display:none;", @class = "data-input" })
+                @Html.Hidden("CommentId", Model.CommentId)
+                @Html.Hidden("EntityId", Model.EntityId)
+                @Html.Hidden("AuthroId", Model.AuthorId)
+                @Html.Hidden("ActionName", Model.ActionName)
+                @Html.Hidden("ControllerName", Model.ControllerName)
+            </div>
+            <div class="right">
+                <span>Додано - @Model.DateTimeCreate.ToString("dd.MM.yyyy")</span>
+                <div style="display: flex; align-items: center;">
+                    <span style="display: none; cursor: pointer; padding: 3px 15px;" class="add-btn-empty" id="cancel-button-@Model.CommentId" onclick="closeEditComment(@Model.CommentId)">Скасувати</span>
+                    <input value="Зберегти" type="submit" class="add-btn" id="save-button-@Model.CommentId" style="display:none; margin: 0 10px; padding: 4px 15px;">
+                    <svg onclick="editComment(@Model.CommentId)"  class="edit-btn" width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32.0147 14.2493L35.7506 17.9852M34.4165 10.9582L24.3101 21.0646C23.7879 21.586 23.4317 22.2504 23.2865 22.974L22.353 27.6469L27.0259 26.7116C27.7495 26.5669 28.413 26.2122 28.9353 25.6898L39.0417 15.5834C39.3454 15.2797 39.5863 14.9192 39.7507 14.5224C39.915 14.1256 39.9996 13.7003 39.9996 13.2708C39.9996 12.8413 39.915 12.416 39.7507 12.0192C39.5863 11.6224 39.3454 11.2619 39.0417 10.9582C38.738 10.6545 38.3775 10.4136 37.9807 10.2492C37.5839 10.0848 37.1586 10.0002 36.7291 10.0002C36.2996 10.0002 35.8743 10.0848 35.4775 10.2492C35.0807 10.4136 34.7202 10.6545 34.4165 10.9582Z" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M36.4704 31.1762V36.4703C36.4704 37.4063 36.0985 38.304 35.4366 38.9659C34.7748 39.6278 33.877 39.9997 32.941 39.9997H13.5294C12.5933 39.9997 11.6956 39.6278 11.0337 38.9659C10.3718 38.304 10 37.4063 10 36.4703V17.0587C10 16.1226 10.3718 15.2249 11.0337 14.563C11.6956 13.9011 12.5933 13.5293 13.5294 13.5293H18.8235" stroke="#595586" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <a href="@Url.ActionLink("CommentRemove", "CommentRemove", new CommentRemoveViewModel { AuthorId = Model.AuthorId, CommentId = Model.CommentId, ActionName = Model.ActionName, ControllerName = Model.ControllerName, EntityId = Model.EntityId })">
+                        <svg class="trash-bucket" width="30" height="30" viewBox="0 0 50 50" fill="none">
+                            <path d="M21.5 13.1875H28.5C28.5 12.2592 28.1313 11.369 27.4749 10.7126C26.8185 10.0562 25.9283 9.6875 25 9.6875C24.0717 9.6875 23.1815 10.0562 22.5251 10.7126C21.8687 11.369 21.5 12.2592 21.5 13.1875ZM18.875 13.1875C18.875 12.3832 19.0334 11.5867 19.3412 10.8436C19.649 10.1004 20.1002 9.42523 20.669 8.85647C21.2377 8.28771 21.9129 7.83655 22.6561 7.52874C23.3992 7.22093 24.1957 7.0625 25 7.0625C25.8043 7.0625 26.6008 7.22093 27.3439 7.52874C28.0871 7.83655 28.7623 8.28771 29.331 8.85647C29.8998 9.42523 30.351 10.1004 30.6588 10.8436C30.9666 11.5867 31.125 12.3832 31.125 13.1875H41.1875C41.5356 13.1875 41.8694 13.3258 42.1156 13.5719C42.3617 13.8181 42.5 14.1519 42.5 14.5C42.5 14.8481 42.3617 15.1819 42.1156 15.4281C41.8694 15.6742 41.5356 15.8125 41.1875 15.8125H38.8775L36.83 37.0068C36.6729 38.6307 35.9166 40.1379 34.7084 41.2344C33.5003 42.331 31.927 42.9381 30.2955 42.9375H19.7045C18.0733 42.9377 16.5004 42.3303 15.2927 41.2339C14.0849 40.1374 13.3288 38.6304 13.1718 37.0068L11.1225 15.8125H8.8125C8.4644 15.8125 8.13056 15.6742 7.88442 15.4281C7.63828 15.1819 7.5 14.8481 7.5 14.5C7.5 14.1519 7.63828 13.8181 7.88442 13.5719C8.13056 13.3258 8.4644 13.1875 8.8125 13.1875H18.875ZM22.375 21.5C22.375 21.1519 22.2367 20.8181 21.9906 20.5719C21.7444 20.3258 21.4106 20.1875 21.0625 20.1875C20.7144 20.1875 20.3806 20.3258 20.1344 20.5719C19.8883 20.8181 19.75 21.1519 19.75 21.5V34.625C19.75 34.9731 19.8883 35.3069 20.1344 35.5531C20.3806 35.7992 20.7144 35.9375 21.0625 35.9375C21.4106 35.9375 21.7444 35.7992 21.9906 35.5531C22.2367 35.3069 22.375 34.9731 22.375 34.625V21.5ZM28.9375 20.1875C29.2856 20.1875 29.6194 20.3258 29.8656 20.5719C30.1117 20.8181 30.25 21.1519 30.25 21.5V34.625C30.25 34.9731 30.1117 35.3069 29.8656 35.5531C29.6194 35.7992 29.2856 35.9375 28.9375 35.9375C28.5894 35.9375 28.2556 35.7992 28.0094 35.5531C27.7633 35.3069 27.625 34.9731 27.625 34.625V21.5C27.625 21.1519 27.7633 20.8181 28.0094 20.5719C28.2556 20.3258 28.5894 20.1875 28.9375 20.1875ZM15.7845 36.7547C15.8789 37.7289 16.3327 38.6329 17.0574 39.2907C17.7821 39.9484 18.7258 40.3127 19.7045 40.3125H30.2955C31.2742 40.3127 32.2179 39.9484 32.9426 39.2907C33.6673 38.6329 34.1211 37.7289 34.2155 36.7547L36.242 15.8125H13.758L15.7845 36.7547Z" fill="#595586" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="right">
-            <span>залишив(-ла) коментар @Model.DateTimeCreate</span>
-            <a href="@Url.ActionLink("CommentRemove", "CommentRemove", new CommentRemoveViewModel { AuthorId = Model.AuthorId, CommentId = Model.CommentId, ActionName = Model.ActionName, ControllerName = Model.ControllerName, EntityId = Model.EntityId})">
-                <svg class="trash-bucket" width="30" height="30" viewBox="0 0 50 50" fill="none">
-                    <path d="M21.5 13.1875H28.5C28.5 12.2592 28.1313 11.369 27.4749 10.7126C26.8185 10.0562 25.9283 9.6875 25 9.6875C24.0717 9.6875 23.1815 10.0562 22.5251 10.7126C21.8687 11.369 21.5 12.2592 21.5 13.1875ZM18.875 13.1875C18.875 12.3832 19.0334 11.5867 19.3412 10.8436C19.649 10.1004 20.1002 9.42523 20.669 8.85647C21.2377 8.28771 21.9129 7.83655 22.6561 7.52874C23.3992 7.22093 24.1957 7.0625 25 7.0625C25.8043 7.0625 26.6008 7.22093 27.3439 7.52874C28.0871 7.83655 28.7623 8.28771 29.331 8.85647C29.8998 9.42523 30.351 10.1004 30.6588 10.8436C30.9666 11.5867 31.125 12.3832 31.125 13.1875H41.1875C41.5356 13.1875 41.8694 13.3258 42.1156 13.5719C42.3617 13.8181 42.5 14.1519 42.5 14.5C42.5 14.8481 42.3617 15.1819 42.1156 15.4281C41.8694 15.6742 41.5356 15.8125 41.1875 15.8125H38.8775L36.83 37.0068C36.6729 38.6307 35.9166 40.1379 34.7084 41.2344C33.5003 42.331 31.927 42.9381 30.2955 42.9375H19.7045C18.0733 42.9377 16.5004 42.3303 15.2927 41.2339C14.0849 40.1374 13.3288 38.6304 13.1718 37.0068L11.1225 15.8125H8.8125C8.4644 15.8125 8.13056 15.6742 7.88442 15.4281C7.63828 15.1819 7.5 14.8481 7.5 14.5C7.5 14.1519 7.63828 13.8181 7.88442 13.5719C8.13056 13.3258 8.4644 13.1875 8.8125 13.1875H18.875ZM22.375 21.5C22.375 21.1519 22.2367 20.8181 21.9906 20.5719C21.7444 20.3258 21.4106 20.1875 21.0625 20.1875C20.7144 20.1875 20.3806 20.3258 20.1344 20.5719C19.8883 20.8181 19.75 21.1519 19.75 21.5V34.625C19.75 34.9731 19.8883 35.3069 20.1344 35.5531C20.3806 35.7992 20.7144 35.9375 21.0625 35.9375C21.4106 35.9375 21.7444 35.7992 21.9906 35.5531C22.2367 35.3069 22.375 34.9731 22.375 34.625V21.5ZM28.9375 20.1875C29.2856 20.1875 29.6194 20.3258 29.8656 20.5719C30.1117 20.8181 30.25 21.1519 30.25 21.5V34.625C30.25 34.9731 30.1117 35.3069 29.8656 35.5531C29.6194 35.7992 29.2856 35.9375 28.9375 35.9375C28.5894 35.9375 28.2556 35.7992 28.0094 35.5531C27.7633 35.3069 27.625 34.9731 27.625 34.625V21.5C27.625 21.1519 27.7633 20.8181 28.0094 20.5719C28.2556 20.3258 28.5894 20.1875 28.9375 20.1875ZM15.7845 36.7547C15.8789 37.7289 16.3327 38.6329 17.0574 39.2907C17.7821 39.9484 18.7258 40.3127 19.7045 40.3125H30.2955C31.2742 40.3127 32.2179 39.9484 32.9426 39.2907C33.6673 38.6329 34.1211 37.7289 34.2155 36.7547L36.242 15.8125H13.758L15.7845 36.7547Z" fill="#595586" />
-                </svg>
-            </a>
-        </div>
-    </div>
+    }
+
+    <script>
+        function editComment(commentId) {
+            document.getElementById('comment-text-' + commentId).style.display = 'none';
+            document.getElementById('comment-input-' + commentId).style.display = 'block';
+            document.getElementById('save-button-' + commentId).style.display = 'inline-block';
+            document.getElementById('cancel-button-' + commentId).style.display = 'inline-block';
+        }
+
+        function closeEditComment(commentId) {
+            document.getElementById('comment-text-' + commentId).style.display = 'block';
+            document.getElementById('comment-input-' + commentId).style.display = 'none';
+            document.getElementById('save-button-' + commentId).style.display = 'none';
+            document.getElementById('cancel-button-' + commentId).style.display = 'none';
+        }
+    </script>
 </body>

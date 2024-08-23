@@ -59,7 +59,7 @@ body::-webkit-scrollbar {
 
 .menu-item {
     display: flex;
-    margin: 10px 20px 35px 20px;
+    margin: 8px 20px 30px 20px;
 }
 
 .menu-item span {

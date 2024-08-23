@@ -596,7 +596,7 @@
                             }
                         </span>
                         <span>@entity.BasePrice.ToString("0.00") £</span>
-                        @if (!(Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0))
+                        @if (!((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0)))
                         {
                             <span>@entity.Weight кг</span>
                             <span>@entity.Volume м³</span>

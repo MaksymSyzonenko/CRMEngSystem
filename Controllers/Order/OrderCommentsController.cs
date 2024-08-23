@@ -57,6 +57,7 @@ namespace CRMEngSystem.Controllers.Order
                 DateTimeCreate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time")),
                 RecipientOrderId = model.EntityId
             });
+            ModelState.Clear();
             return await OrderComments(model.EntityId);
         }
     }
