@@ -72,7 +72,19 @@
                     </div>
                     <div class="details-container-data-row">
                         <span>Рівень доступа:</span>
-                        <span>@Convert.ToInt32(Model.Account.AccessLevel)</span>
+                        @switch (Model.Account.AccessLevel)
+                        {
+                            case CRMEngSystem.Data.Enums.AccessLevel.High:
+                                <span>1 (Максимальний)</span>
+                                break;
+                            case CRMEngSystem.Data.Enums.AccessLevel.Medium:
+                                <span>2 (Середній)</span>
+                                break;
+                            case CRMEngSystem.Data.Enums.AccessLevel.Low:
+                                <span>3 (Базовий)</span>
+                                break;
+                        }
+                        
                     </div>
                     @Html.ActionLink("Змінити пароль", "AccountChangePassword", "AccountChangePassword", null, new { @class = "add-btn", style="width: 175px; height: 30px; font-size: 12px;", type="submit"})
                 </div>

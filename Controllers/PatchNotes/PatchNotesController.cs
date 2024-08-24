@@ -8,6 +8,9 @@ namespace CRMEngSystem.Controllers.PatchNotes
     [ServiceFilter(typeof(ClearCacheAttribute))]
     public class PatchNotesController : Controller
     {
-        public IActionResult PatchNotes() => View();
+        public IActionResult PatchNotes()
+        {
+            return View();
+        }
     }
 }

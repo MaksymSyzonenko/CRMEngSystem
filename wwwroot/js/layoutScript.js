@@ -27,3 +27,15 @@ document.getElementById("menu-container").addEventListener("mouseleave", functio
     logo.style.width = "25px";
     logo.src = "/icons/Logo_Small.svg";
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const patchNotesLink = document.getElementById("patchNotesLink");
+    const hasVisited = localStorage.getItem("visitedPatchNotes");
+    if (!hasVisited) {
+        patchNotesLink.classList.add("red-dot");
+    }
+    patchNotesLink.addEventListener("click", function () {
+        localStorage.setItem("visitedPatchNotes", "true");
+        patchNotesLink.classList.remove("red-dot");
+    });
+});

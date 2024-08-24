@@ -111,3 +111,19 @@ input:-webkit-autofill:focus {
     height: 100vh;
 }
 
+
+.red-dot {
+    position: relative;
+}
+
+.red-dot::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 5px;
+    background-color: #FF705C;
+    border-radius: 50%;
+    display: inline-block;
+}
