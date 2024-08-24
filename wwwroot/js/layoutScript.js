@@ -30,12 +30,14 @@ document.getElementById("menu-container").addEventListener("mouseleave", functio
 
 document.addEventListener("DOMContentLoaded", function () {
     const patchNotesLink = document.getElementById("patchNotesLink");
-    const hasVisited = localStorage.getItem("visitedPatchNotes");
+    const appVersion = "1.0.1";
+    const hasVisited = localStorage.getItem("visitedPatchNotes_" + appVersion);
     if (!hasVisited) {
         patchNotesLink.classList.add("red-dot");
     }
     patchNotesLink.addEventListener("click", function () {
-        localStorage.setItem("visitedPatchNotes", "true");
+        localStorage.setItem("visitedPatchNotes_" + appVersion, "true");
         patchNotesLink.classList.remove("red-dot");
     });
 });
+
