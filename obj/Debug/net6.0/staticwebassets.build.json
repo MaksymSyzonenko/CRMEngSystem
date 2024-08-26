@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yVwbClQ1PX3ci5pxvtB9HMB349x5eICdJdpxDbpPZdo=",
+  "Hash": "QkkvVg0kT00JxpCH6OSIFLuQiul1ikaa7kUXaEF4Ah4=",
   "Source": "CRMEngSystem",
   "BasePath": "_content/CRMEngSystem",
   "Mode": "Default",
@@ -528,25 +528,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\googleMapsScript.js"
-    },
-    {
-      "Identity": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\js\\layoutScript.js",
-      "SourceId": "CRMEngSystem",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\",
-      "BasePath": "_content/CRMEngSystem",
-      "RelativePath": "js/layoutScript.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\layoutScript.js"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\js\\site.js",

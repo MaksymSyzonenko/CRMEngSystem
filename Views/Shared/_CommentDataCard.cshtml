@@ -73,7 +73,7 @@
                 @Html.TextBox("NewText", Model.Text, null, new { required = "required", type = "text", id = $"comment-input-{Model.CommentId}", style = "display:none;", @class = "data-input" })
                 @Html.Hidden("CommentId", Model.CommentId)
                 @Html.Hidden("EntityId", Model.EntityId)
-                @Html.Hidden("AuthroId", Model.AuthorId)
+                @Html.Hidden("AuthorId", Model.AuthorId)
                 @Html.Hidden("ActionName", Model.ActionName)
                 @Html.Hidden("ControllerName", Model.ControllerName)
             </div>
