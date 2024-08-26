@@ -75,6 +75,7 @@
                             SortAlphabetStreet = sortAlphabetStreet,
                             SortAlphabetCity = sortAlphabetCity,
                             SortAlphabetRegion = sortAlphabetRegion,
+                            IsSelectedEnterprises = Model.IsSelectedEnterprises,
                             NumberItemsPerPage = Model.NumberItemsPerPage,
                             TotalPageCount = Model.TotalPageCount
                         };
@@ -117,6 +118,7 @@
                             if (!string.IsNullOrEmpty(Model.SearchCity) && currentQuery != "SearchCity")
                                 @Html.HiddenFor(m => m.SearchCity)
 
+                            @Html.HiddenFor(m => m.IsSelectedEnterprises)
                             @Html.HiddenFor(m => m.NumberItemsPerPage)
                         }
                     }
