@@ -60,7 +60,7 @@ namespace CRMEngSystem.Controllers.Catalog
                 foreach (var item in result)
                 {
                     var equipment = order.EquipmentOrderPositions
-                        .FirstOrDefault(e => e.EquipmentCatalogPosition.EquipmentCode == item.EquipmentCode);
+                        .FirstOrDefault(e => e.EquipmentCatalogPosition.EquipmentCatalogPositionId == item.EquipmentCatalogPositionId);
 
                     if (equipment != null)
                     {
@@ -80,7 +80,7 @@ namespace CRMEngSystem.Controllers.Catalog
                 foreach (var item in result)
                 {
                     var equipment = wareHouse.EquipmentWareHousePositions
-                        .FirstOrDefault(e => e.EquipmentCatalogPosition.EquipmentCode == item.EquipmentCode);
+                        .FirstOrDefault(e => e.EquipmentCatalogPosition.EquipmentCatalogPositionId == item.EquipmentCatalogPositionId);
 
                     if (equipment != null)
                     {
