@@ -14,7 +14,6 @@ namespace CRMEngSystem.Controllers.Order
         {
             _repositoryFactory = repositoryFactory;
         }
-        [HttpPost]
         public async Task<IActionResult> OrderEquipmentAdd(int EntityId, int EquipmentOrderPositionId, string ActionName, string ControllerName)
         {
             var repository = _repositoryFactory.Instantiate<EquipmentOrderPositionEntity>();

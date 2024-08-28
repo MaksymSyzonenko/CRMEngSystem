@@ -317,9 +317,9 @@
                                         <input type="submit" style="visibility: hidden; position: absolute;" />
                                         <span>@entity.SellPrice €</span>
                                         <span style="display: flex; gap: 5px; justify-content: center;">
-                                            @Html.ActionLink("-", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
+                                        @Html.ActionLink("-", "OrderEquipmentRemove", "OrderEquipmentRemove", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
                                             @entity.Quantity шт
-                                            @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
+                                        @Html.ActionLink("+", "OrderEquipmentAdd", "OrderEquipmentAdd", new { EntityId = entity.OrderId, EquipmentOrderPositionId = entity.EquipmentOrderPositionId, ActionName = "OrderEquipment", ControllerName = "OrderEquipment" }, new { @class = "action-link-symbol" })
                                         </span>
                                         <span>@(entity.SellPrice * @entity.Quantity) €</span>
                                     </div>
