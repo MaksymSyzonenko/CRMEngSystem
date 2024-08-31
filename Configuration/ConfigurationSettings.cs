@@ -8,8 +8,5 @@
         public static decimal ShippingRatePerCubicMeter { get; set; }
         public static string WordTemplate { get; set; } = default!;
         public static string ExcelTemplate { get; set; } = default!;
-        public static string WareHouseExample { get; set; } = default!;
-        public static string UpdatePricesExample { get; set; } = default!;
-        public static string Manual { get; set; } = default!;
     }
 }

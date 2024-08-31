@@ -44,15 +44,9 @@ namespace CRMEngSystem
 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-            ConfigurationSettings.Manual = configuration.GetValue<string>("Manual")!;
-
             var templates = configuration.GetSection("Templates");
             ConfigurationSettings.WordTemplate = templates["WordTemplate"]!;
             ConfigurationSettings.ExcelTemplate = templates["ExcelTemplate"]!;
-
-            var examples = configuration.GetSection("Examples");
-            ConfigurationSettings.WareHouseExample = examples["WareHouseExample"]!;
-            ConfigurationSettings.UpdatePricesExample = examples["UpdatePricesExample"]!;
 
             builder.Services
                 .AddDataRepositories()

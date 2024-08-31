@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QkkvVg0kT00JxpCH6OSIFLuQiul1ikaa7kUXaEF4Ah4=",
+  "Hash": "FG905bDtBu4DHHfpaKkvteS7vpzA5B5MdeMVvIi+C4s=",
   "Source": "CRMEngSystem",
   "BasePath": "_content/CRMEngSystem",
   "Mode": "Default",
@@ -167,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\docs\\Інструкція.docx",
+      "SourceId": "CRMEngSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\",
+      "BasePath": "_content/CRMEngSystem",
+      "RelativePath": "docs/Інструкція.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\docs\\Інструкція.docx"
     },
     {
       "Identity": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\favicon.ico",
