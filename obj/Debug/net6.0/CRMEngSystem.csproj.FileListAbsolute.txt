@@ -148,11 +148,14 @@ C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\CRMEngSystem.pdb
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Humanizer.dll
+C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\PhoneNumbers.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
@@ -187,6 +190,3 @@ C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\refint\CRMEngSystem.dll
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.pdb
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.genruntimeconfig.cache
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\ref\CRMEngSystem.dll
-C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\PhoneNumbers.dll
-C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Humanizer.dll
-C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
