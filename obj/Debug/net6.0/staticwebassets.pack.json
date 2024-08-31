@@ -33,6 +33,14 @@
       "PackagePath": "staticwebassets\\docs\\Інструкція.docx"
     },
     {
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\docs\\ОновленняПрайсів_Зразок.xlsx",
+      "PackagePath": "staticwebassets\\docs\\ОновленняПрайсів_Зразок.xlsx"
+    },
+    {
+      "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\docs\\Склад_Зразок.xlsx",
+      "PackagePath": "staticwebassets\\docs\\Склад_Зразок.xlsx"
+    },
+    {
       "Id": "C:\\Users\\user\\Desktop\\CRMEngSystem\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
