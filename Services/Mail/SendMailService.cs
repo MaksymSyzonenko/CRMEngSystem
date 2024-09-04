@@ -5,11 +5,8 @@ namespace CRMEngSystem.Services.Mail
 {
     public static class SendMailService
     {
-        public static bool Send(string subject, string body, string sender, string receiver, string extrareceiver, string password)
+        public static bool Send(string subject, string body, string sender, string receiver, string extrareceiver)
         {
-            //password ??= Environment.GetEnvironmentVariable("EMAIL_PASSWORD")!;
-            //gkoy pxqk kdey tbrv
-
             MailMessage mail = new()
             {
                 From = new MailAddress(sender),
@@ -22,9 +19,9 @@ namespace CRMEngSystem.Services.Mail
                 mail.To.Add(receiver);
                 if(!string.IsNullOrEmpty(extrareceiver)) mail.CC.Add(extrareceiver);
 
-                SmtpClient smtpClient = new("smtp.gmail.com", 587) // SMTP сервер и порт (587 для TLS, 465 для SSL)
+                SmtpClient smtpClient = new("smtp.gmail.com", 465) // SMTP сервер и порт (587 для TLS, 465 для SSL)
                 {
-                    Credentials = new NetworkCredential(sender, password),
+                    Credentials = new NetworkCredential(sender, Environment.GetEnvironmentVariable("EMAIL_PASSWORD")),
                     EnableSsl = true
                 }; 
                 smtpClient.Send(mail);

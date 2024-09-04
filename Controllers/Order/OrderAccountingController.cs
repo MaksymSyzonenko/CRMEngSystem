@@ -132,7 +132,7 @@ namespace CRMEngSystem.Controllers.Order
 
             string finalBody = body.ToString();
 
-            if(SendMailService.Send(subject, finalBody, "stimex.orders@gmail.com", model.Receiver, model.ExtraReceiver, "gkoy pxqk kdey tbrv"))
+            if(SendMailService.Send(subject, finalBody, "stimex.orders@gmail.com", model.Receiver, model.ExtraReceiver))
             {
                 TempData["NotifyModal"] = true;
                 TempData["NotifyText"] = "Лист успішно надіслано.";
