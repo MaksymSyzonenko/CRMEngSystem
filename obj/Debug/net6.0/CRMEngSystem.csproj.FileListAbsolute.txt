@@ -190,3 +190,4 @@ C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\refint\CRMEngSystem.dll
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.pdb
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\CRMEngSystem.genruntimeconfig.cache
 C:\Users\user\Desktop\CRMEngSystem\obj\Debug\net6.0\ref\CRMEngSystem.dll
+C:\Users\user\Desktop\CRMEngSystem\bin\Debug\net6.0\FuzzySharp.dll

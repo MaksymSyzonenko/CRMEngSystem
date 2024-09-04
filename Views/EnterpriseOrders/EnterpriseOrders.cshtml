@@ -151,6 +151,7 @@
             background-color: white;
             outline: none;
             border: none;
+            height: 26px;
         }
 
             .filter select option {
@@ -167,6 +168,7 @@
             justify-content: flex-start;
             align-items: center;
             gap: 5px;
+            height: 26px;
         }
 
             .range-container input {
@@ -196,6 +198,7 @@
             justify-content: flex-start;
             align-items: center;
             gap: 5px;
+            height: 26px;
         }
 
         .date-picker-part {
@@ -322,7 +325,7 @@
                         </div>
                         @using (Html.BeginForm("EnterpriseOrders", "EnterpriseOrders", FormMethod.Get, new { @class = "filter" }))
                         {
-                            @Html.DropDownList("FilterStatus", new SelectList(new[] { "Обробка", "Пропозиція", "Виконання", "Завершене" }), "Всі", new { onchange = "this.form.submit();", style="margin-left: 5px;" })
+                            @Html.DropDownList("FilterStatus", new SelectList(new[] { "Обробка", "Пропозиція", "Виконання", "Завершене" }), "Всі", new { onchange = "this.form.submit();" })
                             JoinSearches("FilterStatus");
                         }
                     </div>

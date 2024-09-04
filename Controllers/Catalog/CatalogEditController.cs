@@ -77,7 +77,12 @@ namespace CRMEngSystem.Controllers.Catalog
             }
 
             if (basePriceResult != 0)
+            {
+                if (equipment.BasePrice != basePriceResult) 
+                    equipment.DateTimeUpdatePrice = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time"));
+
                 equipment.BasePrice = basePriceResult;
+            }
 
             if (weightResult != 0)
                 equipment.Weight = weightResult;

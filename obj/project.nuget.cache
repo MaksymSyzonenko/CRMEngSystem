@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fue0V/r0oF8=",
+  "dgSpecHash": "+ywH3Hk28t0=",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\CRMEngSystem\\CRMEngSystem.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\user\\.nuget\\packages\\chart.js\\3.7.1\\chart.js.3.7.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\documentformat.openxml\\3.1.0\\documentformat.openxml.3.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\documentformat.openxml.framework\\3.1.0\\documentformat.openxml.framework.3.1.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\libphonenumber-csharp\\8.13.43\\libphonenumber-csharp.8.13.43.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.29\\microsoft.aspnetcore.cryptography.internal.6.0.29.nupkg.sha512",

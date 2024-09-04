@@ -10,5 +10,6 @@
         public decimal Weight { get; init; }
         public decimal Volume { get; init; }
         public int Quantity { get; set; }
+        public DateTime DateTimeUpdatePrice { get; init; }
     }
 }

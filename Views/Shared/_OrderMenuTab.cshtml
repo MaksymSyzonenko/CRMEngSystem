@@ -18,6 +18,9 @@
             @Html.ActionLink("Робоча група", "OrderWorkGroup", "OrderWorkGroup", new { entityId = Model.EntityId }, new { @class = "tab-link" })
             <div class="number-container">@Model.NumberWorkGroup</div>
         </div>
+        <div class='@(Model.ActiveTab == "Accounting" ? "tab-link-container-active" : "tab-link-container")'>
+            @Html.ActionLink("Бухгалтерія", "OrderAccounting", "OrderAccounting", new { entityId = Model.EntityId }, new { @class = "tab-link" })
+        </div>
         <div class='@(Model.ActiveTab == "Comments" ? "tab-link-container-active" : "tab-link-container")'>
             @Html.ActionLink("Коментарі", "OrderComments", "OrderComments", new { entityId = Model.EntityId }, new { @class = "tab-link" })
             <div class="number-container">@Model.NumberComments</div>

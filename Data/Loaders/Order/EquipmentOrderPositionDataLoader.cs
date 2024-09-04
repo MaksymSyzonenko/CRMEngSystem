@@ -16,7 +16,7 @@ namespace CRMEngSystem.Data.Loaders.Order
         public IQueryable<EquipmentOrderPositionEntity> LoadData(IQueryable<EquipmentOrderPositionEntity> query)
         {
             query = Order ? query.Include(equipment => equipment.Order) : query;
-            query = EquipmentCatalogPosition ? query.Include(equipment => equipment.EquipmentCatalogPosition) : query;
+            query = EquipmentCatalogPosition ? query.Include(equipment => equipment.EquipmentCatalogPosition).ThenInclude(equipment => equipment.Image) : query;
             return query;
         }
     }

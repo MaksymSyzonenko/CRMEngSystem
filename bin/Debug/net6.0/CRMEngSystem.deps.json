@@ -11,6 +11,7 @@
           "AutoMapper": "13.0.1",
           "Chart.js": "3.7.1",
           "DocumentFormat.OpenXml": "3.1.0",
+          "FuzzySharp": "2.0.2",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.29",
           "Microsoft.EntityFrameworkCore.Design": "6.0.29",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.29",
@@ -53,6 +54,14 @@
           "lib/net6.0/DocumentFormat.OpenXml.Framework.dll": {
             "assemblyVersion": "3.1.0.0",
             "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "FuzzySharp/2.0.2": {
+        "runtime": {
+          "lib/netcoreapp2.1/FuzzySharp.dll": {
+            "assemblyVersion": "1.0.4.0",
+            "fileVersion": "1.0.4.0"
           }
         }
       },
@@ -336,6 +345,13 @@
       "sha512": "sha512-yz78IAteV+/jdpmQRlBIfhsmYfDYqgPSyPUsyT7KnfDlTTvqY6Zf5inMjTSwe2bnN8wv9dLD0C2sAkActXIy/A==",
       "path": "documentformat.openxml.framework/3.1.0",
       "hashPath": "documentformat.openxml.framework.3.1.0.nupkg.sha512"
+    },
+    "FuzzySharp/2.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sBKqWxw3g//peYxDZ8JipRlyPbIyBtgzqBVA5GqwHVeqtIrw75maGXAllztf+1aJhchD+drcQIgf2mFho8ZV8A==",
+      "path": "fuzzysharp/2.0.2",
+      "hashPath": "fuzzysharp.2.0.2.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

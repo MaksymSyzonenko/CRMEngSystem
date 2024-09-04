@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using CRMEngSystem.Services.Settings;
 using Microsoft.AspNetCore.HttpOverrides;
+using System.Net.Mail;
+using System.Net;
 
 namespace CRMEngSystem
 {
@@ -38,7 +40,7 @@ namespace CRMEngSystem
 
             builder.Services.AddPostgreSQLDataBase(configuration.GetConnectionString("PostgreSQLConnectionString")!);
 
-            ////builder.Services.AddPostgreSQLDataBase(configuration.GetConnectionString("PostgreSQLConnectionStringLocal")!);
+            //builder.Services.AddPostgreSQLDataBase(configuration.GetConnectionString("PostgreSQLConnectionStringLocal")!);
 
             builder.Services.AddScoped<ISettingsService, SettingsService>();
 

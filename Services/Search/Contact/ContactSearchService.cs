@@ -15,6 +15,8 @@ namespace CRMEngSystem.Services.Search.Contact
         public IQueryable<ContactEntity> Search(IQueryable<ContactEntity> entities)
         {
             entities = string.IsNullOrEmpty(_searchGeneral) ? entities : entities.Where(entity =>
+                (entity.Enterprise.Details.NameUA != null && entity.Enterprise.Details.NameUA.ToLower().Contains(_searchGeneral.ToLower())) ||
+                (entity.Enterprise.Details.NameEN != null && entity.Enterprise.Details.NameEN.ToLower().Contains(_searchGeneral.ToLower())) ||
                 (entity.Details.FirstName != null && entity.Details.FirstName.ToLower().Contains(_searchGeneral.ToLower())) ||
                 (entity.Details.LastName != null && entity.Details.LastName.ToLower().Contains(_searchGeneral.ToLower())) ||
                 (entity.Details.MiddleName != null && entity.Details.MiddleName.ToLower().Contains(_searchGeneral.ToLower())) ||

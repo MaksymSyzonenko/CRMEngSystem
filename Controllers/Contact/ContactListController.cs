@@ -27,7 +27,7 @@ namespace CRMEngSystem.Controllers.Contact
         [HttpGet]
         public async Task<IActionResult> ContactList(ContactListViewModel model)
         {
-            var entities = _repositoryFactory.Instantiate<ContactEntity>().GetAllEntitiesAsQueryable(new ContactDataLoader( true, true, true, false, false));
+            var entities = _repositoryFactory.Instantiate<ContactEntity>().GetAllEntitiesAsQueryable(new ContactDataLoader(true, true, true, false, false));
 
             entities = entities.OrderByDescending(entity => entity.DateTimeCreate);
 

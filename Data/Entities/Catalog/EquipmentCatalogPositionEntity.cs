@@ -19,6 +19,7 @@ namespace CRMEngSystem.Data.Entities.Catalog
         public decimal BasePrice { get; set; }
         public DateTime DateTimeCreate { get; set; }
         public DateTime? DateTimeUpdate { get; set; }
+        public DateTime DateTimeUpdatePrice { get; set; }
         public decimal Weight { get; set; }
         public decimal Volume { get; set; }
         public string? Link { get; set; }

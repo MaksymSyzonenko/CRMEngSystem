@@ -1,5 +1,6 @@
 ﻿using CRMEngSystem.Data.Entities.Catalog;
 using CRMEngSystem.Services.Search.Core;
+using System.Text.RegularExpressions;
 
 namespace CRMEngSystem.Services.Search.Catalog
 {
@@ -17,21 +18,44 @@ namespace CRMEngSystem.Services.Search.Catalog
 
         public IQueryable<EquipmentCatalogPositionEntity> Search(IQueryable<EquipmentCatalogPositionEntity> entities)
         {
-            entities = string.IsNullOrEmpty(_searchGeneral) ? entities : entities.Where(entity =>
-                (entity.EquipmentCode != null && entity.EquipmentCode.ToLower() == _searchGeneral.ToLower()) ||
-                (entity.NameEN != null && entity.NameEN.ToLower().Contains(_searchGeneral.ToLower())) ||
-                (entity.NameUA != null && entity.NameUA.ToLower().Contains(_searchGeneral.ToLower())) ||
-                (entity.Producer != null && entity.Producer.ToLower().Contains(_searchGeneral.ToLower())) ||
-                (entity.Country != null && entity.Country.ToLower().Contains(_searchGeneral.ToLower())));
+            var result = new List<EquipmentCatalogPositionEntity>();
 
-            entities = entities.Where(entity =>
-                (string.IsNullOrEmpty(_searchName) ||
+            foreach (var entity in entities)
+            {
+                bool matchesSearchGeneral = string.IsNullOrEmpty(_searchGeneral) ||
+                    (entity.EquipmentCode != null && entity.EquipmentCode.ToLower() == _searchGeneral.ToLower()) ||
+                    (entity.NameEN != null && entity.NameEN.ToLower().Contains(_searchGeneral.ToLower())) ||
+                    (entity.NameEN != null && RemoveSpecialCharacters(entity.NameEN.ToLower()).Contains(RemoveSpecialCharacters(_searchGeneral.ToLower()))) ||
+                    (entity.NameUA != null && entity.NameUA.ToLower().Contains(_searchGeneral.ToLower())) ||
+                    (entity.NameUA != null && RemoveSpecialCharacters(entity.NameUA.ToLower()).Contains(RemoveSpecialCharacters(_searchGeneral.ToLower()))) ||
+                    (entity.Producer != null && entity.Producer.ToLower().Contains(_searchGeneral.ToLower())) ||
+                    (entity.Country != null && entity.Country.ToLower().Contains(_searchGeneral.ToLower()));
+
+                bool matchesSearchName = string.IsNullOrEmpty(_searchName) ||
                     (entity.NameEN != null && entity.NameEN.ToLower().Contains(_searchName.ToLower())) ||
-                    (entity.NameUA != null && entity.NameUA.ToLower().Contains(_searchName.ToLower()))) &&
-                (string.IsNullOrEmpty(_searchEquipmentCode) ||
-                    (entity.EquipmentCode != null && entity.EquipmentCode.ToLower() == _searchEquipmentCode.ToLower())));
+                    (entity.NameEN != null && RemoveSpecialCharacters(entity.NameEN.ToLower()).Contains(RemoveSpecialCharacters(_searchName.ToLower()))) ||
+                    (entity.NameUA != null && entity.NameUA.ToLower().Contains(_searchName.ToLower())) ||
+                    (entity.NameUA != null && RemoveSpecialCharacters(entity.NameUA.ToLower()).Contains(RemoveSpecialCharacters(_searchName.ToLower())));
 
-            return entities;
+                bool matchesSearchEquipmentCode = string.IsNullOrEmpty(_searchEquipmentCode) ||
+                    (entity.EquipmentCode != null && entity.EquipmentCode.ToLower() == _searchEquipmentCode.ToLower());
+
+                if (matchesSearchGeneral && matchesSearchName && matchesSearchEquipmentCode)
+                {
+                    result.Add(entity);
+                }
+            }
+
+            return result.AsQueryable();
+        }
+        private static string RemoveSpecialCharacters(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            string pattern = @"[\""\*@\/\\'\-\+&\(\)\s]";
+            string result = Regex.Replace(input, pattern, string.Empty);
+            return result;
         }
     }
 }

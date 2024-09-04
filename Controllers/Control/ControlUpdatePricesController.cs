@@ -39,6 +39,7 @@ namespace CRMEngSystem.Controllers.Control
                     if (priceUpdate != default)
                     {
                         equipment.BasePrice = priceUpdate.Item2;
+                        equipment.DateTimeUpdatePrice = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time"));
                         updatedEntities.Add(equipment);
                         entityIds.Add(equipment.EquipmentCatalogPositionId);
                     }

@@ -14,5 +14,6 @@
         public int Quantity { get; init; }
         public int QuantityInStock { get; set; }
         public int QuantityToTake { get; set; }
+        public decimal ShippingCost { get; init; }
     }
 }

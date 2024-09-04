@@ -51,7 +51,7 @@ namespace CRMEngSystem.Controllers.Catalog
             model.TotalPageCount = (int)Math.Ceiling((decimal)entities.Count() / model.NumberItemsPerPage);
             entities = entities.Skip((model.CurrentPage - 1) * model.NumberItemsPerPage).Take(model.NumberItemsPerPage);
 
-            var result = _mapper.Map<IEnumerable<CatalogListItemDto>>(await entities.ToListAsync());
+            var result = _mapper.Map<IEnumerable<CatalogListItemDto>>(entities.ToList());
             if (model.OrderId != null && model.OrderId != 0)
             {
                 var order = await _repositoryFactory

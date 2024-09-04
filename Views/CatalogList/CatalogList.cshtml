@@ -127,6 +127,7 @@
             background-color: white;
             outline: none;
             border: none;
+            height: 26px;
         }
 
             .filter select option {
@@ -143,6 +144,7 @@
             justify-content: flex-start;
             align-items: center;
             gap: 5px;
+            height: 26px;
         }
 
         .range-container input {
@@ -595,7 +597,7 @@
                                 }
                             }
                         </span>
-                        <span>@entity.BasePrice.ToString("0.00") £</span>
+                        <span style="white-space: nowrap;">@entity.BasePrice.ToString("0.00") £ (@entity.DateTimeUpdatePrice.ToString("yyyy"))</span>
                         @if (!((Model.OrderId != null && Model.OrderId != 0) || (Model.WareHouseId != null && Model.WareHouseId != 0)))
                         {
                             <span>@entity.Weight кг</span>
