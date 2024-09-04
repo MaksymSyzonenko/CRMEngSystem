@@ -75,9 +75,9 @@ namespace CRMEngSystem.Controllers.Order
                         equipmentListString.AppendLine(
                             $"<tr><td style='text-align: center; padding: 5px;'>{equipment.EquipmentCatalogPosition.EquipmentCode}</td>" +
                             $"<td style='padding: 5px 15px;'>{equipment.EquipmentCatalogPosition.NameUA}</td>" +
-                            $"<td style='text-align: center; padding: 5px;'>{Math.Round(equipment.SellPrice + (proportion * shippingCostResult / equipment.Quantity), 2)} €</td>" +
-                            $"<td style='text-align: center; padding: 5px;'>{equipment.Quantity} шт</td>" +
-                            $"<td style='text-align: center; padding: 5px;'>{Math.Round((equipment.SellPrice + (proportion * shippingCostResult / equipment.Quantity)) * equipment.Quantity, 2)} €</td></tr>"
+                            $"<td style='text-align: center; padding: 5px;'>{Math.Round(equipment.SellPrice + (proportion * shippingCostResult / equipment.Quantity), 2)}</td>" +
+                            $"<td style='text-align: center; padding: 5px;'>{equipment.Quantity},00</td>" +
+                            $"<td style='text-align: center; padding: 5px;'>{Math.Round((equipment.SellPrice + (proportion * shippingCostResult / equipment.Quantity)) * equipment.Quantity, 2)}</td></tr>"
                         );
                         totalSumPrice += (equipment.SellPrice + (proportion * shippingCostResult / equipment.Quantity)) * equipment.Quantity;
                     }
@@ -86,9 +86,9 @@ namespace CRMEngSystem.Controllers.Order
                         equipmentListString.AppendLine(
                             $"<tr><td style='text-align: center; padding: 5px;'>{equipment.EquipmentCatalogPosition.EquipmentCode}</td>" +
                             $"<td style='padding: 5px 15px;'>{equipment.EquipmentCatalogPosition.NameUA}</td>" +
-                            $"<td style='text-align: center; padding: 5px;'>{equipment.SellPrice + equipment.ShippingCost} €</td>" +
-                            $"<td style='text-align: center; padding: 5px;'>{equipment.Quantity} шт</td>" +
-                            $"<td style='text-align: center; padding: 5px;'>{(equipment.SellPrice + equipment.ShippingCost) * equipment.Quantity} €</td></tr>"
+                            $"<td style='text-align: center; padding: 5px;'>{equipment.SellPrice + equipment.ShippingCost}</td>" +
+                            $"<td style='text-align: center; padding: 5px;'>{equipment.Quantity},00</td>" +
+                            $"<td style='text-align: center; padding: 5px;'>{(equipment.SellPrice + equipment.ShippingCost) * equipment.Quantity}</td></tr>"
                         );
                         totalSumPrice += (equipment.SellPrice + equipment.ShippingCost) * equipment.Quantity;
                     }
@@ -98,9 +98,9 @@ namespace CRMEngSystem.Controllers.Order
                     equipmentListString.AppendLine(
                         $"<tr><td style='text-align: center; padding: 5px;'>{equipment.EquipmentCatalogPosition.EquipmentCode}</td>" +
                         $"<td style='padding: 5px 15px;'>{equipment.EquipmentCatalogPosition.NameUA}</td>" +
-                        $"<td style='text-align: center; padding: 5px;'>{equipment.SellPrice} €</td>" +
-                        $"<td style='text-align: center; padding: 5px;'>{equipment.Quantity} шт</td>" +
-                        $"<td style='text-align: center; padding: 5px;'>{equipment.SellPrice * equipment.Quantity} €</td></tr>"
+                        $"<td style='text-align: center; padding: 5px;'>{equipment.SellPrice}</td>" +
+                        $"<td style='text-align: center; padding: 5px;'>{equipment.Quantity},00</td>" +
+                        $"<td style='text-align: center; padding: 5px;'>{equipment.SellPrice * equipment.Quantity}</td></tr>"
                     );
                     totalSumPrice += equipment.SellPrice * equipment.Quantity;
                 }
@@ -122,7 +122,7 @@ namespace CRMEngSystem.Controllers.Order
             if (!string.IsNullOrEmpty(model.Note)) body.AppendLine($"<br>{model.Note}");
 
             body.AppendLine($"<table border='1' style='border-collapse: collapse; width: 80%;'>")
-                .AppendLine("<thead><tr><th style='width: 14%; padding: 5px;'>Код</th><th style='width: 44%; text-align: left; padding: 5px 15px;'>Найменування</th><th style='width: 14%; padding: 5px;'>Ціна, €</th><th style='width: 14%; padding: 5px;'>Кількість, шт</th><th style='width: 14%; padding: 5px;'>Загальна ціна, €</th></tr></thead>")
+                .AppendLine("<thead><tr><th style='width: 12%; padding: 5px;'>Код</th><th style='width: 48%; text-align: left; padding: 5px 15px;'>Найменування</th><th style='width: 14%; padding: 5px;'>Ціна, €</th><th style='width: 10%; padding: 5px;'>К-сть, шт</th><th style='width: 16%; padding: 5px;'>Загальна ціна, €</th></tr></thead>")
                 .AppendLine($"<tbody>{equipmentListString}")
                 .AppendLine($"<tr><td colspan='2' style='text-align: right; padding: 5px; font-weight: bold;'>Разом:</td><td style='text-align: center; padding: 5px 15px; font-weight: bold;'>—</td><td style='text-align: center; padding: 5px; font-weight: bold;'>{order.EquipmentOrderPositions.Sum(equipment => equipment.Quantity)} шт</td><td style='text-align: center; padding: 5px; font-weight: bold;'>{Math.Round(totalSumPrice, 2)} €</td></tr>")
                 .AppendLine(shippingCost != 0 ? $"<tr><td colspan='2' style='text-align: right; padding: 5px; font-weight: bold;'>Доставка:</td><td colspan='3' style='text-align: center; padding: 5px; font-weight: bold'>{(isShippingCostChanged ? shippingCostResult : shippingCost)} €</td></tr>" : string.Empty)
