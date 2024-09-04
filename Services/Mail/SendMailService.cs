@@ -19,7 +19,7 @@ namespace CRMEngSystem.Services.Mail
                 mail.To.Add(receiver);
                 if(!string.IsNullOrEmpty(extrareceiver)) mail.CC.Add(extrareceiver);
 
-                SmtpClient smtpClient = new("smtp.gmail.com", 465) // SMTP сервер и порт (587 для TLS, 465 для SSL)
+                SmtpClient smtpClient = new("smtp.gmail.com", 587) // SMTP сервер и порт (587 для TLS, 465 для SSL)
                 {
                     Credentials = new NetworkCredential(sender, Environment.GetEnvironmentVariable("EMAIL_PASSWORD")),
                     EnableSsl = true
