@@ -108,27 +108,47 @@
                 @Html.TextBoxFor(m => m.ExtraReceiver, new { placeholder = "Пошта додаткового отримувача (Якщо відсутня - залишити пустим)", @class = "data-input" })
             </div>
             <div class="form-container-row">
-                <div class="header-row"><span>Коментар: </span></div>
-                @Html.TextBoxFor(m => m.Note, new { placeholder = "Коментар до листа (Якщо відсутній - залишити пустим)", @class = "data-input" })
-            </div>
-            <div class="form-container-row">
                 <div class="header-row"><span>Курс: </span></div>
                 @Html.DropDownList("Currency", new SelectList(new[] { "НБУ", "МВБ", "Комерційний Приватбанк" }), "Обрати курс", new { @required = "required", @class = "data-input" })
             </div>
             <div class="form-container-row">
+                <div class="header-row"><span>Коментар: </span></div>
+                @Html.TextBoxFor(m => m.Note, new { placeholder = "Коментар до листа (Якщо відсутній - залишити пустим)", @class = "data-input" })
+            </div>
+            @* <div class="form-container-row">
                 <div class="header-row"><span>Доставка:</span></div>
                 <div class="select-checkbox">
-                    <label> 
-                        @Html.CheckBoxFor(m => m.IncludeShippingCost)
+                    <label>
+                        @Html.CheckBoxFor(m => m.IncludeShippingCost, new { id = "includeShippingCostCheckbox" })
                         <span>Включити доставку попозиційно у ціну обладнання</span>
                     </label>
                 </div>
             </div>
             <div class="form-container-row">
                 <div class="header-row"><span>Вартість доставки: </span></div>
-                @Html.TextBoxFor(m => m.ShippingCost, new { placeholder = "Вартість доставки", @class = "data-input", type = "text", inputmode = "numeric", pattern = "^\\d+([.,]?\\d+)*$", required = "required" })
-            </div>
+                @Html.TextBoxFor(m => m.ShippingCost, new { id = "shippingCostInput", placeholder = "Вартість доставки", @class = "data-input", type = "text", inputmode = "numeric", pattern = "^\\d+([.,]?\\d+)*$", required = "required" })
+            </div> *@
             <div class="btn-container"><input class="add-btn" value="Відправити лист" type="submit" style="width: 200px;" /></div>
         }
     </div>
 </body>
+@* 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkbox = document.getElementById('includeShippingCostCheckbox');
+        const shippingCostInput = document.getElementById('shippingCostInput');
+
+        function toggleShippingCostInput() {
+            if (checkbox.checked) {
+                shippingCostInput.disabled = false;
+                shippingCostInput.required = true;
+            } else {
+                shippingCostInput.disabled = true;
+                shippingCostInput.required = false;
+                shippingCostInput.value = '@Model.ShippingCost';
+            }
+        }
+        toggleShippingCostInput();
+        checkbox.addEventListener('change', toggleShippingCostInput);
+    });
+</script> *@

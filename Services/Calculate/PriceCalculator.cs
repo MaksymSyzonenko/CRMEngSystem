@@ -9,6 +9,6 @@
             => (1 + (markUp / 100.0m)) * CalculatePurchasePrice(discount, price);
 
         public static decimal CalculateShippingCost(decimal weight, decimal volume, decimal weightRate, decimal volumeRate)
-            => weight * weightRate + volume * volumeRate;
+            => (weight > 1 ? weight : 1) * weightRate + volume * volumeRate;
     }
 }

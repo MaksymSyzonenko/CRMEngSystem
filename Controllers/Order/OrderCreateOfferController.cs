@@ -55,7 +55,7 @@ namespace CRMEngSystem.Controllers.Order
                 {
                     Name = equipment.EquipmentCatalogPosition.NameUA,
                     Quantity = equipment.Quantity,
-                    Price = Math.Round(equipment.SellPrice * coefficient, 2)
+                    Price = Math.Round((equipment.SellPrice + equipment.ShippingCost) * coefficient, 2)
                 });
             }
             var user = await _repositoryFactory.Instantiate<ContactEntity>().GetEntityAsync(new ContactDataLoader(true, false, false, false, false), contact => contact.ContactId, (await _userManager.GetUserAsync(User))!.ContactId);
