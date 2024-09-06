@@ -23,7 +23,7 @@ namespace CRMEngSystem.Controllers.Order
         }
         public async Task<IActionResult> OpenModal(int EntityId)
         {
-            if((await _userManager.GetUserAsync(User))!.AccessLevel == AccessLevel.High)
+            if((await _userManager.GetUserAsync(User))!.AccessLevel == AccessLevel.High || (await _userManager.GetUserAsync(User))!.AccessLevel == AccessLevel.Medium)
             {
                 TempData["ConfirmModalUpdate"] = true;
                 TempData["NotifyText"] = "Ви впевнені що хочете оновити значення прайсів, цін та вартостей на актуальні?";

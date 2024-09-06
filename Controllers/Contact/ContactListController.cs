@@ -25,7 +25,7 @@ namespace CRMEngSystem.Controllers.Contact
         }
 
         [HttpGet]
-        public async Task<IActionResult> ContactList(ContactListViewModel model)
+        public IActionResult ContactList(ContactListViewModel model)
         {
             var entities = _repositoryFactory.Instantiate<ContactEntity>().GetAllEntitiesAsQueryable(new ContactDataLoader(true, true, true, false, false));
 
@@ -36,7 +36,7 @@ namespace CRMEngSystem.Controllers.Contact
 
             model.TotalPageCount = (int)Math.Ceiling((decimal)entities.Count() / model.NumberItemsPerPage);
             entities = entities.Skip((model.CurrentPage - 1) * model.NumberItemsPerPage).Take(model.NumberItemsPerPage);
-            model.Entities = _mapper.Map<IEnumerable<ContactListItemDto>>(await entities.ToListAsync());
+            model.Entities = _mapper.Map<IEnumerable<ContactListItemDto>>(entities.ToList());
 
             return View(model);
         }
