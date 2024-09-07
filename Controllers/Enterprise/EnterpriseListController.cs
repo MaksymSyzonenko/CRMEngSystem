@@ -52,7 +52,7 @@ namespace CRMEngSystem.Controllers.Enterprise
                 entities = entities.Where(entity => codes.Contains(entity.EnterpriseId));
             }
 
-            var sortService = new EnterpriseSortService(model.SortEnterpriseId, model.SortAlphabetStreet, model.SortAlphabetRegion, model.SortAlphabetCity);
+            var sortService = new EnterpriseSortService(model.SortAlphabetNameUA, model.SortAlphabetStreet, model.SortAlphabetRegion, model.SortAlphabetCity);
             entities = sortService.Sort(entities);
 
             var searchService = new EnterpriseSearchService(model.SearchGeneral, model.SearchName, model.SearchStreet, model.SearchRegion, model.SearchCity);

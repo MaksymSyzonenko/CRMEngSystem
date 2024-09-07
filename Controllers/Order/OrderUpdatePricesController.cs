@@ -23,7 +23,7 @@ namespace CRMEngSystem.Controllers.Order
         }
         public async Task<IActionResult> OpenModal(int EntityId)
         {
-            if((await _userManager.GetUserAsync(User))!.AccessLevel == AccessLevel.High || (await _userManager.GetUserAsync(User))!.AccessLevel == AccessLevel.Medium)
+            if((await _userManager.GetUserAsync(User))!.AccessLevel != AccessLevel.Low)
             {
                 TempData["ConfirmModalUpdate"] = true;
                 TempData["NotifyText"] = "Ви впевнені що хочете оновити значення прайсів, цін та вартостей на актуальні?";
@@ -35,7 +35,10 @@ namespace CRMEngSystem.Controllers.Order
         }
         public async Task<IActionResult> ConfirmModal(int EntityId)
         {
-            var equipmentList = _repositoryFactory.Instantiate<EquipmentOrderPositionEntity>().GetAllEntitiesAsQueryable(new EquipmentOrderPositionDataLoader(true, true))
+            var repository1 = _repositoryFactory.Instantiate<OrderEntity>();
+            var repository2 = _repositoryFactory.Instantiate<EquipmentOrderPositionEntity>();
+            var order = await repository1.GetEntityAsync(new OrderDataLoader(true, true, true, true, true), order => order.OrderId, EntityId);
+            var equipmentList = repository2.GetAllEntitiesAsQueryable(new EquipmentOrderPositionDataLoader(true, true))
                     .Where(equipment => equipment.OrderId == EntityId);
             var updatedEntities = new List<EquipmentOrderPositionEntity>();
             var entityIds = new List<int>();
@@ -48,7 +51,9 @@ namespace CRMEngSystem.Controllers.Order
                 entityIds.Add(equipment.EquipmentOrderPositionId);
                 updatedEntities.Add(equipment);
             }
-            await _repositoryFactory.Instantiate<EquipmentOrderPositionEntity>().UpdateRangeAsync("EquipmentOrderPositionId", entityIds, updatedEntities);
+            await repository2.UpdateRangeAsync("EquipmentOrderPositionId", entityIds, updatedEntities);
+            order.DateTimeUpdate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time"));
+            await repository1.UpdateEntityAsync(EntityId, order);
             TempData["NotifyModal"] = true;
             TempData["ConfirmModalUpdate"] = false;
             TempData["ErrorNotifyModal"] = false;

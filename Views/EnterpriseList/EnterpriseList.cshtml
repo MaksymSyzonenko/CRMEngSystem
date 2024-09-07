@@ -37,6 +37,7 @@
                     SearchStreet = Model.SearchStreet,
                     SearchRegion = Model.SearchRegion,
                     SearchCity = Model.SearchCity,
+                    SortAlphabetNameUA = Model.SortAlphabetNameUA,
                     SortAlphabetCity = Model.SortAlphabetCity,
                     SortAlphabetStreet = Model.SortAlphabetStreet,
                     SortAlphabetRegion = Model.SortAlphabetRegion,
@@ -48,7 +49,7 @@
                 <div class="number-container">@Model.NumberItemsSelectedEnterprises</div>
             </div>
             <div class='@(!Model.IsSelectedEnterprises ? "tab-link-container-active" : "tab-link-container")'>
-                @Html.ActionLink("Всі піприємства", "EnterpriseList", "EnterpriseList", CreateViewModel(false), new { @class = "tab-link" })
+                @Html.ActionLink("Всі підприємства", "EnterpriseList", "EnterpriseList", CreateViewModel(false), new { @class = "tab-link" })
                 <div class="number-container">@Model.NumberItemsEnterprises</div>
             </div>
         </div>
@@ -63,7 +64,7 @@
             <div class="header-container">
                 <div class="header-part">
                     @{
-                        EnterpriseListViewModel CreateViewModelWithSort(bool? sortEnterpriseId, bool? sortAlphabetStreet, bool? sortAlphabetCity, bool? sortAlphabetRegion)
+                        EnterpriseListViewModel CreateViewModelWithSort(bool? sortAlphabetNameUA, bool? sortAlphabetStreet, bool? sortAlphabetCity, bool? sortAlphabetRegion)
                         => new()
                         {
                             SearchGeneral = Model.SearchGeneral,
@@ -71,7 +72,7 @@
                             SearchStreet = Model.SearchStreet,
                             SearchRegion = Model.SearchRegion,
                             SearchCity = Model.SearchCity,
-                            SortEnterpriseId = sortEnterpriseId,
+                            SortAlphabetNameUA = sortAlphabetNameUA,
                             SortAlphabetStreet = sortAlphabetStreet,
                             SortAlphabetCity = sortAlphabetCity,
                             SortAlphabetRegion = sortAlphabetRegion,
