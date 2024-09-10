@@ -590,7 +590,7 @@
                                         <span>@entity.Initials</span>
                                     </a>
                                     <div class="contact-card-data-footer">
-                                        <div class="contact-copy-container"><span>@entity.Position</span></div>
+                                        <div class="contact-copy-container"><span style="overflow: hidden; text-overflow: ellipsis;">@entity.Position</span></div>
                                         <div class="contact-copy-container" onclick="copyToClipboard('@entity.PhoneNumber')"><span>@entity.PhoneNumber</span><img src="~/icons/Copy.svg" /></div>
                                         <div class="contact-copy-container" onclick="copyToClipboard('@entity.Email')"><span>@entity.Email</span><img src="~/icons/Copy.svg" /></div>
                                     </div>
