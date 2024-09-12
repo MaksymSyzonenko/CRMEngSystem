@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -14,7 +15,7 @@ namespace CRMEngSystem.Word
         private readonly PriceValues _priceValues;
         private readonly IList<EquipmentEntry> _equipmentList;
         private readonly Dictionary<string, string> _replacements;
-        public CommercialOfferCreater(byte[] fileBytes, Recipient recipient, Sender sender, DateTime date, string currency, PriceValues priceValues, IList<EquipmentEntry> equipmentList)
+        public CommercialOfferCreater(byte[] fileBytes, Recipient recipient, Sender sender, DateTime date, string currency, PriceValues priceValues, IList<EquipmentEntry> equipmentList, int orderId)
         {
             _fileBytes = fileBytes;
             _recipient = recipient;
@@ -23,27 +24,27 @@ namespace CRMEngSystem.Word
             _currency = currency;
             _priceValues = priceValues;
             _equipmentList = equipmentList;
-            _replacements = CreateReplacements();
+            _replacements = CreateReplacements(orderId);
         }
-
-        private Dictionary<string, string> CreateReplacements()
+        private Dictionary<string, string> CreateReplacements(int orderId)
             => new(){
-                        { "<Date>", _date.ToShortDateString().ToString() },
-                        { "<RecipientFirstName>", _recipient.RecipientFirstName },
-                        { "<RecipientLastName>", _recipient.RecipientLastName },
-                        { "<RecipientOrganizationName>", _recipient.RecipientOrganizationName },
-                        { "<RecipientPhoneNumber>", _recipient.RecipientPhoneNumber },
-                        { "<RecipientEmail>", _recipient.RecipientEmail },
-                        { "<SenderProducerName>", _sender.SenderProducerName},
-                        { "<SenderFirstName>", _sender.SenderFirstName },
-                        { "<SenderLastName>", _sender.SenderLastName },
-                        { "<SenderPhoneNumber>", _sender.SenderPhoneNumber },
-                        { "<SenderEmail>", _sender.SenderEmail },
-                        { "<Currency>", _currency},
-                        { "<TotalSum>", _priceValues.TotalSum.ToString() },
-                        { "<ShippingCost>", _priceValues.ShippingCost.ToString() },
-                        { "<TotalWithShippingCost>", _priceValues.TotalWithShippingCost.ToString()}
-                    };
+                { "<OrderId>",  orderId.ToString() },
+                { "<Date>", _date.ToShortDateString().ToString() },
+                { "<RecipientFirstName>", _recipient.RecipientFirstName },
+                { "<RecipientLastName>", _recipient.RecipientLastName },
+                { "<RecipientOrganizationName>", _recipient.RecipientOrganizationName },
+                { "<RecipientPhoneNumber>", _recipient.RecipientPhoneNumber },
+                { "<RecipientEmail>", _recipient.RecipientEmail },
+                { "<SenderProducerName>", _sender.SenderProducerName},
+                { "<SenderFirstName>", _sender.SenderFirstName },
+                { "<SenderLastName>", _sender.SenderLastName },
+                { "<SenderPhoneNumber>", _sender.SenderPhoneNumber },
+                { "<SenderEmail>", _sender.SenderEmail },
+                { "<Currency>", _currency},
+                { "<TotalSum>", _priceValues.TotalSum.ToString() },
+                { "<ShippingCost>", _priceValues.ShippingCost.ToString() },
+                { "<TotalWithShippingCost>", _priceValues.TotalWithShippingCost.ToString()}
+            };
         public byte[] CreateCommercialOffer()
         {
             using (MemoryStream memoryStream = new MemoryStream())

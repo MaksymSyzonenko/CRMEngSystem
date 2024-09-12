@@ -84,7 +84,7 @@ namespace CRMEngSystem.Controllers.Order
             };
             PriceValues priceValues = new() { TotalSum = Math.Round(equipmentList.Sum(e => e.Quantity * e.Price), 2), ShippingCost = Math.Round(order.EquipmentOrderPositions.Sum(equipment => equipment.ShippingCost * equipment.Quantity) * coefficient, 2), TotalWithShippingCost = Math.Round(equipmentList.Sum(e => e.Quantity * e.Price) + order.EquipmentOrderPositions.Sum(equipment => equipment.ShippingCost * equipment.Quantity), 2) };
             byte[] fileBytes = Convert.FromBase64String(ConfigurationSettings.WordTemplate);
-            CommercialOfferCreater offer = new(fileBytes, recipient, sender, DateTime.Now, Currency, priceValues, equipmentList);
+            CommercialOfferCreater offer = new(fileBytes, recipient, sender, DateTime.Now, Currency, priceValues, equipmentList, OrderId);
             fileBytes = offer.CreateCommercialOffer();
             string fileName = $"Комерційна_Пропозиція_{OrderId}.docx";
             return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", fileName);
