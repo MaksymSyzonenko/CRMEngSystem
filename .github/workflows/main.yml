@@ -1,11 +1,11 @@
-name: Deploy to Railway
+name: Update File
 
 on:
   schedule:
-    - cron: '47 11 * * *'
+    - cron: '10 12 * * *'  # Выполнять каждый день в 14:00 UTC
 
 jobs:
-  deploy:
+  update-file:
     runs-on: ubuntu-latest
     
     steps:
@@ -14,8 +14,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Deploy to Railway
-        uses: railwayapp/railway-action@v1
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          railway_project: ${{ secrets.RAILWAY_PROJECT }}
+      - name: Install Git
+        run: sudo apt-get install git
+
+      - name: Increment number in file
+        run: |
+          # Путь к вашему текстовому файлу
+          FILE_PATH="CRMEngSystem/commits.txt"
+          
+          # Читаем текущее значение из файла
+          CURRENT_VALUE=$(cat $FILE_PATH)
+          
+          # Инкрементируем значение на 1
+          NEW_VALUE=$((CURRENT_VALUE + 1))
+          
+          # Записываем новое значение в файл
+          echo $NEW_VALUE > $FILE_PATH
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add path/to/your/file.txt
+          git commit -m "Incremented value in file"
+          git push origin main
