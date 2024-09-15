@@ -26,6 +26,10 @@ namespace CRMEngSystem.Controllers.WareHouse
         [HttpGet]
         public async Task<IActionResult> WareHouseList(WareHouseListViewModel model)
         {
+            GC.Collect(); // Принудительная сборка мусора
+            GC.WaitForPendingFinalizers(); // Ожидание завершения
+            Console.WriteLine("Clean success!");
+
             var entities = _repositoryFactory.Instantiate<WareHouseEntity>().GetAllEntitiesAsQueryable(new WareHouseDataLoader(false));
 
             var searchService = new WareHouseSearchService(model.SearchGeneral);
