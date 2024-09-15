@@ -19,6 +19,7 @@ using CRMEngSystem.Services.Settings;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.Net.Mail;
 using System.Net;
+using CRMEngSystem.Services.Garbage;
 
 namespace CRMEngSystem
 {
@@ -32,6 +33,7 @@ namespace CRMEngSystem
             builder.WebHost.UseUrls($"http://*:{port}");
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHostedService<GarbageCollectorService>();
 
             var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Environment.CurrentDirectory)
