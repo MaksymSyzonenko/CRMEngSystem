@@ -13,13 +13,8 @@ using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 using CRMEngSystem.AutoMapper.WareHouse;
 using CRMEngSystem.Attributes.Cache;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using CRMEngSystem.Services.Settings;
-using Microsoft.AspNetCore.HttpOverrides;
-using System.Net.Mail;
-using System.Net;
-using CRMEngSystem.Services.Garbage;
 
 namespace CRMEngSystem
 {
@@ -33,7 +28,6 @@ namespace CRMEngSystem
             builder.WebHost.UseUrls($"http://*:{port}");
 
             builder.Services.AddControllersWithViews();
-            builder.Services.AddHostedService<GarbageCollectorService>();
 
             var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Environment.CurrentDirectory)
