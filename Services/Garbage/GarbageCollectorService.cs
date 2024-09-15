@@ -25,6 +25,7 @@
                     await Task.Delay(delay, stoppingToken); // Ожидаем до 20:00
                     GC.Collect(); // Принудительная сборка мусора
                     GC.WaitForPendingFinalizers(); // Ожидание завершения
+                    Console.WriteLine("Clean success!");
                 }
             }
         }
