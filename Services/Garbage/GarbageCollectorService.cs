@@ -2,36 +2,29 @@
 {
     public class GarbageCollectorService : BackgroundService
     {
-        private readonly ILogger<GarbageCollectorService> _logger;
-
-        public GarbageCollectorService(ILogger<GarbageCollectorService> logger)
-        {
-            _logger = logger;
-        }
-
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Сервис очистки мусора запущен.");
+            Console.WriteLine("Сервис очистки мусора запущен.");
 
             while (!stoppingToken.IsCancellationRequested)
             {
                 var now = DateTime.Now;
-                var nextRunTime = now.Date.Add(new TimeSpan(13, 0, 0));
+                var nextRunTime = now.Date.Add(new TimeSpan(13, 7, 0));
                 if (nextRunTime < now)
                 {
                     nextRunTime = nextRunTime.AddDays(1);
                 }
 
                 var delay = nextRunTime - now;
-                _logger.LogInformation($"Следующая очистка памяти запланирована на {nextRunTime}");
+                Console.WriteLine($"Следующая очистка памяти запланирована на {nextRunTime}");
 
                 await Task.Delay(delay, stoppingToken);
 
-                _logger.LogInformation("Запуск сборки мусора.");
+                Console.WriteLine("Запуск сборки мусора.");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
 
-                _logger.LogInformation("Сборка мусора завершена.");
+                Console.WriteLine("Сборка мусора завершена.");
             }
         }
     }
