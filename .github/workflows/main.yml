@@ -1,0 +1,21 @@
+name: Deploy to Railway
+
+on:
+  schedule:
+    - cron: '45 14 * * *'  # Выполнять каждый день в 14:45 UTC
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to Railway
+        uses: railwayapp/railway-action@v1
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          railway_project: ${{ secrets.RAILWAY_PROJECT }}
