@@ -35,6 +35,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add path/to/your/file.txt
+          git add commits.txt
           git commit -m "Incremented value in file"
           git push origin main
