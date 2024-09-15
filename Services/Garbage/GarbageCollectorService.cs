@@ -16,7 +16,7 @@
             while (!stoppingToken.IsCancellationRequested)
             {
                 var now = DateTime.Now;
-                var nextRunTime = now.Date.Add(new TimeSpan(12, 45, 0));
+                var nextRunTime = now.Date.Add(new TimeSpan(13, 0, 0));
                 if (nextRunTime < now)
                 {
                     nextRunTime = nextRunTime.AddDays(1);
