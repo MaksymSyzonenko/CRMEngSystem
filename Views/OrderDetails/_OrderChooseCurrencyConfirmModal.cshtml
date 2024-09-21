@@ -75,6 +75,7 @@
             color: white;
             background-color: #4962E9;
             border-radius: 3px;
+            border: none;
             text-decoration: none;
             padding: 5px 15px;
             width: 160px;
@@ -121,10 +122,49 @@
                     <span>В якій валюті створити Комерційну Пропозицію?</span>
                 </div>
                 <div class="btns-container">
-                    @Html.ActionLink("EUR", "OrderCreateOffer", "OrderCreateOffer", new { OrderId = Model.OrderId, Currency = "EUR" }, new { @class = "cancel-btn" })
-                    @Html.ActionLink("UAH", "OrderCreateOffer", "OrderCreateOffer", new { OrderId = Model.OrderId, Currency = "UAH" }, new { @class = "cancel-btn" })
+                    <button class="cancel-btn" id="choose-eur">EUR</button>
+                    <button class="cancel-btn" id="choose-uah">UAH</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var modalBackground = document.querySelector('.modal-background');
+        var closeLink = document.querySelector('.close-link a');
+        var chooseEurButton = document.getElementById('choose-eur');
+        var chooseUahButton = document.getElementById('choose-uah');
+
+        function closeModal() {
+            modalBackground.style.display = 'none';
+        }
+
+        closeLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            closeModal();
+        });
+
+        modalBackground.addEventListener('click', function (event) {
+            if (event.target === modalBackground) {
+                closeModal();
+            }
+        });
+
+        chooseEurButton.addEventListener('click', function () {
+            downloadFile('EUR');
+        });
+
+        chooseUahButton.addEventListener('click', function () {
+            downloadFile('UAH');
+        });
+
+        function downloadFile(currency) {
+            var downloadUrl = '/OrderCreateOffer/OrderCreateOffer?OrderId=' + @Model.OrderId + '&Currency=' + currency;
+            window.location.href = downloadUrl;
+            closeModal();
+        }
+    });
+
+</script>
