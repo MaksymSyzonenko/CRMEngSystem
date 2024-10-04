@@ -15,6 +15,7 @@ using CRMEngSystem.AutoMapper.WareHouse;
 using CRMEngSystem.Attributes.Cache;
 using Microsoft.AspNetCore.Localization;
 using CRMEngSystem.Services.Settings;
+using System;
 
 namespace CRMEngSystem
 {
@@ -34,7 +35,7 @@ namespace CRMEngSystem
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             var configuration = configurationBuilder.Build();
 
-            builder.Services.AddPostgreSQLDataBase(configuration.GetConnectionString("PostgreSQLConnectionString")!);
+            builder.Services.AddPostgreSQLDataBase(Environment.GetEnvironmentVariable("PostgreSQLConnectionString")!);
 
             //builder.Services.AddPostgreSQLDataBase(configuration.GetConnectionString("PostgreSQLConnectionStringLocal")!);
 
